@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?language javascript?>-->
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import java.net.URL?>
+
+<VBox styleClass="root"   xmlns:fx="http://javafx.com/fxml" fx:controller="sample.RulesController">
+
+    <Text  styleClass="welcometext">RULES</Text>
+
+
+    <Button id="btn1" text="License" mnemonicParsing="false" onAction="#GoToLicense" />
+    <Button id="btn2" text="Declaration" mnemonicParsing="false" onAction="#GoToDeclaration" />
+
+    <Button id="btn3" text="EXIT" mnemonicParsing="false" onAction="#GoToLogin" />
+
+
+    <stylesheets>
+        <URL value="@Login.css" />
+    </stylesheets>
+
+</VBox>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?language javascript?>-->
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import java.net.URL?>
+
+<VBox styleClass="root"   xmlns:fx="http://javafx.com/fxml" fx:controller="sample.LoginController">
+
+    <Text  styleClass="welcometext">خوش آمدید </Text>
+
+    <HBox styleClass="hbox">
+        <TextField styleClass="inputfield"/>
+        <Label styleClass="labels">نام کاربری</Label>
+    </HBox>
+
+    <HBox styleClass="hbox">
+        <PasswordField styleClass="inputfield"/>
+        <Label styleClass="labels">رمز عبور</Label>
+    </HBox>
+
+    <!--<Button text="Sign In"-->
+            <!--onAction="#handleSubmitButtonAction"/>-->
+
+    <Button id="btn1" text="ورود" mnemonicParsing="false" onAction="#GoToDeclaration" />
+
+
+
+    <stylesheets>
+        <URL value="@Login.css" />
+    </stylesheets>
+
+</VBox>

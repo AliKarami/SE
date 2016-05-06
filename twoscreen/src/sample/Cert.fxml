@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?language javascript?>-->
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.URL?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="371.0" prefWidth="293.0" style="&#10;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeclarationController">
+  <children>
+    <HBox alignment="CENTER" fillHeight="true" prefHeight="57.0" prefWidth="293.0">
+      <children>
+        <TextField fx:id="CertIdTXT" prefHeight="26.0" prefWidth="120.0" />
+        <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="شماره مجوز" textAlignment="RIGHT" wrapText="false" />
+      </children>
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="200.0" prefWidth="293.0">
+      <children>
+            <TextArea fx:id="CertDescTXT" prefHeight="200.0" prefWidth="120.0" />
+        <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="توضیح" textAlignment="RIGHT" wrapText="false" />
+      </children>
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+               <children>
+              <Button fx:id="addcertBTN" alignment="CENTER" mnemonicParsing="false" onAction="#addcert" text="اضافه کردن مجوز" />
+                  <Label fx:id="addcerterrorLBL" text="مشکل در ورود اطلاعات" textFill="RED" visible="false" />
+               </children>
+            </VBox>
+      </children>
+    </HBox>
+  </children>
+</VBox>

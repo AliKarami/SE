@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--<?language javascript?>-->
 
+<?import java.net.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
-
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -14,27 +15,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <?import java.net.URL?>
 
-<VBox styleClass="root"   xmlns:fx="http://javafx.com/fxml" fx:controller="sample.LoginController">
-
-    <Text  styleClass="welcometext">خوش آمدید </Text>
-
-    <HBox styleClass="hbox">
-        <TextField styleClass="inputfield"/>
-        <Label styleClass="labels">نام کاربری</Label>
-    </HBox>
-
-    <HBox styleClass="hbox">
-        <PasswordField styleClass="inputfield"/>
-        <Label styleClass="labels">رمز عبور</Label>
-    </HBox>
-
-    <!--<Button text="Sign In"-->
-            <!--onAction="#handleSubmitButtonAction"/>-->
-
-    <Button id="btn1" text="ورود" mnemonicParsing="false" onAction="#GoToDeclaration" />
+<VBox styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+   <children>
+   
+       <Text styleClass="welcometext">خوش آمدید </Text>
+   
+       <HBox styleClass="hbox">
+      <children>
+              <TextField fx:id="uname" styleClass="inputfield" />
+              <Label prefHeight="15.0" prefWidth="70.0" styleClass="labels">نام کاربری</Label>
+      </children>
+       </HBox>
+   
+       <HBox styleClass="hbox">
+      <children>
+              <PasswordField fx:id="pword" onAction="#GoToDeclaration" styleClass="inputfield" />
+              <Label prefHeight="15.0" prefWidth="70.0" styleClass="labels">رمز عبور</Label>
+      </children>
+       </HBox>
+      <Label fx:id="errorLBL" text="نام کاربری یا کلمه عبور اشتباه است" textFill="RED" visible="false" />
+   
+       <!--<Button text="Sign In"-->
+               <!--onAction="#handleSubmitButtonAction"/>-->
+   
+       <Button fx:id="loginBTN" mnemonicParsing="false" onAction="#GoToDeclaration" text="ورود" />
+   </children>
 
 
 

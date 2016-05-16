@@ -1,8 +1,5 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,14 +12,11 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.event.ActionEvent;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.util.Vector;
 
 class ware {
     String name;
@@ -34,7 +28,13 @@ class ware {
 
 class cert {
     String id;
-    String desc;
+    String name;
+    int num_from;
+    int num_to;
+    int perprice_form;
+    int perprice_to;
+    String date_from;
+    String date_to;
 }
 
 public class DeclarationController implements Initializable{
@@ -42,108 +42,106 @@ public class DeclarationController implements Initializable{
 
     @FXML
     private TextField signupuname;
-
     @FXML
     private TextField signuppword;
-
     @FXML
     private TextField signupname;
-
     @FXML
     private TextField signupfamily;
-
     @FXML
     private RadioButton emp;
-
     @FXML
     private RadioButton ruler;
-
     @FXML
     private RadioButton admin;
-
     @FXML
     private Label errorLBL;
-
     @FXML
     private Label duplicateLBL;
-
     @FXML
     private Label userAddedLBL;
-
     @FXML
     public TableView<DeclarationController> usersTBL;
-
     @FXML
     public TableColumn unameCOL;
-
     @FXML
     public TableColumn nameCOL;
-
     @FXML
     public TableColumn familyCOL;
-
     @FXML
     public TableColumn typeCOL;
-
     @FXML
     public ListView warehouseLV;
-
     @FXML
     public ListView certhouseLV;
-
     @FXML
     public TextField WareNameTXT;
-
     @FXML
     public TextField WareManTXT;
-
     @FXML
     public TextField WareWeightTXT;
-
     @FXML
     public TextField WareNumTXT;
-
     @FXML
     public TextField WarePriceTXT;
-
     @FXML
     public TextField CertIdTXT;
-
     @FXML
-    public TextArea CertDescTXT;
-
+    public TextField CertWarenameTXT;
+    @FXML
+    public TextField CertNumToTXT;
+    @FXML
+    public TextField CertNumFromTXT;
+    @FXML
+    public TextField CertPerpriceToTXT;
+    @FXML
+    public TextField CertPerpriceFromTXT;
+    @FXML
+    public DatePicker CertDateFromDP;
+    @FXML
+    public DatePicker CertDateToDP;
     @FXML
     public Label addwareerrorLBL;
-
     @FXML
     public Label addcerterrorLBL;
-
     @FXML
     public Button addwareBTN;
-
     @FXML
     public Button addcertBTN;
-
     @FXML
     public TextField DecMIDTXT;
-
     @FXML
     public TextField DecMNameTXT;
-
     @FXML
     public TextField DecDateTXT;
-
     @FXML
     public TextField DecSourceTXT;
-
     @FXML
     public RadioButton RecDecAirRD;
-
     @FXML
     public RadioButton RecDecSeaRD;
-
     @FXML
     public RadioButton RecDecFloorRD;
+    @FXML
+    public TextField ruleWareTB;
+    @FXML
+    public TextField ruleNumFromTB;
+    @FXML
+    public TextField ruleNumToTB;
+    @FXML
+    public TextField rulePriceFromTB;
+    @FXML
+    public TextField rulePriceToTB;
+    @FXML
+    public DatePicker ruleDateFromDP;
+    @FXML
+    public DatePicker ruleDateToDP;
+    @FXML
+    public ListView ruleCerthouseLV;
+    @FXML
+    public Button ruleCertAddBTN;
+    @FXML
+    public Button ruleRecBTN;
 
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
@@ -151,48 +149,44 @@ public class DeclarationController implements Initializable{
     }
 
     @FXML
+    public void RecRule (ActionEvent event) throws IOException {
+        String sql;
+
+    }
+
+    @FXML
     public void RecDeclaration (ActionEvent event) throws IOException {
-        String url = "jdbc:mysql://localhost:3306/Customs";
-        String username = "root";
-        String password = "akmz8ki";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            try (Connection connection = DriverManager.getConnection(url, username, password)) {
-
-                Statement stmt = connection.createStatement();
-                String sql;
-                for (ware w:Data.getData().Warehouse) {
-                    sql = "INSERT INTO WARE (name,manufacturer,weight,number,price_per)\n" +
-                            "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.number + "," + w.price + ")";
-                    stmt.executeUpdate(sql);
-                }
-                System.out.println(DecMNameTXT.getText());
-                sql = "INSERT INTO MERCHANTS (name,family)\n" +
-                        "VALUES (\"" + DecMNameTXT.getText() + "\",\"" + DecMNameTXT.getText() + "\")";
-                stmt.executeUpdate(sql);
-                char enterance;
-
-                if (RecDecAirRD.isSelected())
-                    enterance = 'A';
-                else if (RecDecSeaRD.isSelected())
-                    enterance = 'S';
-                else
-                    enterance = 'F';
-
-
-                sql = "INSERT INTO DECLARATIONS (MID,date,WHID,source_country,enterance,CHID)\n" +
-                        "VALUES (" + 1 + ",\"" + DecDateTXT.getText() + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
-                stmt.executeUpdate(sql);
-
-            } catch (SQLException e) {
-                throw new IllegalStateException("Cannot connect the database!", e);
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+        String sql;
+        for (ware w:Data.getData().Warehouse) {
+            sql = "INSERT INTO WARE (name,manufacturer,weight,number,price_per)\n" +
+                    "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.number + "," + w.price + ")";
+            SQLHandler.executeUpdate(sql);
         }
+
+        System.out.println(DecMNameTXT.getText());
+        sql = "INSERT INTO MERCHANTS (name,family)\n" +
+                "VALUES (\"" + DecMNameTXT.getText() + "\",\"" + DecMNameTXT.getText() + "\")";
+        SQLHandler.executeUpdate(sql);
+        char enterance;
+
+        if (RecDecAirRD.isSelected())
+            enterance = 'A';
+        else if (RecDecSeaRD.isSelected())
+            enterance = 'S';
+        else
+            enterance = 'F';
+
+        for (cert c:Data.getData().Certhouse) {
+            sql = "INSERT INTO CERTIFICATES (ware_name,num_from,num_to,perprice_from,perprice_to,date_from,date_to)\n" +
+                    "VALUES(\"" + c.name + "\"," + c.num_from + "," + c.num_to + "," + c.perprice_form + "," + c.perprice_to + "," + c.date_from + "," + c.date_to + ")";
+            SQLHandler.executeUpdate(sql);
+        }
+
+        sql = "INSERT INTO DECLARATIONS (MID,date,WHID,source_country,enterance,CHID)\n" +
+                "VALUES (" + 1 + ",\"" + DecDateTXT.getText() + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
+        SQLHandler.executeUpdate(sql);
+        Data.getData().Warehouse = new Vector<ware>();
+        Data.getData().Certhouse = new Vector<cert>();
     }
 
 
@@ -208,6 +202,7 @@ public class DeclarationController implements Initializable{
             Data.getData().tmp1.weight = WareWeightTXT.getText();
             Data.getData().tmp1.price = WarePriceTXT.getText();
             Data.getData().Warehouse.add(Data.getData().tmp1);
+            Data.getData().tmp1 = new ware();
             Stage stage = (Stage) addwareBTN.getScene().getWindow();
             stage.close();
         }
@@ -220,8 +215,15 @@ public class DeclarationController implements Initializable{
             return;
         } else {
             Data.getData().tmp2.id = CertIdTXT.getText();
-            Data.getData().tmp2.desc = CertDescTXT.getText();
+            Data.getData().tmp2.name = CertWarenameTXT.getText();
+            Data.getData().tmp2.num_from = Integer.parseInt(CertNumFromTXT.getText());
+            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
+            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
+            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
+            Data.getData().tmp2.date_from = CertDateFromDP.getEditor().toString();
+            Data.getData().tmp2.date_to = CertDateToDP.getEditor().toString();
             Data.getData().Certhouse.add(Data.getData().tmp2);
+            Data.getData().tmp2 = new cert();
             Stage stage = (Stage) addcertBTN.getScene().getWindow();
             stage.close();
         }
@@ -259,75 +261,44 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void getTableView(ActionEvent event) throws IOException {
-        String url = "jdbc:mysql://localhost:3306/Customs";
-        String username = "root";
-        String password = "akmz8ki";
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
+        //code here!
 
-            try (Connection connection = DriverManager.getConnection(url, username, password)) {
-
-                //code here!
-
-            } catch (SQLException e) {
-                throw new IllegalStateException("Cannot connect the database!", e);
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
-        }
     }
 
     @FXML
     public void AddUser(ActionEvent event) throws IOException {
-        String url = "jdbc:mysql://localhost:3306/Customs";
-        String username = "root";
-        String password = "akmz8ki";
 
+        ResultSet rs = SQLHandler.executeQuery("SELECT username FROM USERS WHERE username=\"" + signupname.getText() + "\"");
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            try (Connection connection = DriverManager.getConnection(url, username, password)) {
-
-                Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT username FROM USERS WHERE username=\"" + signupname.getText() + "\"");
-
-                if (rs.next()) {
-                    duplicateLBL.setVisible(true);
-                    return;
-                }
-
-                if (signupuname.getText().equals("") || signuppword.getText().equals("") || signupname.getText().equals("") || signupfamily.getText().equals("")) {
-                    errorLBL.setVisible(true);
-                    return;
-                }
-
-                if (!emp.isSelected() && !ruler.isSelected() && !admin.isSelected()) {
-                    errorLBL.setVisible(true);
-                    return;
-                }
-
-                char type;
-
-                if (admin.isSelected())
-                    type = 'A';
-                else if (ruler.isSelected())
-                    type = 'R';
-                else
-                    type = 'E';
-
-                if (stmt.executeUpdate("INSERT INTO USERS (username,password,type,name,family) values (\"" + signupuname.getText() + "\",\"" + signuppword.getText() + "\",\'" + type +  "\',\"" + signupname.getText() + "\",\"" + signupfamily.getText() + "\")") != -1)
-                    userAddedLBL.setVisible(true);
-            } catch (SQLException e) {
-                throw new IllegalStateException("Cannot connect the database!", e);
+            if (rs.next()) {
+                duplicateLBL.setVisible(true);
+                return;
             }
+        } catch (Exception ex) {}
 
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+
+        if (signupuname.getText().equals("") || signuppword.getText().equals("") || signupname.getText().equals("") || signupfamily.getText().equals("")) {
+            errorLBL.setVisible(true);
+            return;
         }
 
+        if (!emp.isSelected() && !ruler.isSelected() && !admin.isSelected()) {
+            errorLBL.setVisible(true);
+            return;
+        }
 
+        char type;
+
+        if (admin.isSelected())
+            type = 'A';
+        else if (ruler.isSelected())
+            type = 'R';
+        else
+            type = 'E';
+
+        if (SQLHandler.executeUpdate("INSERT INTO USERS (username,password,type,name,family) values (\"" + signupuname.getText() + "\",\"" + signuppword.getText() + "\",\'" + type +  "\',\"" + signupname.getText() + "\",\"" + signupfamily.getText() + "\")") != -1)
+            userAddedLBL.setVisible(true);
 
     }
 }

@@ -164,7 +164,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-            <Tab fx:id="DecTAB1" disable="false" text="اظهارنامه">
+            <Tab fx:id="DecTAB1" disable="false" text="مجوز ها">
                <content>
                   <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color:#ffffff;&#10;">
                      <children>
@@ -225,7 +225,7 @@
                                                       <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" font="$x11" prefHeight="38.0" prefWidth="148.0" text="کالا ها" textAlignment="CENTER" wrapText="false" />
                                                    </children>
                                                 </HBox>
-                                                <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0" text="بگرد" />
+                                                <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="143.0" text="بگرد" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -362,8 +362,6 @@
                                                                         <TextField fx:id="ruleNumFromTB" prefHeight="33.0" prefWidth="85.0" />
                                                                         <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
                                                                         <TextField fx:id="ruleNumToTB" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
-                                                      <Label layoutX="247.0" layoutY="25.0" text="برابر" textAlignment="RIGHT" />
-                                                      <TextField fx:id="ruleNumToTB1" layoutX="255.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
                                                                     </children>
                                                                     <opaqueInsets>
                                                                         <Insets />
@@ -382,8 +380,6 @@
                                                                         <TextField fx:id="rulePriceFromTB" prefHeight="33.0" prefWidth="85.0" />
                                                                         <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
                                                                         <TextField fx:id="rulePriceToTB" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
-                                                      <Label layoutX="261.0" layoutY="25.0" text="برابر" textAlignment="RIGHT" />
-                                                      <TextField fx:id="rulePriceToTB1" layoutX="269.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
                                                                     </children>
                                                                     <opaqueInsets>
                                                                         <Insets />
@@ -411,7 +407,7 @@
                                                                               <Insets />
                                                                           </VBox.margin>
                                                                       </HBox>
-                                                                        <ListView fx:id="ruleCerthouseLV" prefHeight="48.0" prefWidth="436.0" />
+                                                                        <ListView fx:id="ruleCerthouseLV" maxWidth="200.0" prefHeight="48.0" prefWidth="436.0" />
                                                    </children>
                                                 </VBox>
                                                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
@@ -486,8 +482,6 @@
                                                       <TextField fx:id="ruleNumFromTB1" prefHeight="33.0" prefWidth="85.0" />
                                                       <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
                                                       <TextField fx:id="ruleNumToTB1" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
-                                                      <Label layoutX="247.0" layoutY="25.0" text="برابر" textAlignment="RIGHT" />
-                                                      <TextField fx:id="ruleNumToTB11" layoutX="255.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -507,8 +501,6 @@
                                                       <TextField fx:id="rulePriceFromTB1" prefHeight="33.0" prefWidth="85.0" />
                                                       <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
                                                       <TextField fx:id="rulePriceToTB1" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
-                                                      <Label layoutX="261.0" layoutY="25.0" text="برابر" textAlignment="RIGHT" />
-                                                      <TextField fx:id="rulePriceToTB11" layoutX="269.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -536,7 +528,7 @@
                                                             <Insets />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <ListView fx:id="ruleCerthouseLV1" prefHeight="48.0" prefWidth="436.0" />
+                                                      <ListView fx:id="ruleCerthouseLV1" maxWidth="200.0" prefHeight="48.0" prefWidth="200.0" />
                                                    </children>
                                                 </VBox>
                                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">

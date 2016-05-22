@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?language javascript?>-->
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.URL?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="371.0" prefWidth="293.0" style="&#10;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeclarationController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="WareNameTXT" prefHeight="26.0" prefWidth="100.0" />
+                <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="نام کالا" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="WareManTXT" prefHeight="26.0" prefWidth="100.0" />
+                <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="تعداد" textAlignment="CENTER" underline="false" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" fillHeight="true" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="WareWeightTXT" prefHeight="26.0" prefWidth="100.0" />
+                <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="وزن" textAlignment="RIGHT" wrapText="false" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="293.0">
+            <children>
+            <TextField fx:id="WareNumTXT1" layoutX="27.0" layoutY="25.0" prefHeight="26.0" prefWidth="64.0" />
+            <Label layoutX="127.0" layoutY="30.0" text="تا" />
+                <TextField fx:id="WareNumTXT" prefHeight="26.0" prefWidth="53.0" />
+            <Label text="از" />
+                <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="ارزش واحد" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="293.0" />
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="98.0" prefWidth="233.0">
+                    <children>
+                        <Button fx:id="addwareBTN" mnemonicParsing="false" onAction="#addware" text="اضافه کردن کالا" />
+                        <Label fx:id="addwareerrorLBL" text="مشکل در ورود اطلاعات" textFill="RED" visible="false" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</VBox>

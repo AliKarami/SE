@@ -8,13 +8,31 @@ public class SQLHandler {
     static String url = "jdbc:mysql://localhost:3306/Customs";
     static String username = "root";
     static String password = "akmz8ki";
+    private static Connection con = null;
+    SQLHandler() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+        }
+        try {
+            Connection con = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot connect the database!", e);
+        }
+    }
+
+
 
     public static void initTables() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try {
-                Connection con = DriverManager.getConnection(url, username, password);
+                if (con==null) {
+                    System.err.println("arrrr");
+                }
+                con = DriverManager.getConnection(url, username, password);
                 Statement stmt = con.createStatement();
                 String s            = new String();
                 StringBuffer sb = new StringBuffer();
@@ -39,7 +57,7 @@ public class SQLHandler {
                 } catch (Exception e) {
                     throw new IllegalStateException("init.sql file not found or IOException!", e);
                 }
-                con.close();
+//                con.close();
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot connect the database!", e);
             }
@@ -53,10 +71,13 @@ public class SQLHandler {
             Class.forName("com.mysql.jdbc.Driver");
 
             try {
-                Connection connection = DriverManager.getConnection(url, username, password);
-                Statement stmt = connection.createStatement();
+                if (con==null) {
+                    System.err.println("arrrr");
+                }
+                con = DriverManager.getConnection(url, username, password);
+                Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
-                connection.close();
+//                con.close();
                 return rs;
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot connect the database!", e);
@@ -70,10 +91,13 @@ public class SQLHandler {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            try (Connection connection = DriverManager.getConnection(url, username, password)) {
-                Statement stmt = connection.createStatement();
+            try {
+                if (con==null) {
+                    System.err.println("arrrr");
+                }
+                Statement stmt = con.createStatement();
                 int res = stmt.executeUpdate(sql);
-                connection.close();
+//                con.close();
                 return res;
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot connect the database!", e);

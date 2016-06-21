@@ -43,17 +43,9 @@ public class LoginController implements Initializable{
         Stage stage = Main.mainwindow;
         Parent root;
 
-        String url = "jdbc:mysql://localhost:3306/Customs";
-        String username = "root";
-        String password = "akmz8ki";
+            try  {
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            try (Connection connection = DriverManager.getConnection(url, username, password)) {
-
-                Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT password FROM USERS WHERE username=\"" + uname.getText() + "\"");
+                ResultSet rs = SQLHandler.executeQuery("SELECT password FROM USERS WHERE username=\"" + uname.getText() + "\"");
                 if (!rs.next()) {
                     errorLBL.setVisible(true);
                     return;
@@ -72,14 +64,7 @@ public class LoginController implements Initializable{
                 stage.show();
 
             } catch (SQLException e) {
-                throw new IllegalStateException("Cannot connect the database!", e);
+                throw new IllegalStateException("Password Checking Exception", e);
             }
-
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
-        }
-
-
-
     }
 }

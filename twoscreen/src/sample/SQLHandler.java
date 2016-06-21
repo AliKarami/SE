@@ -8,7 +8,9 @@ public class SQLHandler {
     static String url = "jdbc:mysql://localhost:3306/Customs";
     static String username = "root";
     static String password = "akmz8ki";
+
     private static Connection con = null;
+
     SQLHandler() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -29,9 +31,6 @@ public class SQLHandler {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try {
-                if (con==null) {
-                    System.err.println("arrrr");
-                }
                 con = DriverManager.getConnection(url, username, password);
                 Statement stmt = con.createStatement();
                 String s            = new String();
@@ -57,7 +56,6 @@ public class SQLHandler {
                 } catch (Exception e) {
                     throw new IllegalStateException("init.sql file not found or IOException!", e);
                 }
-//                con.close();
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot connect the database!", e);
             }
@@ -69,15 +67,10 @@ public class SQLHandler {
     public static ResultSet executeQuery(String sql) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-
             try {
-                if (con==null) {
-                    System.err.println("arrrr");
-                }
                 con = DriverManager.getConnection(url, username, password);
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
-//                con.close();
                 return rs;
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot connect the database!", e);
@@ -92,12 +85,8 @@ public class SQLHandler {
             Class.forName("com.mysql.jdbc.Driver");
 
             try {
-                if (con==null) {
-                    System.err.println("arrrr");
-                }
                 Statement stmt = con.createStatement();
                 int res = stmt.executeUpdate(sql);
-//                con.close();
                 return res;
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot connect the database!", e);

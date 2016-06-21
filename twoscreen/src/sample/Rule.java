@@ -1,6 +1,5 @@
 package sample;
 
-import java.security.cert.Certificate;
 import java.util.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;

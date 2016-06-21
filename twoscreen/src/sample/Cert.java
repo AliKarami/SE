@@ -13,7 +13,7 @@ public class Cert {
     Date date_to;
     String source_country;
     String enterance;
-    int wares;
+    WareHouse wh;
 
     public Cert(int d) throws SQLException {
         ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Certificate WHERE CID=" + d);
@@ -23,7 +23,7 @@ public class Cert {
             date_to = rs.getDate("date_to");
             source_country = rs.getString("source_country");
             enterance = rs.getString("enterance");
-            wares = rs.getInt("WHID");
+            wh = new WareHouse(rs.getInt("WHID"));
 
         }else{
             cid = -1;

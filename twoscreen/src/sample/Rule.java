@@ -80,4 +80,21 @@ public class Rule {
         }
         return true;
     }
+
+    public boolean RuleCompatibility(WareHouse wh){
+        int pr = wh.getTotalPrice();
+        int we = wh.getTotalWeight();
+        int qu = wh.getTotalQuantity();
+        int min = wh.getMinUnitPrice();
+        int max = wh.getMaxUnitPrice();
+        if(price_from < pr){
+            if(price_to < 1 || pr < price_to){
+                if(min > per_price_from){
+                    if(per_price_to < 1 || max < per_price_to)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
 }

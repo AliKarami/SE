@@ -31,16 +31,30 @@ public class Cert {
         }
     }
 
-    public boolean hasSatisfied(Cert cert){
+    public boolean hasSatisfied(Cert cert) throws SQLException{
         if(cert.date_to == null || date_to == null || cert.date_to.before(date_to)){
             if(cert.source_country == null || source_country == null || cert.source_country.equals(source_country)){
                 if(cert.enterance == null || enterance == null || cert.enterance.equals(enterance)){
-                    // doing ware conditions
-                    return true;
+                    if(wh.wares.isEmpty() || cert.wh.wares.isEmpty() || cert.wh.subset(wh))
+                        return true;
                 }
             }
         }
         return false;
+    }
+
+    public Vector<String> getWares(){
+        Vector<String> warelist = new Vector<String>();
+        try {
+            for (Integer id : wh.wares) {
+                ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Certificate WHERE CID=" + id);
+                while(rs.next())
+                    warelist.add(rs.getString("name"));
+            }
+        }catch (Exception ex){
+            System.err.println("get certificate wares error!");
+        }
+        return warelist;
     }
 
 }

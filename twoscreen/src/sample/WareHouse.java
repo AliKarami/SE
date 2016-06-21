@@ -1,6 +1,7 @@
 package sample;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 import java.math.*;
 
@@ -101,6 +102,21 @@ public class WareHouse {
             System.out.println("get total price error!");
         }
         return total;
+    }
+
+    public boolean subset(WareHouse wh) throws SQLException{
+        Vector<Ware> wh_rule = new Vector<Ware>();
+        Vector<Ware> wh_dec = new Vector<Ware>();
+        for(Integer w1 : wares)
+            wh_rule.add(new Ware(w1));
+        for(Integer w2 : wh.wares)
+            wh_dec.add(new Ware(w2));
+
+        for(Ware w1 : wh_rule)
+            for(Ware w2 : wh_dec)
+                if(w1.name.equals(w2.name) && !w1.subset(w2))
+                    return false;
+        return true;
     }
 
 }

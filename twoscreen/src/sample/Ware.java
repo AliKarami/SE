@@ -33,4 +33,15 @@ public class Ware {
             System.err.println("couldn't find ware in construction!");
         }
     }
+
+    public boolean subset(Ware w){
+        if(w.manufacturer == null || manufacturer.equals(w.manufacturer)){
+            if(w.weight < 1 || weight < w.weight){
+                if(w.quantity < 1 || quantity < w.quantity)
+                    if(w.price < 1 || price < w.price)
+                        return true;
+            }
+        }
+        return false;
+    }
 }

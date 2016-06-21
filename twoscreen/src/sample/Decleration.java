@@ -24,6 +24,7 @@ public class Decleration {
             date = rs.getDate("date");
             source_country = rs.getString("source_country");
             enterance = rs.getString("enterance");
+
             chids = rs.getInt("CHID");
             wh = new WareHouse(rs.getInt("WHID"));
             setCerts();
@@ -38,20 +39,33 @@ public class Decleration {
         certs = new Vector<Integer>();
         ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
         while(rs.next()){
-
-            certs.add(rs.getInt("CID"));
+            if(validateCert(rs))
+                certs.add(rs.getInt("CID"));
 
         }
     }
 
     public boolean wareCompatibility(Vector<String> rulewares){
 
-        if(rulewares.size() < 1)
-            return true;
+       /* if(rulewares.size() < 1)
+            return true;*/
         for(int i = 0;i < wh.wares.size();i++)
             for(int j = 0;j < rulewares.size();j++)
                 if(wh.wares.get(i).equals(rulewares.get(j)))
                     return true;
+        return false;
+    }
+
+    public boolean validateCert(ResultSet rs) throws SQLException{
+        if(rs.getDate("date_to") == null || date == null || date.before(rs.getDate("date_to"))){
+            if(source_country == null || rs.getString("source_country") == null || source_country == rs.getString("source_country")){
+                if(enterance == null || rs.getString("enterance") == null || enterance == rs.getString("enterance")){
+                    Cert ce = new Cert(rs.getInt("CHID"));
+                    if(wh.wares.isEmpty() || ce.wh.wares.isEmpty() || wareCompatibility(ce.getWares()))
+                        return true;
+                }
+            }
+        }
         return false;
     }
 

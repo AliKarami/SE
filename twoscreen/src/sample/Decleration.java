@@ -9,10 +9,12 @@ public class Decleration {
 
     int did;
     Date date;
+    int whids;
+    int chids;
     Vector<String> wares;
     String source_country;
     String enterance;
-    Vector<String> certs;
+    Vector<Integer> certs;
 
     public Decleration(int d) throws SQLException{
         ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Decleration WHERE DID=" + d);
@@ -22,18 +24,19 @@ public class Decleration {
             date = rs.getDate("date");
             source_country = rs.getString("source_country");
             enterance = rs.getString("enterance");
-            setWares(rs.getInt("WHID"));
-            setCerts(rs.getInt("CHID"));
-
+            whids = rs.getInt("WHID");
+            chids = rs.getInt("CHID");
+            setWares();
+            setCerts();
         }else{
             did = -1;
             System.err.println("couldn't find decleration in construction!");
         }
     }
 
-    private void setWares(int whid) throws SQLException{
+    private void setWares() throws SQLException{
         wares = new Vector<String>();
-        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM WAREHOUSE H,WARE W WHERE H.WHID=" + whid + " and H.WID=W.WID");
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM WAREHOUSE H,WARE W WHERE H.WHID=" + whids + " and H.WID=W.WID");
         while(rs.next()){
 
                 wares.add(rs.getString("name"));
@@ -41,11 +44,18 @@ public class Decleration {
         }
     }
 
-    private void setCerts(int chid) throws SQLException{
-        certs = new Vector<String>();
+    private void setCerts() throws SQLException{
+        certs = new Vector<Integer>();
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
+        while(rs.next()){
+
+            certs.add(rs.getInt("CID"));
+
+        }
     }
 
     public boolean wareCompatibility(Vector<String> rulewares){
+
         if(rulewares.size() < 1)
             return true;
         for(int i = 0;i < wares.size();i++)

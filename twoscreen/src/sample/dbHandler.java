@@ -10,10 +10,29 @@ public class dbHandler {
 
     //private class db = new SQLHandler();
 
-    public Vector<Rule> getDependentRules(int did){
-        Vector<Rule> rules = new Vector<Rule>();
+    public boolean registerDec(int did){
         try {
             Decleration currentDec = new Decleration(did);
+            Vector<Rule> depRules = getDependentRules(currentDec);
+            Vector<Rule> result = checkLaws(currentDec,depRules);
+            if(result == null)
+                System.out.println("Register Success!");
+            else if(result.size() > 0)
+                System.out.println("Register Failed!");
+            else
+                System.out.println("Register in vector size Exception!");
+            return true;
+        }catch (Exception ex){
+            System.err.println("registration SQL Exception");
+        }
+        return false;
+    }
+
+
+    public Vector<Rule> getDependentRules(Decleration currentDec){
+        Vector<Rule> rules = new Vector<Rule>();
+        try {
+
             String query = "SELECT * FROM RULE WHERE " +
                                     "(source_country IS NULL or source_country='" + currentDec.source_country + "') " +
                                 "and (enterance IS NULL or enterance='" + currentDec.enterance + "') " +
@@ -34,6 +53,30 @@ public class dbHandler {
         return rules;
     }
 
+    public Vector<Rule> checkLaws(Decleration currentDec,Vector<Rule> rules){
+        Vector<Rule> result = new Vector<Rule>();
+        try {
+            for (Rule r : rules) {
+                if (!(r.isLegislate(currentDec))) {
+                    result.add(r);
+                }
+            }
+        }catch (Exception ex){
+            System.err.println("check law exception!");
+            return result;
+        }finally {
+            if (result.size() < 1) {
+                updateCertificates(currentDec);
+                return null;
+            } else
+                return result;
+        }
+
+    }
+
+    public void updateCertificates(Decleration currentDec){
+
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package sample;
 
+import java.security.cert.Certificate;
 import java.util.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ public class Rule {
     int per_price_to;
     String wares;
     String manufactures;
+    Vector<Integer> certs;
     int chids;
 
     public Rule(ResultSet rs){
@@ -36,13 +38,47 @@ public class Rule {
             wares = rs.getString("wares");
             manufactures = rs.getString("manufactures");
             chids = rs.getInt("CHID");
+            setCerts();
         }catch(Exception ex){
           System.err.println("couldn't construct rule");
         }
     }
 
+    private void setCerts() throws SQLException{
+        certs = new Vector<Integer>();
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
+        while(rs.next()){
+
+            certs.add(rs.getInt("CID"));
+
+        }
+    }
+
     public Vector<String> getWares(){
+        if(wares == null)
+            return new Vector<String>();
         Vector<String> warelist = new Vector<String>(Arrays.asList( wares.split(",")));
         return warelist;
+    }
+
+    public boolean isLegislate(Decleration currentDec) throws SQLException{
+        Vector<Cert> dec = new Vector<Cert>();
+        Vector<Cert> rule = new Vector<Cert>();
+        for(int i = 0;i < certs.size();i++){
+           dec.add(new Cert(certs.get(i)));
+        }
+        for(int j = 0;j < currentDec.certs.size();j++){
+            dec.add(new Cert(certs.get(j)));
+        }
+        for(Cert rule_cert : rule){
+            boolean satisfy = false;
+            for(Cert dec_cert : dec){
+                if(rule_cert.hasSatisfied(dec_cert))
+                    satisfy = true;
+            }
+            if(!satisfy)
+                return false;
+        }
+        return true;
     }
 }

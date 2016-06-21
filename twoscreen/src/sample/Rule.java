@@ -60,7 +60,7 @@ public class Rule {
         return warelist;
     }
 
-    public boolean isLegislate(Decleration currentDec) throws SQLException{
+    public boolean isLegislate(Decleration currentDec,Vector<Cert> satisfiedCerts) throws SQLException{
         Vector<Cert> dec = new Vector<Cert>();
         Vector<Cert> rule = new Vector<Cert>();
         for(int i = 0;i < certs.size();i++){
@@ -72,8 +72,10 @@ public class Rule {
         for(Cert rule_cert : rule){
             boolean satisfy = false;
             for(Cert dec_cert : dec){
-                if(rule_cert.hasSatisfied(dec_cert))
+                if(rule_cert.hasSatisfied(dec_cert)) {
+                    satisfiedCerts.add(dec_cert);
                     satisfy = true;
+                }
             }
             if(!satisfy)
                 return false;

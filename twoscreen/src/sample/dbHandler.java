@@ -2,6 +2,7 @@ package sample;
 
 import java.util.*;
 import java.sql.*;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by mohammad on 6/21/16.
@@ -55,9 +56,10 @@ public class dbHandler {
 
     public Vector<Rule> checkLaws(Decleration currentDec,Vector<Rule> rules){
         Vector<Rule> result = new Vector<Rule>();
+        Vector<Cert> satisfiedCerts = new Vector<Cert>();
         try {
             for (Rule r : rules) {
-                if (!(r.isLegislate(currentDec))) {
+                if (!(r.isLegislate(currentDec,satisfiedCerts))) {
                     result.add(r);
                 }
             }
@@ -66,7 +68,7 @@ public class dbHandler {
             return result;
         }finally {
             if (result.size() < 1) {
-                updateCertificates(currentDec);
+                updateCertificates(currentDec,satisfiedCerts);
                 return null;
             } else
                 return result;
@@ -74,8 +76,14 @@ public class dbHandler {
 
     }
 
-    public void updateCertificates(Decleration currentDec){
-
+    public void updateCertificates(Decleration currentDec,Vector<Cert> satisfiedCerts){
+        try {
+            for (Cert crt : satisfiedCerts) {
+                crt.wh.minus(currentDec.wh);
+            }
+        }catch (Exception ex){
+            System.err.println("update certificates error!");
+        }
     }
 
 

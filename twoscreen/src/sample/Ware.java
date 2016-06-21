@@ -44,4 +44,12 @@ public class Ware {
         }
         return false;
     }
+
+    public void minus(Ware w){
+        if(weight > 0 && w.weight > 0)
+            SQLHandler.executeUpdate("UPDATE Ware SET wheight=wheight-" + w.weight + " WHERE WID=" + wid);
+        if(quantity > 0 && w.quantity > 0)
+            SQLHandler.executeUpdate("UPDATE Ware SET quantity=quantity-" + w.quantity + " WHERE WID=" + wid);
+
+    }
 }

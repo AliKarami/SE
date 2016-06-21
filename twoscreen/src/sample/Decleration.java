@@ -61,7 +61,7 @@ public class Decleration {
             if(source_country == null || rs.getString("source_country") == null || source_country == rs.getString("source_country")){
                 if(enterance == null || rs.getString("enterance") == null || enterance == rs.getString("enterance")){
                     Cert ce = new Cert(rs.getInt("CHID"));
-                    if(wh.wares.isEmpty() || ce.wh.wares.isEmpty() || wareCompatibility(ce.getWares()))
+                    if(wh.wares.isEmpty() || ce.wh.wares.isEmpty() || wh.subset(ce.wh))
                         return true;
                 }
             }

@@ -19,24 +19,13 @@ public class SQLHandler {
                 String s            = new String();
                 StringBuffer sb = new StringBuffer();
                 try {
-//                    BufferedReader in = new BufferedReader(new FileReader("/home/ali/Documents/SE/Gomrok/twoscreen/src/sample/init.sql"));
-//                    String str;
-//                    StringBuffer sb = new StringBuffer();
-//                    while ((str = in.readLine()) != null) {
-//                        sb.append(str + "\n ");
-//                    }
-//                    in.close();
-//                    stmt.executeUpdate(sb.toString());
                     BufferedReader in = new BufferedReader(new FileReader(new File("/home/ali/Documents/SE/Gomrok/twoscreen/src/sample/init.sql")));
-
                     while((s = in.readLine()) != null)
                     {
                         sb.append(s);
                     }
                     in.close();
-
                     String[] inst = sb.toString().split(";");
-
 
                     for(int i = 0; i<inst.length; i++)
                     {
@@ -63,7 +52,8 @@ public class SQLHandler {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            try {
+                Connection connection = DriverManager.getConnection(url, username, password);
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 connection.close();

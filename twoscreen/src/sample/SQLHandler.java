@@ -16,6 +16,8 @@ public class SQLHandler {
             try {
                 Connection con = DriverManager.getConnection(url, username, password);
                 Statement stmt = con.createStatement();
+                String s            = new String();
+                StringBuffer sb = new StringBuffer();
                 try {
 //                    BufferedReader in = new BufferedReader(new FileReader("/home/ali/Documents/SE/Gomrok/twoscreen/src/sample/init.sql"));
 //                    String str;
@@ -25,15 +27,25 @@ public class SQLHandler {
 //                    }
 //                    in.close();
 //                    stmt.executeUpdate(sb.toString());
-                    stmt.executeUpdate("CREATE TABLE IF NOT EXISTS USERS (\n" +
-                            "  UID int(11) NOT NULL AUTO_INCREMENT,\n" +
-                            "  username varchar(45) NOT NULL,\n" +
-                            "  password varchar(45) NOT NULL,\n" +
-                            "  type enum('A','D','C','R') NOT NULL,\n" +
-                            "  name varchar(45) NOT NULL,\n" +
-                            "  family varchar(45) NOT NULL,\n" +
-                            "  PRIMARY KEY (UID),\n" +
-                            "  UNIQUE KEY username_UNIQUE (username))");
+                    BufferedReader in = new BufferedReader(new FileReader(new File("/home/ali/Documents/SE/Gomrok/twoscreen/src/sample/init.sql")));
+
+                    while((s = in.readLine()) != null)
+                    {
+                        sb.append(s);
+                    }
+                    in.close();
+
+                    String[] inst = sb.toString().split(";");
+
+
+                    for(int i = 0; i<inst.length; i++)
+                    {
+                        if(!inst[i].trim().equals(""))
+                        {
+                            stmt.executeUpdate(inst[i]);
+                            System.out.println(">>"+inst[i]);
+                        }
+                    }
                     stmt.executeUpdate("INSERT INTO USERS VALUES (1,'admin','admin','A','adminname','adminfamily') ON DUPLICATE KEY UPDATE name=name");
                 } catch (Exception e) {
                     throw new IllegalStateException("init.sql file not found or IOException!", e);

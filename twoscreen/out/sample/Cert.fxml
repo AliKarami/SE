@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?language javascript?>-->
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.URL?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="371.0" prefWidth="293.0" style="&#10;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeclarationController">
+    <children>
+        <HBox alignment="CENTER" fillHeight="true" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="CertIdTXT" prefHeight="26.0" prefWidth="120.0" />
+                <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="شماره مجوز" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" fillHeight="true" layoutX="10.0" layoutY="117.0" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="CertWarenameTXT" prefHeight="26.0" prefWidth="120.0" />
+                <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="150.0" text="نام کالا" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" fillHeight="true" layoutX="10.0" layoutY="246.0" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="CertNumToTXT" layoutX="57.0" layoutY="26.0" prefHeight="26.0" prefWidth="50.0" />
+                <Label alignment="CENTER" layoutX="132.0" layoutY="27.0" prefHeight="23.0" prefWidth="20.0" text="تا" textAlignment="CENTER" wrapText="false" />
+                <TextField fx:id="CertNumFromTXT" prefHeight="26.0" prefWidth="50.0" />
+                <Label alignment="CENTER" prefHeight="23.0" prefWidth="20.0" text="از" textAlignment="CENTER" wrapText="false" />
+                <Label alignment="CENTER_RIGHT" layoutX="142.0" layoutY="27.0" prefHeight="23.0" prefWidth="130.0" text="تعداد" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" fillHeight="true" layoutX="10.0" layoutY="174.0" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <TextField fx:id="CertPerpriceToTXT" layoutX="57.0" layoutY="26.0" prefHeight="26.0" prefWidth="50.0" />
+                <Label alignment="CENTER" layoutX="132.0" layoutY="27.0" prefHeight="23.0" prefWidth="20.0" text="تا" textAlignment="CENTER" wrapText="false" />
+                <TextField fx:id="CertPerpriceFromTXT" prefHeight="26.0" prefWidth="50.0" />
+                <Label alignment="CENTER" prefHeight="23.0" prefWidth="20.0" text="از" textAlignment="CENTER" wrapText="false" />
+                <Label alignment="CENTER_RIGHT" layoutX="142.0" layoutY="27.0" prefHeight="23.0" prefWidth="130.0" text="قیمت واحد" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" fillHeight="true" layoutX="10.0" layoutY="203.0" prefHeight="57.0" prefWidth="293.0">
+            <children>
+                <DatePicker fx:id="CertDateToDP" layoutX="67.0" layoutY="25.0" prefWidth="50.0" />
+                <Label alignment="CENTER" layoutX="132.0" layoutY="27.0" prefHeight="23.0" prefWidth="20.0" text="تا" textAlignment="CENTER" wrapText="false" />
+                <DatePicker fx:id="CertDateFromDP" prefWidth="50.0" />
+                <Label alignment="CENTER" prefHeight="23.0" prefWidth="20.0" text="از" textAlignment="CENTER" wrapText="false" />
+                <Label alignment="CENTER_RIGHT" layoutX="142.0" layoutY="27.0" prefHeight="23.0" prefWidth="130.0" text="تاریخ" textAlignment="RIGHT" wrapText="false" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                    <children>
+                        <Button fx:id="addcertBTN" alignment="CENTER" mnemonicParsing="false" onAction="#addcert" text="اضافه کردن مجوز" />
+                        <Label fx:id="addcerterrorLBL" text="مشکل در ورود اطلاعات" textFill="RED" visible="false" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>

@@ -78,7 +78,10 @@ public class Rule {
             if(!satisfy)
                 return false;
         }
-        return true;
+        if (RuleCompatibility(currentDec.wh))
+            return true;
+        else
+            return false;
     }
 
     public boolean RuleCompatibility(WareHouse wh){

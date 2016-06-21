@@ -43,7 +43,7 @@ public class dbHandler {
             ResultSet rs = SQLHandler.executeQuery(query);
             while(rs.next()){
                 Rule r = new Rule(rs);
-                if(currentDec.wareCompatibility(r.getWares()) && r.RuleCompatibility(currentDec.wh))
+                if(currentDec.wareCompatibility(r.getWares()))
                     rules.add(r);
             }
 

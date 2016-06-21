@@ -7,7 +7,7 @@ public class SQLHandler {
 
     static String url = "jdbc:mysql://localhost:3306/Customs";
     static String username = "root";
-    static String password = "akmz8ki";
+    static String password = "helli";
 
     private static Connection con = null;
 

@@ -3,16 +3,10 @@
 <!--<?language javascript?>-->
 
 <?import javafx.geometry.*?>
-<?import com.sun.javafx.scene.control.skin.TabPaneSkin.TabHeaderArea?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.net.URL?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
+<?import java.net.URL?>
 <VBox prefHeight="499.9999000000025" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeclarationController">
     <stylesheets>
         <URL value="@Declaration.css" />

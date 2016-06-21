@@ -19,8 +19,8 @@ public class Data {
     public ware tmp1 = new ware();
     public cert tmp2 = new cert();
 
-    public List<String> warenames = new ArrayList<>();
-    public List<String> certnames = new ArrayList<>();
+    public List<String> warenames = new ArrayList<String>();
+    public List<String> certnames = new ArrayList<String>();
 
     public ObservableList<String> wareItems = FXCollections.observableArrayList (warenames);
     public ObservableList<String> certItems = FXCollections.observableArrayList (certnames);

@@ -14,7 +14,7 @@ import java.util.List;
 public class Main extends Application {
 
 
-    public List<String> warenames = new ArrayList<>();
+    public List<String> warenames = new ArrayList<String>();
 
     public ObservableList<String> wareItems =FXCollections.observableArrayList (warenames);
 

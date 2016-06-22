@@ -2,7 +2,6 @@ package sample;
 
 import java.util.*;
 import java.sql.*;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by mohammad on 6/21/16.

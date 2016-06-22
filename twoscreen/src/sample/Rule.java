@@ -67,8 +67,9 @@ public class Rule {
            dec.add(new Cert(certs.get(i)));
         }
         for(int j = 0;j < currentDec.certs.size();j++){
-            dec.add(new Cert(certs.get(j)));
+            dec.add(new Cert(currentDec.certs.get(j)));
         }
+
         for(Cert rule_cert : rule){
             boolean satisfy = false;
             for(Cert dec_cert : dec){
@@ -80,10 +81,17 @@ public class Rule {
             if(!satisfy)
                 return false;
         }
-        if (RuleCompatibility(currentDec.wh))
+
+        for(Cert dec_cert : dec){
+            if(!RuleCompatibility(dec_cert.wh))
+                return false;
+        }
+
+        return true;
+       /* if (RuleCompatibility(currentDec.wh))
             return true;
         else
-            return false;
+            return false;*/
     }
 
     public boolean RuleCompatibility(WareHouse wh){

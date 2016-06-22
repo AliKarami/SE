@@ -13,17 +13,20 @@ import java.util.Vector;
 public class Data {
 
     Vector<ware> Warehouse = new Vector<ware>();
+    Vector<ware> cWarehouse = new Vector<ware>();
 
-    Vector<cert> Certhouse = new Vector<cert>();
+    Vector<String> Certhouse = new Vector<String>();
 
     public ware tmp1 = new ware();
-    public cert tmp2 = new cert();
+    public ware tmp2 = new ware();
 
     public List<String> warenames = new ArrayList<String>();
     public List<String> certnames = new ArrayList<String>();
+    public List<String> cwarenames = new ArrayList<String>();
 
     public ObservableList<String> wareItems = FXCollections.observableArrayList (warenames);
     public ObservableList<String> certItems = FXCollections.observableArrayList (certnames);
+    public ObservableList<String> cwareItems = FXCollections.observableArrayList (warenames);
 
     private static Data theData = new Data();
 

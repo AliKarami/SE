@@ -29,15 +29,6 @@ class ware {
     char price_s;
 }
 
-class cert {
-    String cid;
-    String date_to;
-    String source_country;
-    char entrance;
-    String whid;
-
-}
-
 public class DeclarationController implements Initializable{
 
     //Decleration of UI items:
@@ -234,21 +225,11 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addcert (ActionEvent event) throws IOException {
-        if (DecCertidTXT.getText().equals("")) {
-            addcerterrorLBL.setVisible(true);
-            return;
-        } else {
-            Data.getData().tmp2.cid = DecCertidTXT.getText();
-//            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
-//            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
-//            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
-//            Data.getData().tmp2.date_from = CertDateFromDP.getEditor().toString();
-            Data.getData().tmp2.date_to = CertDateToDP.getEditor().toString();
-            Data.getData().Certhouse.add(Data.getData().tmp2);
-            Data.getData().tmp2 = new cert();
-            Stage stage = (Stage) pluscertBTN.getScene().getWindow();
-            stage.close();
-        }
+        String certID = DecCertidTXT.getText();
+        Data.getData().Certhouse.add(certID);
+        Data.getData().certItems.add(certID);
+        certhouseLV.setItems(Data.getData().certItems);
+        DecCertidTXT.setText("");
     }
 
     @FXML
@@ -269,17 +250,17 @@ public class DeclarationController implements Initializable{
         else
             enterance = 'F';
 
-        for (cert c:Data.getData().Certhouse) {
-            sql = "INSERT INTO CERTIFICATES (date_to,source_country,enterance,WHID)\n" +
-                    "VALUES(\"" + c.date_to + "\"," + c.source_country + "," + c.entrance + "," + c.whid + ")";
-            SQLHandler.executeUpdate(sql);
-        }
+//        for (cert c:Data.getData().Certhouse) {
+//            sql = "INSERT INTO CERTIFICATES (date_to,source_country,enterance,WHID)\n" +
+//                    "VALUES(\"" + c.date_to + "\"," + c.source_country + "," + c.entrance + "," + c.whid + ")";
+//            SQLHandler.executeUpdate(sql);
+//        }
 
         sql = "INSERT INTO DECLARATIONS (date,WHID,source_country,enterance,CHID)\n" +
                 "VALUES (\"" + DecDateDP + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
         SQLHandler.executeUpdate(sql);
         Data.getData().Warehouse = new Vector<ware>();
-        Data.getData().Certhouse = new Vector<cert>();
+        Data.getData().Certhouse = new Vector<String>();
     }
 
     @FXML
@@ -291,7 +272,15 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void pluswarecPopup (ActionEvent event) throws IOException {
-
+        Stage WS = new Stage();
+        Parent popup1;
+        popup1 = FXMLLoader.load(getClass().getResource("addware.fxml"));
+        WS.setScene(new Scene(popup1));
+        WS.initModality(Modality.APPLICATION_MODAL);
+        WS.showAndWait();
+        Data.getData().cwareItems.add(Data.getData().tmp2.name);
+        CertwarehouseLV.setItems(Data.getData().cwareItems);
+        Data.getData().tmp2 = new ware();
     }
 
     @FXML
@@ -370,16 +359,22 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addwarec (ActionEvent event) throws IOException {
-        if (WareNameTXT.getText().equals("") || WareManTXT.getText().equals("") || WareNumTXT.getText().equals("") || WarePriceTXT.getText().equals("") || WareWeightTXT.getText().equals("")) {
+        if (WareNameTXT.getText().equals("")) {
             addwareerrorLBL.setVisible(true);
             return;
         } else {
-            Data.getData().tmp1.name = WareNameTXT.getText();
-            Data.getData().tmp1.man = WareManTXT.getText();
-            Data.getData().tmp1.quantity = WareNumTXT.getText();
-            Data.getData().tmp1.weight = WareWeightTXT.getText();
-            Data.getData().tmp1.price = WarePriceTXT.getText();
-            Data.getData().Warehouse.add(Data.getData().tmp1);
+            Data.getData().tmp2.name = WareNameTXT.getText();
+            Data.getData().tmp2.man = WareManTXT.getText();
+            Data.getData().tmp2.quantity = WareNumTXT.getText();
+            Data.getData().tmp2.weight = WareWeightTXT.getText();
+            Data.getData().tmp2.price = WarePriceTXT.getText();
+            if (BPriceRD.isSelected())
+                Data.getData().tmp2.price_s = 'B';
+            else if (EPriceRD.isSelected())
+                Data.getData().tmp2.price_s = 'E';
+            else if (SPriceRD.isSelected())
+                Data.getData().tmp2.price_s = 'S';
+            Data.getData().cWarehouse.add(Data.getData().tmp2);
             Stage stage = (Stage) addwareBTN.getScene().getWindow();
             stage.close();
         }
@@ -398,6 +393,7 @@ public class DeclarationController implements Initializable{
             Data.getData().tmp1.quantity = dWareNumTXT.getText();
             Data.getData().tmp1.weight = dWareWeightTXT.getText();
             Data.getData().tmp1.price = dWarePriceTXT.getText();
+            Data.getData().tmp1.price_s = 'E';
             Data.getData().Warehouse.add(Data.getData().tmp1);
             Stage stage = (Stage) daddwareBTN.getScene().getWindow();
             stage.close();

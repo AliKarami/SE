@@ -78,8 +78,6 @@ public class DeclarationController implements Initializable{
     @FXML
     public Button RecordDecBTN;
     @FXML
-    public Label addwareerrorLBL;
-    @FXML
     public TextField SearchDecidTXT;
     @FXML
     public Button searchDecBTN;
@@ -195,6 +193,8 @@ public class DeclarationController implements Initializable{
     public RadioButton SPriceRD;
     @FXML
     public Button addwareBTN;
+    @FXML
+    public Label addwareerrorLBL;
 
     //addware-d
     @FXML
@@ -209,6 +209,8 @@ public class DeclarationController implements Initializable{
     public TextField dWarePriceTXT;
     @FXML
     public Button daddwareBTN;
+    @FXML
+    public Label daddwareerrorLBL;
 
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
@@ -221,7 +223,7 @@ public class DeclarationController implements Initializable{
     public void pluswarePopup(ActionEvent event) throws IOException {
         Stage WS = new Stage();
         Parent popup1;
-        popup1 = FXMLLoader.load(getClass().getResource("Ware.fxml"));
+        popup1 = FXMLLoader.load(getClass().getResource("addware-d.fxml"));
         WS.setScene(new Scene(popup1));
         WS.initModality(Modality.APPLICATION_MODAL);
         WS.showAndWait();
@@ -378,7 +380,6 @@ public class DeclarationController implements Initializable{
             Data.getData().tmp1.weight = WareWeightTXT.getText();
             Data.getData().tmp1.price = WarePriceTXT.getText();
             Data.getData().Warehouse.add(Data.getData().tmp1);
-            Data.getData().tmp1 = new ware();
             Stage stage = (Stage) addwareBTN.getScene().getWindow();
             stage.close();
         }
@@ -388,18 +389,17 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addwared (ActionEvent event) throws IOException {
-        if (WareNameTXT.getText().equals("") || WareManTXT.getText().equals("") || WareNumTXT.getText().equals("") || WarePriceTXT.getText().equals("") || WareWeightTXT.getText().equals("")) {
-            addwareerrorLBL.setVisible(true);
+        if (dWareNameTXT.getText().equals("") || dWareManTXT.getText().equals("") || dWareNumTXT.getText().equals("") || dWarePriceTXT.getText().equals("") || dWareWeightTXT.getText().equals("")) {
+            daddwareerrorLBL.setVisible(true);
             return;
         } else {
-            Data.getData().tmp1.name = WareNameTXT.getText();
-            Data.getData().tmp1.man = WareManTXT.getText();
-            Data.getData().tmp1.quantity = WareNumTXT.getText();
-            Data.getData().tmp1.weight = WareWeightTXT.getText();
-            Data.getData().tmp1.price = WarePriceTXT.getText();
+            Data.getData().tmp1.name = dWareNameTXT.getText();
+            Data.getData().tmp1.man = dWareManTXT.getText();
+            Data.getData().tmp1.quantity = dWareNumTXT.getText();
+            Data.getData().tmp1.weight = dWareWeightTXT.getText();
+            Data.getData().tmp1.price = dWarePriceTXT.getText();
             Data.getData().Warehouse.add(Data.getData().tmp1);
-            Data.getData().tmp1 = new ware();
-            Stage stage = (Stage) addwareBTN.getScene().getWindow();
+            Stage stage = (Stage) daddwareBTN.getScene().getWindow();
             stage.close();
         }
     }

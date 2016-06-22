@@ -96,4 +96,64 @@ public class SQLHandler {
         }
     }
 
+    public static int getMaxWHID() {
+        int whid = -1;
+        ResultSet rs = SQLHandler.executeQuery("SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;");
+        try {
+            if (!rs.next()) {
+                whid = 0;
+            } else {
+                whid = Integer.parseInt(rs.getString("WHID"));
+            }
+        } catch (SQLException e) {
+            System.err.println("finding max whid exception!");
+        }
+        return whid;
+    }
+
+    public static int getMaxCHID() {
+        int chid = -1;
+        ResultSet rs = SQLHandler.executeQuery("SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;");
+        try {
+            if (!rs.next()) {
+                chid = 0;
+            } else {
+                chid = Integer.parseInt(rs.getString("CHID"));
+            }
+        } catch (SQLException e) {
+            System.err.println("finding max chid exception!");
+        }
+        return chid;
+    }
+
+    public static int getMaxWID() {
+        int wid = -1;
+        ResultSet rs = SQLHandler.executeQuery("SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;");
+        try {
+            if (!rs.next()) {
+                wid = 0;
+            } else {
+                wid = Integer.parseInt(rs.getString("WID"));
+            }
+        } catch (SQLException e) {
+            System.err.println("finding max wid exception!");
+        }
+        return wid;
+    }
+
+    public static int getMaxCID() {
+        int cid = -1;
+        ResultSet rs = SQLHandler.executeQuery("SELECT CID FROM CERTIFICATE ORDER BY CID DESC LIMIT 1;");
+        try {
+            if (!rs.next()) {
+                cid = 0;
+            } else {
+                cid = Integer.parseInt(rs.getString("CID"));
+            }
+        } catch (SQLException e) {
+            System.err.println("finding max cid exception!");
+        }
+        return cid;
+    }
+
 }

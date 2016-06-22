@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,15 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-
 import java.net.URL;
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
+import java.time.LocalDate;
 
 class ware {
     String name;
@@ -234,10 +233,9 @@ public class DeclarationController implements Initializable{
     @FXML
     public void RecDeclaration (ActionEvent event) throws IOException {
         String sql;
-        for (ware w:Data.getData().Warehouse) {
-            sql = "INSERT INTO WARE (name,manufacturer,weight,quantity,price,price_s)\n" +
-                    "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ", +'E')";
-            SQLHandler.executeUpdate(sql);
+        for (ware w:Data.getData().cWarehouse) {
+            SQLHandler.executeUpdate("INSERT INTO WARE (name,manufacturer,weight,quantity,price,price_s)\n" +
+                    "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",'E')");
         }
 
         char enterance;
@@ -284,6 +282,41 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void RecCert (ActionEvent event) throws IOException {
+        int whid = SQLHandler.getMaxWHID()+1;
+        for (ware w:Data.getData().cWarehouse) {
+            int wid = SQLHandler.getMaxWID()+1;
+            SQLHandler.executeUpdate("INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)\n" +
+                    "VALUES(" + wid + "\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",\'" + w.price_s + "\')");
+            SQLHandler.executeUpdate("INSERT INTO WAREHOUSE (whid,wid)\n" +
+                    "VALUES(" + whid + "," + wid +")");
+        }
+
+        char enterance;
+        if (RecCertAirRD.isSelected())
+            enterance = 'A';
+        else if (RecCertEarthRD.isSelected())
+            enterance = 'E';
+        else if (RecCertSeaRD.isSelected())
+            enterance = 'S';
+        else
+            enterance = 'F';
+
+        System.err.println("Query:\n" +
+                "INSERT INTO CERTIFICATE (date_to,price_to,source_country,enterance,whid) \n" +
+                "VALUES(\"" + CertDateToDP.getValue() + "\"," + CertPriceTXT.getText() + "," + CertSourceTXT.getText() + ",\'" + enterance + "\'," + whid + ")");
+
+        SQLHandler.executeUpdate("INSERT INTO CERTIFICATE (date_to,price_to,source_country,enterance,whid) \n" +
+                    "VALUES(\"" + CertDateToDP.getValue() + "\"," + CertPriceTXT.getText() + "," + CertSourceTXT.getText() + ",\'" + enterance + "\'," + whid + ")");
+
+        CertDateToDP.setValue(null);
+        CertPriceTXT.setText("");
+        CertSourceTXT.setText("");
+        RecCertAirRD.setSelected(false);
+        RecCertSeaRD.setSelected(false);
+        RecCertEarthRD.setSelected(false);
+        Data.getData().cWarehouse = new Vector<ware>();
+        Data.getData().cwarenames = new ArrayList<String>();
+        CertwarehouseLV.setItems(Data.getData().cwareItems);
 
     }
 

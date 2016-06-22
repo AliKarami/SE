@@ -22,19 +22,18 @@ class ware {
     String name;
     String man;
     String weight;
-    String number;
+    String quantity;
     String price;
+    char price_s;
 }
 
 class cert {
-    String id;
-    String name;
-    int num_from;
-    int num_to;
-    int perprice_form;
-    int perprice_to;
-    String date_from;
+    String cid;
     String date_to;
+    String source_country;
+    char entrance;
+    int whid;
+
 }
 
 public class DeclarationController implements Initializable{
@@ -158,15 +157,12 @@ public class DeclarationController implements Initializable{
     public void RecDeclaration (ActionEvent event) throws IOException {
         String sql;
         for (ware w:Data.getData().Warehouse) {
-            sql = "INSERT INTO WARE (name,manufacturer,weight,number,price_per)\n" +
-                    "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.number + "," + w.price + ")";
+            sql = "INSERT INTO WARE (name,manufacturer,weight,quantity,price,price_s)\n" +
+                    "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ", +'E')";
             SQLHandler.executeUpdate(sql);
         }
 
         System.out.println(DecMNameTXT.getText());
-        sql = "INSERT INTO MERCHANTS (name,family)\n" +
-                "VALUES (\"" + DecMNameTXT.getText() + "\",\"" + DecMNameTXT.getText() + "\")";
-        SQLHandler.executeUpdate(sql);
         char enterance;
 
         if (RecDecAirRD.isSelected())
@@ -177,18 +173,17 @@ public class DeclarationController implements Initializable{
             enterance = 'F';
 
         for (cert c:Data.getData().Certhouse) {
-            sql = "INSERT INTO CERTIFICATES (ware_name,num_from,num_to,perprice_from,perprice_to,date_from,date_to)\n" +
-                    "VALUES(\"" + c.name + "\"," + c.num_from + "," + c.num_to + "," + c.perprice_form + "," + c.perprice_to + "," + c.date_from + "," + c.date_to + ")";
+            sql = "INSERT INTO CERTIFICATES (date_to,source_country,enterance,WHID)\n" +
+                    "VALUES(\"" + c.date_to + "\"," + c.source_country + "," + c.entrance + "," + c.whid + ")";
             SQLHandler.executeUpdate(sql);
         }
 
-        sql = "INSERT INTO DECLARATIONS (MID,date,WHID,source_country,enterance,CHID)\n" +
-                "VALUES (" + 1 + ",\"" + DecDateTXT.getText() + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
+        sql = "INSERT INTO DECLARATIONS (date,WHID,source_country,enterance,CHID)\n" +
+                "VALUES (\"" + DecDateTXT.getText() + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
         SQLHandler.executeUpdate(sql);
         Data.getData().Warehouse = new Vector<ware>();
         Data.getData().Certhouse = new Vector<cert>();
     }
-
 
     @FXML
     public void addware (ActionEvent event) throws IOException {
@@ -198,7 +193,7 @@ public class DeclarationController implements Initializable{
         } else {
             Data.getData().tmp1.name = WareNameTXT.getText();
             Data.getData().tmp1.man = WareManTXT.getText();
-            Data.getData().tmp1.number = WareNumTXT.getText();
+            Data.getData().tmp1.quantity = WareNumTXT.getText();
             Data.getData().tmp1.weight = WareWeightTXT.getText();
             Data.getData().tmp1.price = WarePriceTXT.getText();
             Data.getData().Warehouse.add(Data.getData().tmp1);
@@ -214,13 +209,11 @@ public class DeclarationController implements Initializable{
             addcerterrorLBL.setVisible(true);
             return;
         } else {
-            Data.getData().tmp2.id = CertIdTXT.getText();
-            Data.getData().tmp2.name = CertWarenameTXT.getText();
-            Data.getData().tmp2.num_from = Integer.parseInt(CertNumFromTXT.getText());
-            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
-            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
-            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
-            Data.getData().tmp2.date_from = CertDateFromDP.getEditor().toString();
+            Data.getData().tmp2.cid = CertIdTXT.getText();
+//            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
+//            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
+//            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
+//            Data.getData().tmp2.date_from = CertDateFromDP.getEditor().toString();
             Data.getData().tmp2.date_to = CertDateToDP.getEditor().toString();
             Data.getData().Certhouse.add(Data.getData().tmp2);
             Data.getData().tmp2 = new cert();
@@ -254,7 +247,7 @@ public class DeclarationController implements Initializable{
         System.out.println("4");
         CS.initModality(Modality.APPLICATION_MODAL);
         CS.showAndWait();
-        Data.getData().certItems.add(Data.getData().tmp2.id);
+        Data.getData().certItems.add(Data.getData().tmp2.cid);
         certhouseLV.setItems(Data.getData().certItems);
         Data.getData().tmp2 = new cert();
     }

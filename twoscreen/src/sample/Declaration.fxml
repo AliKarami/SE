@@ -2,11 +2,14 @@
 
 <!--<?language javascript?>-->
 
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
+
 <VBox prefHeight="499.9999000000025" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeclarationController">
     <stylesheets>
         <URL value="@Declaration.css" />
@@ -28,8 +31,8 @@
                                                             <children>
                                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                                     <children>
-                                                                        <TextField prefHeight="33.0" prefWidth="200.0" />
-                                                                        <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" prefHeight="38.0" prefWidth="148.0" text="شماره مجوز" textAlignment="CENTER" wrapText="false">
+                                                                        <TextField fx:id="SearchDecidTXT" prefHeight="33.0" prefWidth="200.0" />
+                                                                        <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" prefHeight="38.0" prefWidth="148.0" text="شماره اظهارنامه" textAlignment="CENTER" wrapText="false">
                                                                             <font>
                                                                                 <Font size="16.0" fx:id="x1" />
                                                                             </font>
@@ -45,7 +48,7 @@
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
-                                                                <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0" text="بگرد" />
+                                                                <Button fx:id="searchDecBTN" mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0" text="بگرد" />
                                                             </children>
                                                         </VBox>
                                                     </children>
@@ -83,7 +86,7 @@
                                                                 </HBox>
                                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                                     <children>
-                                                                        <RadioButton fx:id="RecDecFloorRD" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" text="زمینی">
+                                                                        <RadioButton fx:id="RecDecEarthRD" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" text="زمینی">
                                                                             <toggleGroup>
                                                                                 <ToggleGroup fx:id="recEnterance" />
                                                                             </toggleGroup></RadioButton>
@@ -99,7 +102,7 @@
                                                             <HBox prefHeight="27.0" prefWidth="170.0">
                                                                <children>
                                                                                     <Button fx:id="pluscertBTN" mnemonicParsing="false" onAction="#addcert" text="+" wrapText="false" />
-                                                                  <TextField prefHeight="25.0" prefWidth="113.0" />
+                                                                  <TextField fx:id="DecCertidTXT" prefHeight="25.0" prefWidth="113.0" />
                                                                   <Label text="شماره مجوز" />
                                                                </children>
                                                             </HBox>
@@ -115,7 +118,7 @@
                                                                 </HBox>
                                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                                     <children>
-                                                                        <Button fx:id="RecordDec" mnemonicParsing="false" onAction="#RecDeclaration" prefHeight="28.0" prefWidth="80.0" text="ثبت" />
+                                                                        <Button fx:id="RecordDecBTN" mnemonicParsing="false" onAction="#RecDeclaration" prefHeight="28.0" prefWidth="80.0" text="ثبت" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>
@@ -130,7 +133,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-            <Tab fx:id="DecTAB1" disable="false" text="مجوز ها">
+            <Tab fx:id="CertTAB" disable="false" text="مجوز ها">
                <content>
                   <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color:#ffffff;&#10;">
                      <children>
@@ -144,7 +147,7 @@
                                              <children>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <TextField prefHeight="33.0" prefWidth="200.0" />
+                                                      <TextField fx:id="SearchCertidTXT" prefHeight="33.0" prefWidth="200.0" />
                                                       <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" prefHeight="38.0" prefWidth="148.0" text="شماره مجوز" textAlignment="CENTER" wrapText="false">
                                                          <font>
                                                             <Font size="16.0" fx:id="x11" />
@@ -166,7 +169,7 @@
                                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                                                    </children>
                                                 </HBox>
-                                                <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="143.0" text="بگرد" />
+                                                <Button fx:id="searchCertBTN" mnemonicParsing="false" prefHeight="28.0" prefWidth="143.0" text="بگرد" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -181,31 +184,31 @@
                                              <children>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <TextField fx:id="DecMIDTXT1" prefHeight="33.0" prefWidth="200.0" />
+                                                      <TextField fx:id="CertDateToTXT" prefHeight="33.0" prefWidth="200.0" />
                                                       <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" font="$x11" prefHeight="38.0" prefWidth="148.0" text="تا تاریخ" textAlignment="CENTER" wrapText="false" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <TextField fx:id="DecMNameTXT1" prefHeight="33.0" prefWidth="200.0" />
+                                                      <TextField fx:id="CertPriceTXT" prefHeight="33.0" prefWidth="200.0" />
                                                       <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" font="$x11" prefHeight="38.0" prefWidth="148.0" text="محدودیت کل قیمت" textAlignment="CENTER" wrapText="false" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <TextField fx:id="DecSourceTXT1" prefHeight="33.0" prefWidth="200.0" />
+                                                      <TextField fx:id="CertSourceTXT" prefHeight="33.0" prefWidth="200.0" />
                                                       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" disable="false" font="$x21" prefHeight="38.0" prefWidth="148.0" text="کشور مبدا" textAlignment="RIGHT" wrapText="false" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <RadioButton fx:id="RecDecFloorRD2" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="زمینی">
+                                                      <RadioButton fx:id="RecCertEarthRD" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="زمینی">
                                                          <toggleGroup>
                                                             <ToggleGroup fx:id="recEnterance2" />
                                                          </toggleGroup>
                                                       </RadioButton>
-                                                      <RadioButton fx:id="RecDecSeaRD2" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="دریایی" toggleGroup="$recEnterance2" />
-                                                      <RadioButton fx:id="RecDecAirRD2" alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="هوایی" toggleGroup="$recEnterance2" />
+                                                      <RadioButton fx:id="RecCertSeaRD" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="دریایی" toggleGroup="$recEnterance2" />
+                                                      <RadioButton fx:id="RecCertAirRD" alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="هوایی" toggleGroup="$recEnterance2" />
                                                       <Label alignment="CENTER" contentDisplay="CENTER" disable="false" font="$x21" prefHeight="38.0" prefWidth="148.0" text="نحوه ورود" textAlignment="RIGHT" wrapText="false" />
                                                    </children>
                                                 </HBox>
@@ -213,8 +216,8 @@
                                                    <children>
                                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                          <children>
-                                                            <Button fx:id="pluswareBTN1" mnemonicParsing="false" onAction="#pluswarePopup" text="+" wrapText="false" />
-                                                            <ListView fx:id="warehouseLV1" prefHeight="0.0" prefWidth="175.0" />
+                                                            <Button fx:id="CertpluswareBTN" mnemonicParsing="false" onAction="#pluswarePopup" text="+" wrapText="false" />
+                                                            <ListView fx:id="CertwarehouseLV" prefHeight="0.0" prefWidth="175.0" />
                                                          </children>
                                                       </HBox>
                                                       <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" font="$x11" prefHeight="38.0" prefWidth="148.0" text="کالا ها" textAlignment="CENTER" wrapText="false" />
@@ -222,7 +225,7 @@
                                                 </HBox>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <Button fx:id="RecordDec1" mnemonicParsing="false" onAction="#RecDeclaration" prefHeight="28.0" prefWidth="80.0" text="ثبت" />
+                                                      <Button fx:id="RecordCertBTN" mnemonicParsing="false" onAction="#RecDeclaration" prefHeight="28.0" prefWidth="80.0" text="ثبت" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -289,9 +292,9 @@
                                                          </font>
                                                       </Label>
                                                       <Label text="از" textAlignment="RIGHT" />
-                                                      <DatePicker fx:id="ruleDateFromDP1" prefHeight="33.0" prefWidth="100.0" />
+                                                      <DatePicker fx:id="RuleDateFromDP" prefHeight="33.0" prefWidth="100.0" />
                                                       <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
-                                                      <DatePicker fx:id="ruleDateToDP1" layoutX="135.0" layoutY="16.0" prefHeight="33.0" prefWidth="100.0" />
+                                                      <DatePicker fx:id="RuleDateToDP" layoutX="135.0" layoutY="16.0" prefHeight="33.0" prefWidth="100.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -307,7 +310,7 @@
                                                             <Font size="18.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="ruleNumToTB21" alignment="CENTER" prefHeight="33.0" prefWidth="106.0" />
+                                                      <TextField fx:id="RuleSourceTXT" alignment="CENTER" prefHeight="33.0" prefWidth="106.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -316,13 +319,13 @@
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
                                                       <Label alignment="CENTER" contentDisplay="CENTER" disable="false" font="$x2" prefHeight="38.0" prefWidth="148.0" text="نحوه ورود" textAlignment="RIGHT" wrapText="false" />
-                                                      <RadioButton fx:id="RecDecFloorRD11" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="زمینی">
+                                                      <RadioButton fx:id="RecRulEarthRD" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="زمینی">
                                                          <toggleGroup>
                                                             <ToggleGroup fx:id="recEnterance11" />
                                                          </toggleGroup>
                                                       </RadioButton>
-                                                      <RadioButton fx:id="RecDecSeaRD11" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="دریایی" toggleGroup="$recEnterance11" />
-                                                      <RadioButton fx:id="RecDecAirRD11" alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="هوایی" toggleGroup="$recEnterance11" />
+                                                      <RadioButton fx:id="RecRulSeaRD" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="دریایی" toggleGroup="$recEnterance11" />
+                                                      <RadioButton fx:id="RecRulAirRD" alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="هوایی" toggleGroup="$recEnterance11" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
@@ -333,9 +336,9 @@
                                                          </font>
                                                       </Label>
                                                       <Label text="از" textAlignment="RIGHT" />
-                                                      <TextField fx:id="ruleNumFromTB1" prefHeight="33.0" prefWidth="85.0" />
+                                                      <TextField fx:id="RulePriceFromTXT" prefHeight="33.0" prefWidth="85.0" />
                                                       <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
-                                                      <TextField fx:id="ruleNumToTB1" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
+                                                      <TextField fx:id="RulePriceToTXT" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -352,9 +355,9 @@
                                                          </font>
                                                       </Label>
                                                       <Label text="از" textAlignment="RIGHT" />
-                                                      <TextField fx:id="rulePriceFromTB1" prefHeight="33.0" prefWidth="85.0" />
+                                                      <TextField fx:id="RulePPriceFromTXT" prefHeight="33.0" prefWidth="85.0" />
                                                       <Label layoutX="181.0" layoutY="25.0" text="تا" textAlignment="RIGHT" />
-                                                      <TextField fx:id="rulePriceToTB1" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
+                                                      <TextField fx:id="RulePPriceToTXT" layoutX="191.0" layoutY="16.0" prefHeight="33.0" prefWidth="85.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -372,8 +375,8 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <TextField />
-                                                            <Button fx:id="ruleCertAddBTN1" mnemonicParsing="false" text="+" textAlignment="RIGHT" />
+                                                            <TextField fx:id="RuleWareTXT" />
+                                                            <Button fx:id="RuleAddWareBTN" mnemonicParsing="false" text="+" textAlignment="RIGHT" />
                                                          </children>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -382,7 +385,7 @@
                                                             <Insets />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <ListView fx:id="ruleCerthouseLV1" maxWidth="200.0" prefHeight="48.0" prefWidth="200.0" />
+                                                      <ListView fx:id="RuleWarehouseLV" maxWidth="200.0" prefHeight="48.0" prefWidth="200.0" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" layoutX="10.0" layoutY="235.0" prefHeight="83.0" prefWidth="291.0">
@@ -394,8 +397,8 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <TextField />
-                                                            <Button fx:id="ruleCertAddBTN11" mnemonicParsing="false" text="+" textAlignment="RIGHT" />
+                                                            <TextField fx:id="RuleManTXT" />
+                                                            <Button fx:id="RuleAddManBTN" mnemonicParsing="false" text="+" textAlignment="RIGHT" />
                                                          </children>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -404,12 +407,12 @@
                                                             <Insets />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <ListView fx:id="ruleCerthouseLV11" maxWidth="200.0" prefHeight="48.0" prefWidth="200.0" />
+                                                      <ListView fx:id="RuleManhouseLV" maxWidth="200.0" prefHeight="48.0" prefWidth="200.0" />
                                                    </children>
                                                 </VBox>
                                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <Button fx:id="ruleRecBTN1" mnemonicParsing="false" text="ثبت قانون" />
+                                                      <Button fx:id="RecordRuleBTN" mnemonicParsing="false" text="ثبت قانون" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -462,16 +465,26 @@
                                                                 </HBox>
                                                                 <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="53.0" prefHeight="37.0" prefWidth="476.0">
                                                                     <children>
-                                                                        <RadioButton fx:id="emp" layoutX="374.0" layoutY="20.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="کارمند معمولی">
-                                                                            <toggleGroup>
-                                                                                <ToggleGroup fx:id="userType" />
-                                                                            </toggleGroup></RadioButton>
-                                                                        <RadioButton fx:id="ruler" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="کارشناس وزارتخانه" toggleGroup="$userType" />
-                                                                        <RadioButton fx:id="admin" layoutX="152.0" layoutY="20.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="مدیر" textAlignment="RIGHT" toggleGroup="$userType" />
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="130.0">
+                                                         <children>
+                                                                              <RadioButton fx:id="certerRD" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="کارشناس مجوزها">
+                                                                                  <toggleGroup>
+                                                                                      <ToggleGroup fx:id="userType" />
+                                                                                  </toggleGroup>
+                                                            </RadioButton>
+                                                                              <RadioButton fx:id="rulerRD" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="کارشناس قوانین" toggleGroup="$userType" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="150.0">
+                                                         <children>
+                                                                              <RadioButton fx:id="adminRD" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="مدیر" textAlignment="RIGHT" toggleGroup="$userType" />
+                                                            <RadioButton fx:id="decerRD" layoutX="61.0" layoutY="20.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="کارشناس اظهارنامه‌ها" textAlignment="RIGHT" toggleGroup="$userType" />
+                                                         </children>
+                                                      </VBox>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="نوع کاربر" textAlignment="RIGHT" wrappingWidth="100.0" />
                                                                     </children>
                                                                 </HBox>
-                                                                <Button fx:id="adduser" mnemonicParsing="false" onAction="#AddUser" text="افزودن" />
+                                                                <Button fx:id="addUserBTN" mnemonicParsing="false" onAction="#AddUser" text="افزودن" />
                                                                 <Label fx:id="errorLBL" text="مشکل در ورود اطلاعات" textFill="RED" visible="false" />
                                                                 <Label fx:id="duplicateLBL" text="نام کاربری تکراری است" textFill="RED" visible="false" />
                                                                 <Label fx:id="userAddedLBL" text="کاربر با موفقیت افزوده شد" visible="false" />
@@ -497,7 +510,7 @@
                                                                 </TableView>
                                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                                     <children>
-                                                                        <Button fx:id="deleteUser" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="110.0" text="حذف کاربر" textAlignment="CENTER" />
+                                                                        <Button fx:id="deleteUserBTN" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="110.0" text="حذف کاربر" textAlignment="CENTER" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>

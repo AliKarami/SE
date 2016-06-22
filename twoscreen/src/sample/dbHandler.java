@@ -46,7 +46,8 @@ public class dbHandler {
             while(rs.next()){
                 Rule r = new Rule(rs);
                 if(currentDec.wareCompatibility(r.getWares()) || currentDec.factorCompatibility(r.getFactors()))
-                    rules.add(r);
+                    if(r.RuleCompatibility(currentDec.wh))
+                        rules.add(r);
             }
 
         }catch(Exception ex){

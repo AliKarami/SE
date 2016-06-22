@@ -60,7 +60,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="98.0" prefWidth="233.0">
                     <children>
-                        <Button fx:id="addwareBTN" mnemonicParsing="false" onAction="#addware" text="اضافه کردن کالا" />
+                        <Button fx:id="addwareBTN" mnemonicParsing="false" onAction="#addwarec" text="اضافه کردن کالا" />
                         <Label fx:id="addwareerrorLBL" text="مشکل در ورود اطلاعات" textFill="RED" visible="false" />
                     </children>
                 </VBox>

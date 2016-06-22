@@ -215,10 +215,38 @@ public class DeclarationController implements Initializable{
         // TODO
     }
 
-    @FXML
-    public void RecRule (ActionEvent event) throws IOException {
-        String sql;
+    //DecTAB
 
+    @FXML
+    public void pluswarePopup(ActionEvent event) throws IOException {
+        Stage WS = new Stage();
+        Parent popup1;
+        popup1 = FXMLLoader.load(getClass().getResource("Ware.fxml"));
+        WS.setScene(new Scene(popup1));
+        WS.initModality(Modality.APPLICATION_MODAL);
+        WS.showAndWait();
+        Data.getData().wareItems.add(Data.getData().tmp1.name);
+        warehouseLV.setItems(Data.getData().wareItems);
+        Data.getData().tmp1 = new ware();
+    }
+
+    @FXML
+    public void addcert (ActionEvent event) throws IOException {
+        if (DecCertidTXT.getText().equals("")) {
+            addcerterrorLBL.setVisible(true);
+            return;
+        } else {
+            Data.getData().tmp2.cid = DecCertidTXT.getText();
+//            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
+//            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
+//            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
+//            Data.getData().tmp2.date_from = CertDateFromDP.getEditor().toString();
+            Data.getData().tmp2.date_to = CertDateToDP.getEditor().toString();
+            Data.getData().Certhouse.add(Data.getData().tmp2);
+            Data.getData().tmp2 = new cert();
+            Stage stage = (Stage) pluscertBTN.getScene().getWindow();
+            stage.close();
+        }
     }
 
     @FXML
@@ -253,76 +281,48 @@ public class DeclarationController implements Initializable{
     }
 
     @FXML
-    public void addware (ActionEvent event) throws IOException {
-        if (WareNameTXT.getText().equals("") || WareManTXT.getText().equals("") || WareNumTXT.getText().equals("") || WarePriceTXT.getText().equals("") || WareWeightTXT.getText().equals("")) {
-            addwareerrorLBL.setVisible(true);
-            return;
-        } else {
-            Data.getData().tmp1.name = WareNameTXT.getText();
-            Data.getData().tmp1.man = WareManTXT.getText();
-            Data.getData().tmp1.quantity = WareNumTXT.getText();
-            Data.getData().tmp1.weight = WareWeightTXT.getText();
-            Data.getData().tmp1.price = WarePriceTXT.getText();
-            Data.getData().Warehouse.add(Data.getData().tmp1);
-            Data.getData().tmp1 = new ware();
-            Stage stage = (Stage) addwareBTN.getScene().getWindow();
-            stage.close();
-        }
+    public void SearchDec (ActionEvent event) throws IOException {
+
+    }
+
+    //CertTAB
+
+    @FXML
+    public void pluswarecPopup (ActionEvent event) throws IOException {
+
     }
 
     @FXML
-    public void addcert (ActionEvent event) throws IOException {
-        if (DecCertidTXT.getText().equals("")) {
-            addcerterrorLBL.setVisible(true);
-            return;
-        } else {
-            Data.getData().tmp2.cid = DecCertidTXT.getText();
-//            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
-//            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
-//            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
-//            Data.getData().tmp2.date_from = CertDateFromDP.getEditor().toString();
-            Data.getData().tmp2.date_to = CertDateToDP.getEditor().toString();
-            Data.getData().Certhouse.add(Data.getData().tmp2);
-            Data.getData().tmp2 = new cert();
-            Stage stage = (Stage) pluscertBTN.getScene().getWindow();
-            stage.close();
-        }
+    public void RecCert (ActionEvent event) throws IOException {
+
     }
 
     @FXML
-    public void pluswarePopup(ActionEvent event) throws IOException {
-        Stage WS = new Stage();
-        Parent popup1;
-        popup1 = FXMLLoader.load(getClass().getResource("Ware.fxml"));
-        WS.setScene(new Scene(popup1));
-        WS.initModality(Modality.APPLICATION_MODAL);
-        WS.showAndWait();
-        Data.getData().wareItems.add(Data.getData().tmp1.name);
-        warehouseLV.setItems(Data.getData().wareItems);
-        Data.getData().tmp1 = new ware();
+    public void SearchCert (ActionEvent event) throws IOException {
+
+    }
+
+    //RuleTAB
+
+    @FXML
+    public void addwareR (ActionEvent event) throws IOException {
+
     }
 
     @FXML
-    public void pluscertPopup(ActionEvent event) throws IOException {
-        Stage CS = new Stage();
-        System.out.println("1");
-        Parent popup2;
-        System.out.println("2");
-        popup2 = FXMLLoader.load(getClass().getResource("Cert.fxml"));
-        System.out.println("3");
-        CS.setScene(new Scene(popup2));
-        System.out.println("4");
-        CS.initModality(Modality.APPLICATION_MODAL);
-        CS.showAndWait();
-        Data.getData().certItems.add(Data.getData().tmp2.cid);
-        certhouseLV.setItems(Data.getData().certItems);
-        Data.getData().tmp2 = new cert();
+    public void addmanR (ActionEvent event) throws IOException {
+
     }
 
     @FXML
-    public void getTableView(ActionEvent event) throws IOException {
+    public void RecRule (ActionEvent event) throws IOException {
 
-        //code here!
+    }
+
+    //UserTAB
+
+    @FXML
+    public void DelUser (ActionEvent event) throws IOException {
 
     }
 
@@ -363,4 +363,45 @@ public class DeclarationController implements Initializable{
             userAddedLBL.setVisible(true);
 
     }
+
+    //addware
+
+    @FXML
+    public void addwarec (ActionEvent event) throws IOException {
+        if (WareNameTXT.getText().equals("") || WareManTXT.getText().equals("") || WareNumTXT.getText().equals("") || WarePriceTXT.getText().equals("") || WareWeightTXT.getText().equals("")) {
+            addwareerrorLBL.setVisible(true);
+            return;
+        } else {
+            Data.getData().tmp1.name = WareNameTXT.getText();
+            Data.getData().tmp1.man = WareManTXT.getText();
+            Data.getData().tmp1.quantity = WareNumTXT.getText();
+            Data.getData().tmp1.weight = WareWeightTXT.getText();
+            Data.getData().tmp1.price = WarePriceTXT.getText();
+            Data.getData().Warehouse.add(Data.getData().tmp1);
+            Data.getData().tmp1 = new ware();
+            Stage stage = (Stage) addwareBTN.getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    //addware-d
+
+    @FXML
+    public void addwared (ActionEvent event) throws IOException {
+        if (WareNameTXT.getText().equals("") || WareManTXT.getText().equals("") || WareNumTXT.getText().equals("") || WarePriceTXT.getText().equals("") || WareWeightTXT.getText().equals("")) {
+            addwareerrorLBL.setVisible(true);
+            return;
+        } else {
+            Data.getData().tmp1.name = WareNameTXT.getText();
+            Data.getData().tmp1.man = WareManTXT.getText();
+            Data.getData().tmp1.quantity = WareNumTXT.getText();
+            Data.getData().tmp1.weight = WareWeightTXT.getText();
+            Data.getData().tmp1.price = WarePriceTXT.getText();
+            Data.getData().Warehouse.add(Data.getData().tmp1);
+            Data.getData().tmp1 = new ware();
+            Stage stage = (Stage) addwareBTN.getScene().getWindow();
+            stage.close();
+        }
+    }
+
 }

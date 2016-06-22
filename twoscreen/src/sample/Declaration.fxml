@@ -48,7 +48,7 @@
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
-                                                                <Button fx:id="searchDecBTN" mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0" text="بگرد" />
+                                                                <Button fx:id="searchDecBTN" mnemonicParsing="false" onAction="#SearchDec" prefHeight="46.0" prefWidth="143.0" text="بگرد" />
                                                             </children>
                                                         </VBox>
                                                     </children>
@@ -169,7 +169,7 @@
                                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                                                    </children>
                                                 </HBox>
-                                                <Button fx:id="searchCertBTN" mnemonicParsing="false" prefHeight="28.0" prefWidth="143.0" text="بگرد" />
+                                                <Button fx:id="searchCertBTN" mnemonicParsing="false" onAction="#SearchCert" prefHeight="28.0" prefWidth="143.0" text="بگرد" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -216,7 +216,7 @@
                                                    <children>
                                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                          <children>
-                                                            <Button fx:id="CertpluswareBTN" mnemonicParsing="false" onAction="#pluswarePopup" text="+" wrapText="false" />
+                                                            <Button fx:id="CertpluswareBTN" mnemonicParsing="false" onAction="#pluswarecPopup" text="+" wrapText="false" />
                                                             <ListView fx:id="CertwarehouseLV" prefHeight="0.0" prefWidth="175.0" />
                                                          </children>
                                                       </HBox>
@@ -225,7 +225,7 @@
                                                 </HBox>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <Button fx:id="RecordCertBTN" mnemonicParsing="false" onAction="#RecDeclaration" prefHeight="28.0" prefWidth="80.0" text="ثبت" />
+                                                      <Button fx:id="RecordCertBTN" mnemonicParsing="false" onAction="#RecCert" prefHeight="28.0" prefWidth="80.0" text="ثبت" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -376,7 +376,7 @@
                                                                </font>
                                                             </Label>
                                                             <TextField fx:id="RuleWareTXT" />
-                                                            <Button fx:id="RuleAddWareBTN" mnemonicParsing="false" text="+" textAlignment="RIGHT" />
+                                                            <Button fx:id="RuleAddWareBTN" mnemonicParsing="false" onAction="#addwareR" text="+" textAlignment="RIGHT" />
                                                          </children>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -398,7 +398,7 @@
                                                                </font>
                                                             </Label>
                                                             <TextField fx:id="RuleManTXT" />
-                                                            <Button fx:id="RuleAddManBTN" mnemonicParsing="false" text="+" textAlignment="RIGHT" />
+                                                            <Button fx:id="RuleAddManBTN" mnemonicParsing="false" onAction="#addmanR" text="+" textAlignment="RIGHT" />
                                                          </children>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -412,7 +412,7 @@
                                                 </VBox>
                                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <Button fx:id="RecordRuleBTN" mnemonicParsing="false" text="ثبت قانون" />
+                                                      <Button fx:id="RecordRuleBTN" mnemonicParsing="false" onAction="#RecRule" text="ثبت قانون" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -510,7 +510,7 @@
                                                                 </TableView>
                                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                                     <children>
-                                                                        <Button fx:id="deleteUserBTN" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="110.0" text="حذف کاربر" textAlignment="CENTER" />
+                                                                        <Button fx:id="deleteUserBTN" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#DelUser" prefHeight="26.0" prefWidth="110.0" text="حذف کاربر" textAlignment="CENTER" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>

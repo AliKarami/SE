@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS WARE (
   weight int(11) DEFAULT NULL,
   quantity int(11) DEFAULT NULL,
   price int(11) DEFAULT NULL,
-  to_price tinyint(4) DEFAULT NULL,
+  price_s enum('B','E','S') DEFAULT NULL,
   PRIMARY KEY (WID)
 );
 CREATE TABLE IF NOT EXISTS WAREHOUSE (

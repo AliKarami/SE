@@ -20,7 +20,6 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 class ware {
-    String wid;
     String name;
     String man;
     String weight;

@@ -63,7 +63,7 @@
                                                             <children>
                                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                                     <children>
-                                                                        <TextField fx:id="DecDateTXT" prefHeight="33.0" prefWidth="200.0" />
+                                                      <DatePicker fx:id="DecDateDP" prefHeight="33.0" prefWidth="161.0" />
                                                                         <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" font="$x1" prefHeight="38.0" prefWidth="148.0" text="تاریخ اظهار" textAlignment="CENTER" wrapText="false" />
                                                                     </children>
                                                                 </HBox>
@@ -184,7 +184,7 @@
                                              <children>
                                                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                                                    <children>
-                                                      <TextField fx:id="CertDateToTXT" prefHeight="33.0" prefWidth="200.0" />
+                                                      <DatePicker fx:id="CertDateToDP" prefHeight="33.0" prefWidth="196.0" />
                                                       <Label alignment="CENTER" contentDisplay="RIGHT" disable="false" font="$x11" prefHeight="38.0" prefWidth="148.0" text="تا تاریخ" textAlignment="CENTER" wrapText="false" />
                                                    </children>
                                                 </HBox>
@@ -258,7 +258,7 @@
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                                          <children>
-                                                            <TableView prefHeight="200.0" prefWidth="381.0">
+                                                            <TableView fx:id="ruleTBL" prefHeight="200.0" prefWidth="381.0">
                                                               <columns>
                                                                 <TableColumn prefWidth="75.0" text="از تاریخ" />
                                                                 <TableColumn prefWidth="75.0" text="تا تاریخ" />
@@ -427,7 +427,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab fx:id="ManTAB" text="مدیریت کاربران">
+                <Tab fx:id="UserTAB" text="مدیریت کاربران">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>

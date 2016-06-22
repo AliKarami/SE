@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,6 +20,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 class ware {
+    String wid;
     String name;
     String man;
     String weight;
@@ -32,47 +34,149 @@ class cert {
     String date_to;
     String source_country;
     char entrance;
-    int whid;
+    String whid;
 
 }
 
 public class DeclarationController implements Initializable{
 
+    //Decleration of UI items:
 
+    //tabs:
     @FXML
-    private TextField signupuname;
+    public Tab DecTAB;
     @FXML
-    private TextField signuppword;
+    public Tab CertTAB;
     @FXML
-    private TextField signupname;
+    public Tab RuleTAB;
     @FXML
-    private TextField signupfamily;
+    public Tab UserTAB;
+
+    //DecTAB:
     @FXML
-    private RadioButton emp;
-    @FXML
-    private RadioButton ruler;
-    @FXML
-    private RadioButton admin;
-    @FXML
-    private Label errorLBL;
-    @FXML
-    private Label duplicateLBL;
-    @FXML
-    private Label userAddedLBL;
-    @FXML
-    public TableView<DeclarationController> usersTBL;
-    @FXML
-    public TableColumn unameCOL;
-    @FXML
-    public TableColumn nameCOL;
-    @FXML
-    public TableColumn familyCOL;
-    @FXML
-    public TableColumn typeCOL;
+    public DatePicker DecDateDP;
     @FXML
     public ListView warehouseLV;
     @FXML
+    public Button pluswareBTN;
+    @FXML
+    public TextField DecSourceTXT;
+    @FXML
+    public RadioButton RecDecAirRD;
+    @FXML
+    public RadioButton RecDecSeaRD;
+    @FXML
+    public RadioButton RecDecEarthRD;
+    @FXML
+    public TextField DecCertidTXT;
+    @FXML
+    public Button pluscertBTN;
+    @FXML
+    public Label addcerterrorLBL;
+    @FXML
     public ListView certhouseLV;
+    @FXML
+    public Button RecordDecBTN;
+    @FXML
+    public Label addwareerrorLBL;
+    @FXML
+    public TextField SearchDecidTXT;
+    @FXML
+    public Button searchDecBTN;
+
+    //CertTAB:
+    @FXML
+    public DatePicker CertDateToDP;
+    @FXML
+    public TextField CertPriceTXT;
+    @FXML
+    public TextField CertSourceTXT;
+    @FXML
+    public RadioButton RecCertAirRD;
+    @FXML
+    public RadioButton RecCertEarthRD;
+    @FXML
+    public RadioButton RecCertSeaRD;
+    @FXML
+    public ListView CertwarehouseLV;
+    @FXML
+    public Button CertpluswareBTN;
+    @FXML
+    public Button RecordCertBTN;
+    @FXML
+    public TextField SearchCertidTXT;
+    @FXML
+    public Button searchCertBTN;
+
+    //RuleTAB:
+    @FXML
+    public DatePicker RuleDateFromDP;
+    @FXML
+    public DatePicker RuleDateToDP;
+    @FXML
+    public TextField RuleSourceTXT;
+    @FXML
+    public RadioButton RecRulEarthRD;
+    @FXML
+    public RadioButton RecRulAirRD;
+    @FXML
+    public RadioButton RecRulSeaRD;
+    @FXML
+    public TextField RulePriceFromTXT;
+    @FXML
+    public TextField RulePriceToTXT;
+    @FXML
+    public TextField RulePPriceFromTXT;
+    @FXML
+    public TextField RulePPriceToTXT;
+    @FXML
+    public TextField RuleWareTXT;
+    @FXML
+    public Button RuleAddWareBTN;
+    @FXML
+    public ListView RuleWarehouseLV;
+    @FXML
+    public TextField RuleManTXT;
+    @FXML
+    public Button RuleAddManBTN;
+    @FXML
+    public ListView RuleManhouseLV;
+    @FXML
+    public Button RecordRuleBTN;
+    @FXML
+    public TableView ruleTBL;
+
+    //UserTAB:
+    @FXML
+    public TableView usersTBL;
+    @FXML
+    public Button deleteUserBTN;
+    @FXML
+    public TextField signupuname;
+    @FXML
+    public TextField signuppword;
+    @FXML
+    public TextField signupname;
+    @FXML
+    public TextField signupfamily;
+    @FXML
+    public RadioButton adminRD;
+    @FXML
+    public RadioButton rulerRD;
+    @FXML
+    public RadioButton certerRD;
+    @FXML
+    public RadioButton decerRD;
+    @FXML
+    public Button addUserBTN;
+    @FXML
+    public Label duplicateLBL;
+    @FXML
+    public Label userAddedLBL;
+    @FXML
+    public Label errorLBL;
+
+    //addware
     @FXML
     public TextField WareNameTXT;
     @FXML
@@ -84,63 +188,132 @@ public class DeclarationController implements Initializable{
     @FXML
     public TextField WarePriceTXT;
     @FXML
-    public TextField CertIdTXT;
+    public RadioButton BPriceRD;
     @FXML
-    public TextField CertWarenameTXT;
+    public RadioButton EPriceRD;
     @FXML
-    public TextField CertNumToTXT;
-    @FXML
-    public TextField CertNumFromTXT;
-    @FXML
-    public TextField CertPerpriceToTXT;
-    @FXML
-    public TextField CertPerpriceFromTXT;
-    @FXML
-    public DatePicker CertDateFromDP;
-    @FXML
-    public DatePicker CertDateToDP;
-    @FXML
-    public Label addwareerrorLBL;
-    @FXML
-    public Label addcerterrorLBL;
+    public RadioButton SPriceRD;
     @FXML
     public Button addwareBTN;
+
+    //addware-d
     @FXML
-    public Button addcertBTN;
+    public TextField dWareNameTXT;
     @FXML
-    public TextField DecMIDTXT;
+    public TextField dWareManTXT;
     @FXML
-    public TextField DecMNameTXT;
+    public TextField dWareWeightTXT;
     @FXML
-    public TextField DecDateTXT;
+    public TextField dWareNumTXT;
     @FXML
-    public TextField DecSourceTXT;
+    public TextField dWarePriceTXT;
     @FXML
-    public RadioButton RecDecAirRD;
-    @FXML
-    public RadioButton RecDecSeaRD;
-    @FXML
-    public RadioButton RecDecFloorRD;
-    @FXML
-    public TextField ruleWareTB;
-    @FXML
-    public TextField ruleNumFromTB;
-    @FXML
-    public TextField ruleNumToTB;
-    @FXML
-    public TextField rulePriceFromTB;
-    @FXML
-    public TextField rulePriceToTB;
-    @FXML
-    public DatePicker ruleDateFromDP;
-    @FXML
-    public DatePicker ruleDateToDP;
-    @FXML
-    public ListView ruleCerthouseLV;
-    @FXML
-    public Button ruleCertAddBTN;
-    @FXML
-    public Button ruleRecBTN;
+    public Button daddwareBTN;
+
+
+
+//    @FXML
+//    private TextField signupuname;
+//    @FXML
+//    private TextField signuppword;
+//    @FXML
+//    private TextField signupname;
+//    @FXML
+//    private TextField signupfamily;
+//    @FXML
+//    private RadioButton emp;
+//    @FXML
+//    private RadioButton ruler;
+//    @FXML
+//    private RadioButton admin;
+//    @FXML
+//    private Label errorLBL;
+//    @FXML
+//    private Label duplicateLBL;
+//    @FXML
+//    private Label userAddedLBL;
+//    @FXML
+//    public TableView<DeclarationController> usersTBL;
+//    @FXML
+//    public TableColumn unameCOL;
+//    @FXML
+//    public TableColumn nameCOL;
+//    @FXML
+//    public TableColumn familyCOL;
+//    @FXML
+//    public TableColumn typeCOL;
+//    @FXML
+//    public ListView warehouseLV;
+//    @FXML
+//    public ListView certhouseLV;
+//    @FXML
+//    public TextField WareNameTXT;
+//    @FXML
+//    public TextField WareManTXT;
+//    @FXML
+//    public TextField WareWeightTXT;
+//    @FXML
+//    public TextField WareNumTXT;
+//    @FXML
+//    public TextField WarePriceTXT;
+//    @FXML
+//    public TextField CertIdTXT;
+//    @FXML
+//    public TextField CertWarenameTXT;
+//    @FXML
+//    public TextField CertNumToTXT;
+//    @FXML
+//    public TextField CertNumFromTXT;
+//    @FXML
+//    public TextField CertPerpriceToTXT;
+//    @FXML
+//    public TextField CertPerpriceFromTXT;
+//    @FXML
+//    public DatePicker CertDateFromDP;
+//    @FXML
+//    public DatePicker CertDateToDP;
+//    @FXML
+//    public Label addwareerrorLBL;
+//    @FXML
+//    public Label addcerterrorLBL;
+//    @FXML
+//    public Button addwareBTN;
+//    @FXML
+//    public Button addcertBTN;
+//    @FXML
+//    public TextField DecMIDTXT;
+//    @FXML
+//    public TextField DecMNameTXT;
+//    @FXML
+//    public TextField DecDateTXT;
+//    @FXML
+//    public TextField DecSourceTXT;
+//    @FXML
+//    public RadioButton RecDecAirRD;
+//    @FXML
+//    public RadioButton RecDecSeaRD;
+//    @FXML
+//    public RadioButton RecDecFloorRD;
+//    @FXML
+//    public TextField ruleWareTB;
+//    @FXML
+//    public TextField ruleNumFromTB;
+//    @FXML
+//    public TextField ruleNumToTB;
+//    @FXML
+//    public TextField rulePriceFromTB;
+//    @FXML
+//    public TextField rulePriceToTB;
+//    @FXML
+//    public DatePicker ruleDateFromDP;
+//    @FXML
+//    public DatePicker ruleDateToDP;
+//    @FXML
+//    public ListView ruleCerthouseLV;
+//    @FXML
+//    public Button ruleCertAddBTN;
+//    @FXML
+//    public Button ruleRecBTN;
 
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
@@ -162,7 +335,6 @@ public class DeclarationController implements Initializable{
             SQLHandler.executeUpdate(sql);
         }
 
-        System.out.println(DecMNameTXT.getText());
         char enterance;
 
         if (RecDecAirRD.isSelected())
@@ -179,7 +351,7 @@ public class DeclarationController implements Initializable{
         }
 
         sql = "INSERT INTO DECLARATIONS (date,WHID,source_country,enterance,CHID)\n" +
-                "VALUES (\"" + DecDateTXT.getText() + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
+                "VALUES (\"" + DecDateDP + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
         SQLHandler.executeUpdate(sql);
         Data.getData().Warehouse = new Vector<ware>();
         Data.getData().Certhouse = new Vector<cert>();
@@ -205,11 +377,11 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addcert (ActionEvent event) throws IOException {
-        if (CertIdTXT.getText().equals("")) {
+        if (DecCertidTXT.getText().equals("")) {
             addcerterrorLBL.setVisible(true);
             return;
         } else {
-            Data.getData().tmp2.cid = CertIdTXT.getText();
+            Data.getData().tmp2.cid = DecCertidTXT.getText();
 //            Data.getData().tmp2.num_to = Integer.parseInt(CertNumToTXT.getText());
 //            Data.getData().tmp2.perprice_form = Integer.parseInt(CertPerpriceFromTXT.getText());
 //            Data.getData().tmp2.perprice_to = Integer.parseInt(CertPerpriceToTXT.getText());
@@ -217,7 +389,7 @@ public class DeclarationController implements Initializable{
             Data.getData().tmp2.date_to = CertDateToDP.getEditor().toString();
             Data.getData().Certhouse.add(Data.getData().tmp2);
             Data.getData().tmp2 = new cert();
-            Stage stage = (Stage) addcertBTN.getScene().getWindow();
+            Stage stage = (Stage) pluscertBTN.getScene().getWindow();
             stage.close();
         }
     }
@@ -276,19 +448,21 @@ public class DeclarationController implements Initializable{
             return;
         }
 
-        if (!emp.isSelected() && !ruler.isSelected() && !admin.isSelected()) {
+        if (!adminRD.isSelected() && !rulerRD.isSelected() && !certerRD.isSelected()&& !decerRD.isSelected()) {
             errorLBL.setVisible(true);
             return;
         }
 
         char type;
 
-        if (admin.isSelected())
+        if (adminRD.isSelected())
             type = 'A';
-        else if (ruler.isSelected())
+        else if (rulerRD.isSelected())
             type = 'R';
+        else if (certerRD.isSelected())
+            type = 'C';
         else
-            type = 'E';
+            type = 'D';
 
         if (SQLHandler.executeUpdate("INSERT INTO USERS (username,password,type,name,family) values (\"" + signupuname.getText() + "\",\"" + signuppword.getText() + "\",\'" + type +  "\',\"" + signupname.getText() + "\",\"" + signupfamily.getText() + "\")") != -1)
             userAddedLBL.setVisible(true);

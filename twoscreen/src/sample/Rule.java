@@ -60,6 +60,13 @@ public class Rule {
         return warelist;
     }
 
+    public Vector<String> getFactors(){
+        if(wares == null)
+            return new Vector<String>();
+        Vector<String> factorlist = new Vector<String>(Arrays.asList( manufactures.split(",")));
+        return factorlist;
+    }
+
     public boolean isLegislate(Decleration currentDec,Vector<Cert> satisfiedCerts) throws SQLException{
         Vector<Cert> dec = new Vector<Cert>();
         Vector<Cert> rule = new Vector<Cert>();

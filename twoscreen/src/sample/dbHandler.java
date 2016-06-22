@@ -17,8 +17,10 @@ public class dbHandler {
             Vector<Rule> result = checkLaws(currentDec,depRules);
             if(result == null)
                 System.out.println("Register Success!");
-            else if(result.size() > 0)
+            else if(result.size() > 0) {
                 System.out.println("Register Failed!");
+                SQLHandler.executeUpdate("DELETE * FROM Decleration WHERE DID=" + did);
+            }
             else
                 System.out.println("Register in vector size Exception!");
             return true;
@@ -43,7 +45,7 @@ public class dbHandler {
             ResultSet rs = SQLHandler.executeQuery(query);
             while(rs.next()){
                 Rule r = new Rule(rs);
-                if(currentDec.wareCompatibility(r.getWares()))
+                if(currentDec.wareCompatibility(r.getWares()) || currentDec.factorCompatibility(r.getFactors()))
                     rules.add(r);
             }
 

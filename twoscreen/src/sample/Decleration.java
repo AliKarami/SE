@@ -45,13 +45,28 @@ public class Decleration {
         }
     }
 
-    public boolean wareCompatibility(Vector<String> rulewares){
+    public boolean wareCompatibility(Vector<String> rulewares) throws SQLException{
 
-       /* if(rulewares.size() < 1)
-            return true;*/
-        for(int i = 0;i < wh.wares.size();i++)
+        Vector<String> names = wh.getWareNames();
+
+       if(rulewares.size() < 1)
+            return true;
+        for(int i = 0;i < names.size();i++)
             for(int j = 0;j < rulewares.size();j++)
-                if(wh.wares.get(i).equals(rulewares.get(j)))
+                if(names.get(i).equals(rulewares.get(j)))
+                    return true;
+        return false;
+    }
+
+    public boolean factorCompatibility(Vector<String> rulefactors) throws SQLException{
+
+        Vector<String> factors = wh.getFactorNames();
+
+       if(rulefactors.size() < 1)
+            return true;
+        for(int i = 0;i < factors.size();i++)
+            for(int j = 0;j < rulefactors.size();j++)
+                if(factors.get(i).equals(rulefactors.get(j)))
                     return true;
         return false;
     }

@@ -15,7 +15,7 @@ public class Ware {
     int weight;
     int quantity;
     int price;
-    int to_price;
+    String price_s;
 
     public Ware(int d) throws SQLException {
         ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Ware WHERE WID=" + d);
@@ -27,7 +27,7 @@ public class Ware {
             weight = rs.getInt("weight");
             quantity = rs.getInt("quantity");
             price = rs.getInt("price");
-            to_price = rs.getInt("to_price");
+            price_s = rs.getString("price_s");
         }else{
             wid = -1;
             System.err.println("couldn't find ware in construction!");

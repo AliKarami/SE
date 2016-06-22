@@ -297,12 +297,20 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addwareR (ActionEvent event) throws IOException {
-
+        String warename = RuleWareTXT.getText();
+        Data.getData().rWarehouse.add(warename);
+        Data.getData().rwareItems.add(warename);
+        RuleWarehouseLV.setItems(Data.getData().rwareItems);
+        RuleWareTXT.setText("");
     }
 
     @FXML
     public void addmanR (ActionEvent event) throws IOException {
-
+        String manname = RuleManTXT.getText();
+        Data.getData().rWarehouse.add(manname);
+        Data.getData().rwareItems.add(manname);
+        RuleManhouseLV.setItems(Data.getData().rmanItems);
+        RuleManTXT.setText("");
     }
 
     @FXML

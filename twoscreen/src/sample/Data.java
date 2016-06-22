@@ -17,16 +17,23 @@ public class Data {
 
     Vector<String> Certhouse = new Vector<String>();
 
+    Vector<String> rWarehouse = new Vector<String>();
+    Vector<String> rManhouse = new Vector<String>();
+
     public ware tmp1 = new ware();
     public ware tmp2 = new ware();
 
     public List<String> warenames = new ArrayList<String>();
     public List<String> certnames = new ArrayList<String>();
     public List<String> cwarenames = new ArrayList<String>();
+    public List<String> rwarenames = new ArrayList<String>();
+    public List<String> rmannames = new ArrayList<String>();
 
     public ObservableList<String> wareItems = FXCollections.observableArrayList (warenames);
     public ObservableList<String> certItems = FXCollections.observableArrayList (certnames);
-    public ObservableList<String> cwareItems = FXCollections.observableArrayList (warenames);
+    public ObservableList<String> cwareItems = FXCollections.observableArrayList (cwarenames);
+    public ObservableList<String> rwareItems = FXCollections.observableArrayList (rwarenames);
+    public ObservableList<String> rmanItems = FXCollections.observableArrayList (rmannames);
 
     private static Data theData = new Data();
 

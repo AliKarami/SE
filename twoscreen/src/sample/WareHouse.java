@@ -26,6 +26,25 @@ public class WareHouse {
         }
     }
 
+    public Vector<String> getWareNames() throws SQLException{
+        Vector<String> result = new Vector<String>();
+        for(Integer i : wares){
+            Ware w = new Ware(i);
+            result.add(w.name);
+        }
+        return result;
+    }
+
+    public Vector<String> getFactorNames() throws SQLException{
+        Vector<String> result = new Vector<String>();
+        for(Integer i : wares){
+            Ware w = new Ware(i);
+            result.add(w.manufacturer);
+        }
+        return result;
+    }
+
+
     public int getMinUnitPrice(){
         int min = Integer.MAX_VALUE;
         try {

@@ -15,7 +15,7 @@ public class Ware {
     int weight;
     int quantity;
     int price;
-    int to_price;
+    String price_s;
 
     public Ware(int d) throws SQLException {
         ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Ware WHERE WID=" + d);
@@ -27,7 +27,7 @@ public class Ware {
             weight = rs.getInt("weight");
             quantity = rs.getInt("quantity");
             price = rs.getInt("price");
-            to_price = rs.getInt("to_price");
+            price_s = rs.getString("price_s");
         }else{
             wid = -1;
             System.err.println("couldn't find ware in construction!");
@@ -37,9 +37,29 @@ public class Ware {
     public boolean subset(Ware w){
         if(w.manufacturer == null || manufacturer.equals(w.manufacturer)){
             if(w.weight < 1 || weight < w.weight){
-                if(w.quantity < 1 || quantity < w.quantity)
-                    if(w.price < 1 || price < w.price)
+                if(w.quantity < 1 || quantity < w.quantity) {
+                    if (w.price < 1)
                         return true;
+                    else{
+                        switch(w.price_s.charAt(0)){
+                            case 'B':
+                                if(price > w.price)
+                                    return true;
+                                break;
+                            case 'S':
+                                if(price < w.price)
+                                    return true;
+                                break;
+                            case 'E':
+                                if(price == w.price)
+                                    return true;
+                                break;
+                            default:
+                                System.err.println("Price_S String error!");
+                                return false;
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -52,4 +72,5 @@ public class Ware {
             SQLHandler.executeUpdate("UPDATE Ware SET quantity=quantity-" + w.quantity + " WHERE WID=" + wid);
 
     }
+
 }

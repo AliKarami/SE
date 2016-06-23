@@ -32,14 +32,16 @@ public class Cert {
     }
 
     public boolean hasSatisfied(Cert cert) throws SQLException{
-        if(cert.date_to == null || date_to == null || cert.date_to.before(date_to)){
+       /* if(cert.date_to == null || date_to == null || cert.date_to.before(date_to)){
             if(cert.source_country == null || source_country == null || cert.source_country.equals(source_country)){
                 if(cert.enterance == null || enterance == null || cert.enterance.equals(enterance)){
                     if(wh.wares.isEmpty() || cert.wh.wares.isEmpty() || cert.wh.subset(wh))
                         return true;
                 }
             }
-        }
+        }*/
+        if(cid == cert.cid)
+            return true;
         return false;
     }
 

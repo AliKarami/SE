@@ -81,7 +81,7 @@ public class Rule {
             boolean satisfy = false;
             for(Cert dec_cert : dec){
                 if(rule_cert.hasSatisfied(dec_cert)) {
-                    satisfiedCerts.add(dec_cert);
+
                     satisfy = true;
                 }
             }
@@ -92,6 +92,8 @@ public class Rule {
         for(Cert dec_cert : dec){
             if(!RuleCompatibility(dec_cert.wh))
                 return false;
+            else
+                satisfiedCerts.add(dec_cert);
         }
 
         return true;

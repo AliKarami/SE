@@ -306,7 +306,7 @@ public class DeclarationController implements Initializable{
                 enterance = 'F';
 
             SQLHandler.executeUpdate("INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)\n" +
-                    "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + "," + (DecSourceTXT.getText().equals("")?"NULL":("\""+DecSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().Certhouse.size()==0?"NULL":chid) + ")");
+                    "VALUES (" + (DecDateDP.getValue()==null?"NULL":("\""+DecDateDP.getValue()+"\"")) + "," + whid + "," + (DecSourceTXT.getText().equals("")?"NULL":("\""+DecSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().Certhouse.size()==0?"NULL":chid) + ")");
 
             int did = SQLHandler.getLastDID();
 
@@ -324,19 +324,8 @@ public class DeclarationController implements Initializable{
             Data.getData().certnames.clear();
             certhouseLV.setItems(Data.getData().certItems);
             certhouseLV.refresh();
-        }
-        else {
-            if (certstrue==false) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("CID Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Error: one or more CIDs entered are wrong!");
 
-                alert.showAndWait();
-                System.err.println("cid error!"); //message cid is wrong!
-            }
-            else if (success) {
-                //message did to user!
+            if (success) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Decleration Added");
                 alert.setHeaderText(null);
@@ -359,6 +348,15 @@ public class DeclarationController implements Initializable{
 
                 alert.showAndWait();
             }
+        }
+        else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("CID Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error: one or more CIDs entered are wrong!");
+
+                alert.showAndWait();
+                System.err.println("cid error!"); //message cid is wrong!
         }
     }
 

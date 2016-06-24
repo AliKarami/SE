@@ -424,8 +424,8 @@ public class DeclarationController implements Initializable{
         else
             enterance = 'F';
 
-        SQLHandler.executeUpdate("INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names)\n" +
-                "VALUES (" + (RuleDateFromDP.getValue().equals("")?"NULL":("\""+RuleDateFromDP.getValue()+"\"")) + "," + (RuleDateToDP.getValue().equals("")?"NULL":("\""+RuleDateToDP.getValue()+"\"")) + "," + (RuleSourceTXT.getText().equals("")?"NULL":("\""+RuleSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (RulePriceFromTXT.getText().equals("")?"NULL":(RulePriceFromTXT.getText())) + "," + (RulePriceToTXT.getText().equals("")?"NULL":(RulePriceToTXT.getText())) + "," + (RulePPriceFromTXT.getText().equals("")?"NULL":(RulePPriceFromTXT.getText())) + "," + (RulePPriceToTXT.getText().equals("")?"NULL":(RulePPriceToTXT.getText())) + "," + (wares.equals("")?"NULL":("\""+wares+"\"")) + "," + (mans.equals("")?"NULL":("\""+mans+"\"")) + ")");
+        SQLHandler.executeUpdate("INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names,CHID)\n" +
+                "VALUES (" + (RuleDateFromDP.getValue().equals("")?"NULL":("\""+RuleDateFromDP.getValue()+"\"")) + "," + (RuleDateToDP.getValue().equals("")?"NULL":("\""+RuleDateToDP.getValue()+"\"")) + "," + (RuleSourceTXT.getText().equals("")?"NULL":("\""+RuleSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (RulePriceFromTXT.getText().equals("")?"NULL":(RulePriceFromTXT.getText())) + "," + (RulePriceToTXT.getText().equals("")?"NULL":(RulePriceToTXT.getText())) + "," + (RulePPriceFromTXT.getText().equals("")?"NULL":(RulePPriceFromTXT.getText())) + "," + (RulePPriceToTXT.getText().equals("")?"NULL":(RulePPriceToTXT.getText())) + "," + (wares.equals("")?"NULL":("\""+wares+"\"")) + "," + (mans.equals("")?"NULL":("\""+mans+"\"")) + "," + (Data.getData().rCerthouse.size()==0?"NULL":chid) + ")");
 
         RuleDateFromDP.setValue(null);
         RuleDateToDP.setValue(null);

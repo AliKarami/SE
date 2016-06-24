@@ -19,3 +19,6 @@ VALUES(3,"2016-06-08",NULL,NULL,'W',2)" update 1 rows.
 [2016-06-24 09:35:35] initializing Tables completed.
 [2016-06-24 09:35:35] admin:admin user added.
 [2016-06-24 09:35:39] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 09:38:17] ---------------Program Started!---------------
+[2016-06-24 09:38:17] initializing Tables completed.
+[2016-06-24 09:38:17] admin:admin user added.

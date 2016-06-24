@@ -9,20 +9,22 @@ import java.sql.*;
 public class dbHandler {
 
     //private class db = new SQLHandler();
+    private Vector<Rule> illegals;
 
     public boolean registerDec(int did){
         try {
             Decleration currentDec = new Decleration(did);
             Vector<Rule> depRules = getDependentRules(currentDec);
-            Vector<Rule> result = checkLaws(currentDec,depRules);
-            if(result == null)
+            illegals = checkLaws(currentDec,depRules);
+            if(illegals == null)
                 System.out.println("Register Success!");
-            else if(result.size() > 0) {
-                System.out.println("Register Failed!");
+            else{
+                if(illegals.size() > 0)
+                    System.out.println("Register Failed!");
+                else
+                    System.out.println("Register in vector size Exception!");
                 SQLHandler.executeUpdate("DELETE * FROM Decleration WHERE DID=" + did);
             }
-            else
-                System.out.println("Register in vector size Exception!");
             return true;
         }catch (Exception ex){
             System.err.println("registration SQL Exception");
@@ -86,6 +88,13 @@ public class dbHandler {
         }catch (Exception ex){
             System.err.println("update certificates error!");
         }
+    }
+
+    public Vector<Integer> getIllegals(){
+        Vector<Integer> rids = new Vector<Integer>();
+        for(Rule r : illegals)
+            rids.add(r.rid);
+        return rids;
     }
 
 

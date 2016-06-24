@@ -362,7 +362,25 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void SearchDec (ActionEvent event) throws IOException {
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM DECLERATION WHERE DID=" + SearchDecidTXT.getText());
+        try {
+            if(rs.next()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Decleration found.");
+                alert.setHeaderText(null);
+                alert.setContentText("Decleration found:.\n" +
+                        "DID#: " + rs.getString("DID") + "\n"+
+                        "To Date: " + rs.getString("date") + "\n"+
+                        "WHID#: " + rs.getString("WHID") + "\n"+
+                        "source country: " + rs.getString("source_country") + "\n"+
+                        "enterance: " + rs.getString("enterance") + "\n"+
+                        "CHID#: " + rs.getString("CHID") + "\n");
 
+                alert.showAndWait();
+            }
+        } catch (SQLException e) {
+            System.err.println("searching decleration exception!");
+        }
     }
 
     //CertTAB
@@ -428,7 +446,25 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void SearchCert (ActionEvent event) throws IOException {
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTIFICATE WHERE CID=" + SearchCertidTXT.getText());
+        try {
+            if(rs.next()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Certification found.");
+                alert.setHeaderText(null);
+                alert.setContentText("Certification found:.\n" +
+                        "CID#: " + rs.getString("CID") + "\n"+
+                        "Date to: " + rs.getString("date_to") + "\n"+
+                        "Price to: " + rs.getString("price_to") + "\n"+
+                        "source country: " + rs.getString("source_country") + "\n"+
+                        "enterance: " + rs.getString("enterance") + "\n"+
+                        "WHID#: " + rs.getString("WHID") + "\n");
 
+                alert.showAndWait();
+            }
+        } catch (SQLException e) {
+            System.err.println("searching certification exception!");
+        }
     }
 
     //RuleTAB

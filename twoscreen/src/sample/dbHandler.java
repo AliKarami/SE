@@ -49,8 +49,10 @@ public class dbHandler {
             while(rs.next()){
                 Rule r = new Rule(rs);
                 if(currentDec.wareCompatibility(r.getWares()) || currentDec.factorCompatibility(r.getFactors()))
-                    if(r.RuleCompatibility(currentDec.wh))
+                    if(currentDec.wh.wares.isEmpty() || r.RuleCompatibility(currentDec.wh)) {
+                        SQLHandler.log("Rule Added");
                         rules.add(r);
+                    }
             }
 
         }catch(Exception ex){
@@ -64,7 +66,9 @@ public class dbHandler {
         Vector<Cert> satisfiedCerts = new Vector<Cert>();
         try {
             for (Rule r : rules) {
+                SQLHandler.log("start rule checklaws");
                 if (!(r.isLegislate(currentDec,satisfiedCerts))) {
+                    SQLHandler.log("is not legislate");
                     result.add(r);
                 }
             }

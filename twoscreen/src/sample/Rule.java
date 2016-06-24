@@ -71,13 +71,16 @@ public class Rule {
         Vector<Cert> dec = new Vector<Cert>();
         Vector<Cert> rule = new Vector<Cert>();
         for(int i = 0;i < certs.size();i++){
+            SQLHandler.log("Rule Added in islegislate");
            rule.add(new Cert(certs.get(i)));
         }
         for(int j = 0;j < currentDec.certs.size();j++){
+            SQLHandler.log("cert Added");
             dec.add(new Cert(currentDec.certs.get(j)));
         }
 
         for(Cert rule_cert : rule){
+            SQLHandler.log("not important rule_cert");
             boolean satisfy = false;
             for(Cert dec_cert : dec){
                 if(rule_cert.hasSatisfied(dec_cert)) {
@@ -90,11 +93,15 @@ public class Rule {
         }
 
         for(Cert dec_cert : dec){
+            SQLHandler.log("start cert survey");
             if(validateCert(dec_cert)) {
+                SQLHandler.log("validated");
                 if (dec_cert.wh.wares.isEmpty()) {
+                    SQLHandler.log("empty warehouse");
                     if (price_to < 1 || dec_cert.price_to < price_to)
                         return true;
                 } else {
+                    SQLHandler.log("not empty warehouse");
                     if (RuleCompatibility(dec_cert.wh)) {
                         satisfiedCerts.add(dec_cert);
                         return true;
@@ -111,6 +118,7 @@ public class Rule {
     }
 
     public boolean RuleCompatibility(WareHouse wh){
+        SQLHandler.log("Rule Compatibilty");
         int pr = wh.getTotalPrice();
         int we = wh.getTotalWeight();
         int qu = wh.getTotalQuantity();

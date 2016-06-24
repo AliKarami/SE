@@ -92,12 +92,12 @@ public class SQLHandler {
                 con = DriverManager.getConnection(url, username, password);
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
-                String res = (rs==null)?"doesn't":"does";
+                String res = (!rs.isBeforeFirst())?"doesn't":"";
                 log("executed Query: \"" + sql + "\" " + res + " have result.");
                 return rs;
             } catch (SQLException e) {
-                log("Cannot connect the database on excecuteQuery \"" + sql + "\"!");
-                throw new IllegalStateException("Cannot connect the database!", e);
+                log("Cannot connect the database or SQL error on excecuteQuery \"" + sql + "\"!");
+                throw new IllegalStateException("Cannot connect the database or SQL error!", e);
             }
         } catch (ClassNotFoundException e) {
             log("Cannot find the driver in the classpath on excecuteQuery \"" + sql + "\"!");
@@ -115,8 +115,8 @@ public class SQLHandler {
                 log("executed Update: \"" + sql + "\" update " + res + " rows.");
                 return res;
             } catch (SQLException e) {
-                log("Cannot connect the database on excecuteUpdate \"" + sql + "\"!");
-                throw new IllegalStateException("Cannot connect the database!", e);
+                log("Cannot connect the database or SQL error on excecuteUpdate \"" + sql + "\"!");
+                throw new IllegalStateException("Cannot connect the database or SQL error!", e);
             }
         } catch (ClassNotFoundException e) {
             log("Cannot find the driver in the classpath on excecuteQuery \"" + sql + "\"!");

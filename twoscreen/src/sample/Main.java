@@ -21,7 +21,7 @@ public class Main extends Application {
     public static Stage mainwindow;
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        SQLHandler.log("---------------Program Started!---------------");
         SQLHandler.initTables();
 
         mainwindow = primaryStage;

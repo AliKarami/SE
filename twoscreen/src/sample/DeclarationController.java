@@ -286,7 +286,7 @@ public class DeclarationController implements Initializable{
         for (ware w:Data.getData().cWarehouse) {
             int wid = SQLHandler.getMaxWID()+1;
             SQLHandler.executeUpdate("INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)\n" +
-                    "VALUES(" + wid + "\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",\'" + w.price_s + "\')");
+                    "VALUES(" + wid + ",\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",\'" + w.price_s + "\')");
             SQLHandler.executeUpdate("INSERT INTO WAREHOUSE (whid,wid)\n" +
                     "VALUES(" + whid + "," + wid +")");
         }

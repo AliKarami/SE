@@ -12,6 +12,8 @@ import java.util.Vector;
  */
 public class Data {
 
+    char curUserType = 'N';
+
     Vector<ware> Warehouse = new Vector<ware>();
     Vector<ware> cWarehouse = new Vector<ware>();
 

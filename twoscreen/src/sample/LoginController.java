@@ -44,8 +44,8 @@ public class LoginController implements Initializable{
         Parent root;
 
             try  {
-
-                ResultSet rs = SQLHandler.executeQuery("SELECT password FROM USERS WHERE username=\"" + uname.getText() + "\"");
+                char userType = 'N';
+                ResultSet rs = SQLHandler.executeQuery("SELECT type,password FROM USERS WHERE username=\"" + uname.getText() + "\"");
                 if (!rs.next()) {
                     errorLBL.setVisible(true);
                     return;
@@ -58,6 +58,7 @@ public class LoginController implements Initializable{
 
                 }
 
+                Data.getData().curUserType = rs.getString("type").charAt(0);
                 root = FXMLLoader.load(getClass().getResource("Declaration.fxml"));
                 Scene scene = new Scene(root , 800 , 500);
                 stage.setScene(scene);

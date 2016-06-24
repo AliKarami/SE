@@ -31,6 +31,9 @@ public class DeclarationController implements Initializable{
 
     //Decleration of UI items:
 
+    @FXML
+    public TabPane tabPANE;
+
     //tabs:
     @FXML
     public Tab DecTAB;
@@ -210,6 +213,31 @@ public class DeclarationController implements Initializable{
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        DecTAB.setDisable(true);
+        CertTAB.setDisable(true);
+        RuleTAB.setDisable(true);
+        UserTAB.setDisable(true);
+        SingleSelectionModel<Tab> selectionModel = tabPANE.getSelectionModel();
+        switch (Data.getData().curUserType) {
+            case 'R':
+                RuleTAB.setDisable(false);
+                selectionModel.select(RuleTAB);
+                break;
+            case 'C':
+                CertTAB.setDisable(false);
+                selectionModel.select(CertTAB);
+                break;
+            case 'D':
+                DecTAB.setDisable(false);
+                selectionModel.select(DecTAB);
+                break;
+            case 'A':
+                RuleTAB.setDisable(false);
+                CertTAB.setDisable(false);
+                DecTAB.setDisable(false);
+                UserTAB.setDisable(false);
+                break;
+        }
     }
 
     //DecTAB
@@ -455,7 +483,14 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void DelUser (ActionEvent event) throws IOException {
-
+        int targetuid = -1;
+        if (targetuid!=-1) {
+            SQLHandler.executeUpdate("DELETE FROM USERS WHERE UID=" + targetuid);
+            SQLHandler.log("User #" + targetuid + " Deleted.");
+        }
+        else {
+            //messege incorrect user selected!
+        }
     }
 
     @FXML

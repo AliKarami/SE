@@ -213,31 +213,30 @@ public class DeclarationController implements Initializable{
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        DecTAB.setDisable(true);
-//        CertTAB.setDisable(true);
-//        RuleTAB.setDisable(true);
-//        UserTAB.setDisable(true);
+
 //        SingleSelectionModel<Tab> selectionModel = tabPANE.getSelectionModel();
-//        switch (Data.getData().curUserType) {
-//            case 'R':
-//                RuleTAB.setDisable(false);
+        switch (Data.getData().curUserType) {
+            case 'R':
+                DecTAB.setDisable(true);
+                CertTAB.setDisable(true);
+                UserTAB.setDisable(true);
 //                selectionModel.select(RuleTAB);
-//                break;
-//            case 'C':
-//                CertTAB.setDisable(false);
+                break;
+            case 'C':
+                DecTAB.setDisable(true);
+                RuleTAB.setDisable(true);
+                UserTAB.setDisable(true);
 //                selectionModel.select(CertTAB);
-//                break;
-//            case 'D':
-//                DecTAB.setDisable(false);
+                break;
+            case 'D':
+                CertTAB.setDisable(true);
+                RuleTAB.setDisable(true);
+                UserTAB.setDisable(true);
 //                selectionModel.select(DecTAB);
-//                break;
-//            case 'A':
-//                RuleTAB.setDisable(false);
-//                CertTAB.setDisable(false);
-//                DecTAB.setDisable(false);
-//                UserTAB.setDisable(false);
-//                break;
-//        }
+                break;
+            case 'A':
+                break;
+        }
     }
 
     //DecTAB
@@ -307,7 +306,7 @@ public class DeclarationController implements Initializable{
                 enterance = 'F';
 
             SQLHandler.executeUpdate("INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)\n" +
-                    "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + "," + (DecSourceTXT.getText().equals("")?"NULL":("\""+DecSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().Certhouse.size()==0?"NULL":chid) + ")");
+                    "VALUES (" + (DecDateDP.getValue()==null?"NULL":("\""+DecDateDP.getValue()+"\"")) + "," + whid + "," + (DecSourceTXT.getText().equals("")?"NULL":("\""+DecSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().Certhouse.size()==0?"NULL":chid) + ")");
 
             int did = SQLHandler.getLastDID();
 
@@ -325,19 +324,8 @@ public class DeclarationController implements Initializable{
             Data.getData().certnames.clear();
             certhouseLV.setItems(Data.getData().certItems);
             certhouseLV.refresh();
-        }
-        else {
-            if (certstrue==false) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("CID Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Error: one or more CIDs entered are wrong!");
 
-                alert.showAndWait();
-                System.err.println("cid error!"); //message cid is wrong!
-            }
-            else if (success) {
-                //message did to user!
+            if (success) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Decleration Added");
                 alert.setHeaderText(null);
@@ -360,6 +348,15 @@ public class DeclarationController implements Initializable{
 
                 alert.showAndWait();
             }
+        }
+        else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("CID Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error: one or more CIDs entered are wrong!");
+
+                alert.showAndWait();
+                System.err.println("cid error!"); //message cid is wrong!
         }
     }
 
@@ -610,7 +607,7 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addwared (ActionEvent event) throws IOException {
-        if (dWareNameTXT.getText().equals("") || dWareManTXT.getText().equals("") || dWareNumTXT.getText().equals("") || dWarePriceTXT.getText().equals("") || dWareWeightTXT.getText().equals("")) {
+        if (dWareNameTXT.getText().equals("") || dWareManTXT.getText().equals("") || dWarePriceTXT.getText().equals("") || (dWareNumTXT.getText().equals("")  && dWareWeightTXT.getText().equals(""))) {
             daddwareerrorLBL.setVisible(true);
             return;
         } else {

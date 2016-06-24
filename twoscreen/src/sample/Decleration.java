@@ -17,7 +17,7 @@ public class Decleration {
     Vector<Integer> certs;
 
     public Decleration(int d) throws SQLException{
-        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Decleration WHERE DID=" + d);
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM DECLERATION WHERE DID=" + d);
         if(rs.next()) {
 
             did = d;
@@ -30,14 +30,14 @@ public class Decleration {
             setCerts();
         }else{
             did = -1;
-            System.err.println("couldn't find decleration in construction!");
+            System.err.println("couldn't find DECLERATION in construction!");
         }
     }
 
 
     private void setCerts() throws SQLException{
         certs = new Vector<Integer>();
-        ResultSet rs = SQLHandler.executeQuery("SELECT C.* FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
+        ResultSet rs = SQLHandler.executeQuery("SELECT C.* FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
         while(rs.next()){
             if(validateCert(rs))
                 certs.add(rs.getInt("CID"));

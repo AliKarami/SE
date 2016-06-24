@@ -17,7 +17,7 @@ public class Cert {
     WareHouse wh;
 
     public Cert(int d) throws SQLException {
-        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Certificate WHERE CID=" + d);
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTIFICATE WHERE CID=" + d);
         if(rs.next()) {
 
             cid = d;
@@ -51,7 +51,7 @@ public class Cert {
         Vector<String> warelist = new Vector<String>();
         try {
             for (Integer id : wh.wares) {
-                ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Certificate WHERE CID=" + id);
+                ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTIFICATE WHERE CID=" + id);
                 while(rs.next())
                     warelist.add(rs.getString("name"));
             }

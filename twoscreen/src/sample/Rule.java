@@ -45,7 +45,7 @@ public class Rule {
 
     private void setCerts() throws SQLException{
         certs = new Vector<Integer>();
-        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
         while(rs.next()){
 
             certs.add(rs.getInt("CID"));

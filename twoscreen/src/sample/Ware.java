@@ -17,7 +17,7 @@ public class Ware {
     String price_s;
 
     public Ware(int d) throws SQLException {
-        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM Ware WHERE WID=" + d);
+        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM WARE WHERE WID=" + d);
         if(rs.next()) {
 
             wid = d;

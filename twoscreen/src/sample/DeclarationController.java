@@ -251,7 +251,7 @@ public class DeclarationController implements Initializable{
             for (ware w:Data.getData().Warehouse) {
                 int wid = SQLHandler.getMaxWID()+1;
                 SQLHandler.executeUpdate("INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)\n" +
-                        "VALUES(" + wid + ",\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",\'" + w.price_s + "\')");
+                        "VALUES(" + wid + ",\"" + w.name + "\"," + (w.man.equals("")?"NULL":("\""+w.man+"\"")) + "," + (w.weight.equals("")?"NULL":(w.weight)) + "," + (w.quantity.equals("")?"NULL":(w.quantity)) + "," + (w.price.equals("")?"NULL":(w.price)) + "," + (w.price_s==Character.MIN_VALUE?"NULL":("\'"+w.price_s+"\'")) + ")");
                 SQLHandler.executeUpdate("INSERT INTO WAREHOUSE (whid,wid)\n" +
                         "VALUES(" + whid + "," + wid +")");
             }
@@ -272,7 +272,7 @@ public class DeclarationController implements Initializable{
                 enterance = 'F';
 
             SQLHandler.executeUpdate("INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)\n" +
-                    "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + ",\"" + DecSourceTXT.getText() + "\",\'" + enterance + "\'," + chid + ")");
+                    "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + "," + (DecSourceTXT.getText().equals("")?"NULL":("\""+DecSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().Certhouse.size()==0?"NULL":chid) + ")");
 
             DecDateDP.setValue(null);
             Data.getData().Warehouse.clear();
@@ -319,7 +319,7 @@ public class DeclarationController implements Initializable{
         for (ware w:Data.getData().cWarehouse) {
             int wid = SQLHandler.getMaxWID()+1;
             SQLHandler.executeUpdate("INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)\n" +
-                    "VALUES(" + wid + ",\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",\'" + w.price_s + "\')");
+                    "VALUES(" + wid + ",\"" + w.name + "\"," + (w.man.equals("")?"NULL":("\""+w.man+"\"")) + "," + (w.weight.equals("")?"NULL":(w.weight)) + "," + (w.quantity.equals("")?"NULL":(w.quantity)) + "," + (w.price.equals("")?"NULL":(w.price)) + "," + (w.price_s==Character.MIN_VALUE?"NULL":("\'"+w.price_s+"\'")) + ")");
             SQLHandler.executeUpdate("INSERT INTO WAREHOUSE (whid,wid)\n" +
                     "VALUES(" + whid + "," + wid +")");
         }
@@ -336,7 +336,7 @@ public class DeclarationController implements Initializable{
 
         int cid = SQLHandler.getMaxCID()+1;
         SQLHandler.executeUpdate("INSERT INTO CERTIFICATE (cid,date_to,price_to,source_country,enterance,whid) \n" +
-                    "VALUES(" + cid + ",\"" + CertDateToDP.getValue() + "\"," + CertPriceTXT.getText() + ",\"" + CertSourceTXT.getText() + "\",\'" + enterance + "\'," + whid + ")");
+                    "VALUES(" + cid + "," + (CertDateToDP.getValue().equals("")?"NULL":("\""+CertDateToDP.getValue()+"\"")) + "," + (CertPriceTXT.getText().equals("")?"NULL":(CertPriceTXT.getText())) + "," + (CertSourceTXT.getText().equals("")?"NULL":("\""+CertSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().cWarehouse.size()==0?"NULL":whid) + ")");
 
         CertDateToDP.setValue(null);
         CertPriceTXT.setText("");
@@ -405,7 +405,7 @@ public class DeclarationController implements Initializable{
             enterance = 'F';
 
         SQLHandler.executeUpdate("INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names)\n" +
-                "VALUES (\"" + RuleDateFromDP.getValue() + "\",\"" + RuleDateToDP.getValue() + "\",\"" + RuleSourceTXT.getText() + "\",\'" + enterance + "\'," + RulePriceFromTXT.getText() + "," + RulePriceToTXT.getText() + "," + RulePPriceFromTXT.getText() + "," + RulePPriceToTXT.getText() + ",\"" + wares + "\",\"" + mans + "\")");
+                "VALUES (" + (RuleDateFromDP.getValue().equals("")?"NULL":("\""+RuleDateFromDP.getValue()+"\"")) + "," + (RuleDateToDP.getValue().equals("")?"NULL":("\""+RuleDateToDP.getValue()+"\"")) + "," + (RuleSourceTXT.getText().equals("")?"NULL":("\""+RuleSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (RulePriceFromTXT.getText().equals("")?"NULL":(RulePriceFromTXT.getText())) + "," + (RulePriceToTXT.getText().equals("")?"NULL":(RulePriceToTXT.getText())) + "," + (RulePPriceFromTXT.getText().equals("")?"NULL":(RulePPriceFromTXT.getText())) + "," + (RulePPriceToTXT.getText().equals("")?"NULL":(RulePPriceToTXT.getText())) + "," + (wares.equals("")?"NULL":("\""+wares+"\"")) + "," + (mans.equals("")?"NULL":("\""+mans+"\"")) + ")");
 
         RuleDateFromDP.setValue(null);
         RuleDateToDP.setValue(null);

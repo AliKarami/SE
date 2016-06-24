@@ -232,32 +232,37 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void RecDeclaration (ActionEvent event) throws IOException {
-        String sql;
-        for (ware w:Data.getData().cWarehouse) {
-            SQLHandler.executeUpdate("INSERT INTO WARE (name,manufacturer,weight,quantity,price,price_s)\n" +
-                    "VALUES(\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",'E')");
+        if (true) { //decleration can added.
+            int whid = SQLHandler.getMaxWHID()+1;
+            for (ware w:Data.getData().Warehouse) {
+                int wid = SQLHandler.getMaxWID()+1;
+                SQLHandler.executeUpdate("INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)\n" +
+                        "VALUES(" + wid + ",\"" + w.name + "\",\"" + w.man + "\"," + w.weight + "," + w.quantity + "," + w.price + ",\'" + w.price_s + "\')");
+                SQLHandler.executeUpdate("INSERT INTO WAREHOUSE (whid,wid)\n" +
+                        "VALUES(" + whid + "," + wid +")");
+            }
+            int chid = SQLHandler.getMaxCHID()+1;
+            for (String cid:Data.getData().Certhouse) {
+                SQLHandler.executeUpdate("INSERT INTO CERTHOUSE (chid,cid)\n" +
+                        "VALUES(" + chid + "," + cid +")");
+            }
+
+            char enterance;
+            if (RecDecAirRD.isSelected())
+                enterance = 'A';
+            else if (RecDecEarthRD.isSelected())
+                enterance = 'E';
+            else if (RecDecSeaRD.isSelected())
+                enterance = 'W';
+            else
+                enterance = 'F';
+
+            SQLHandler.executeUpdate("INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)\n" +
+                    "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + ",\"" + DecSourceTXT.getText() + "\",\'" + enterance + "\'," + chid + ")");
         }
+        else { //decleration has problems.
 
-        char enterance;
-
-        if (RecDecAirRD.isSelected())
-            enterance = 'A';
-        else if (RecDecSeaRD.isSelected())
-            enterance = 'S';
-        else
-            enterance = 'F';
-
-//        for (cert c:Data.getData().Certhouse) {
-//            sql = "INSERT INTO CERTIFICATES (date_to,source_country,enterance,WHID)\n" +
-//                    "VALUES(\"" + c.date_to + "\"," + c.source_country + "," + c.entrance + "," + c.whid + ")";
-//            SQLHandler.executeUpdate(sql);
-//        }
-
-        sql = "INSERT INTO DECLARATIONS (date,WHID,source_country,enterance,CHID)\n" +
-                "VALUES (\"" + DecDateDP + "\"," + 1 + ",\"" + DecSourceTXT.getText() + "\",'" + enterance + "'," + 2 + ")";
-        SQLHandler.executeUpdate(sql);
-        Data.getData().Warehouse = new Vector<ware>();
-        Data.getData().Certhouse = new Vector<String>();
+        }
     }
 
     @FXML
@@ -297,16 +302,13 @@ public class DeclarationController implements Initializable{
         else if (RecCertEarthRD.isSelected())
             enterance = 'E';
         else if (RecCertSeaRD.isSelected())
-            enterance = 'S';
+            enterance = 'W';
         else
             enterance = 'F';
 
-        System.err.println("Query:\n" +
-                "INSERT INTO CERTIFICATE (date_to,price_to,source_country,enterance,whid) \n" +
-                "VALUES(\"" + CertDateToDP.getValue() + "\"," + CertPriceTXT.getText() + "," + CertSourceTXT.getText() + ",\'" + enterance + "\'," + whid + ")");
-
-        SQLHandler.executeUpdate("INSERT INTO CERTIFICATE (date_to,price_to,source_country,enterance,whid) \n" +
-                    "VALUES(\"" + CertDateToDP.getValue() + "\"," + CertPriceTXT.getText() + "," + CertSourceTXT.getText() + ",\'" + enterance + "\'," + whid + ")");
+        int cid = SQLHandler.getMaxCID()+1;
+        SQLHandler.executeUpdate("INSERT INTO CERTIFICATE (cid,date_to,price_to,source_country,enterance,whid) \n" +
+                    "VALUES(" + cid + ",\"" + CertDateToDP.getValue() + "\"," + CertPriceTXT.getText() + ",\"" + CertSourceTXT.getText() + "\",\'" + enterance + "\'," + whid + ")");
 
         CertDateToDP.setValue(null);
         CertPriceTXT.setText("");
@@ -314,9 +316,10 @@ public class DeclarationController implements Initializable{
         RecCertAirRD.setSelected(false);
         RecCertSeaRD.setSelected(false);
         RecCertEarthRD.setSelected(false);
-        Data.getData().cWarehouse = new Vector<ware>();
-        Data.getData().cwarenames = new ArrayList<String>();
+        Data.getData().cWarehouse.clear();
+        Data.getData().cwarenames.clear();
         CertwarehouseLV.setItems(Data.getData().cwareItems);
+        CertwarehouseLV.refresh();
 
     }
 
@@ -339,15 +342,61 @@ public class DeclarationController implements Initializable{
     @FXML
     public void addmanR (ActionEvent event) throws IOException {
         String manname = RuleManTXT.getText();
-        Data.getData().rWarehouse.add(manname);
-        Data.getData().rwareItems.add(manname);
+        Data.getData().rManhouse.add(manname);
+        Data.getData().rmanItems.add(manname);
         RuleManhouseLV.setItems(Data.getData().rmanItems);
         RuleManTXT.setText("");
     }
 
     @FXML
     public void RecRule (ActionEvent event) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        for (String w:Data.getData().rWarehouse) {
+            if (Data.getData().rWarehouse.get(Data.getData().rWarehouse.size()-1).equals(w)) {
+                sb.append(w);
+            } else
+                sb.append(w+",");
+        }
+        String wares = sb.toString();
+        sb = new StringBuilder();
+        for (String m:Data.getData().rManhouse) {
+            if (Data.getData().rManhouse.get(Data.getData().rManhouse.size()-1).equals(m)) {
+                sb.append(m);
+            } else
+                sb.append(m+",");
+        }
+        String mans = sb.toString();
+        char enterance;
+        if (RecRulAirRD.isSelected())
+            enterance = 'A';
+        else if (RecRulEarthRD.isSelected())
+            enterance = 'E';
+        else if (RecRulSeaRD.isSelected())
+            enterance = 'W';
+        else
+            enterance = 'F';
 
+        SQLHandler.executeUpdate("INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names)\n" +
+                "VALUES (\"" + RuleDateFromDP.getValue() + "\",\"" + RuleDateToDP.getValue() + "\",\"" + RuleSourceTXT.getText() + "\",\'" + enterance + "\'," + RulePriceFromTXT.getText() + "," + RulePriceToTXT.getText() + "," + RulePPriceFromTXT.getText() + "," + RulePPriceToTXT.getText() + ",\"" + wares + "\",\"" + mans + "\")");
+
+        RuleDateFromDP.setValue(null);
+        RuleDateToDP.setValue(null);
+        RuleSourceTXT.setText("");
+        RecRulEarthRD.setSelected(false);
+        RecRulAirRD.setSelected(false);
+        RecRulSeaRD.setSelected(false);
+        RulePriceFromTXT.setText("");
+        RulePriceToTXT.setText("");
+        RulePPriceFromTXT.setText("");
+        RulePPriceToTXT.setText("");
+        RuleWareTXT.setText("");
+        RuleManTXT.setText("");
+        Data.getData().rWarehouse.clear();
+        Data.getData().rManhouse.clear();
+        Data.getData().rwarenames.clear();
+        Data.getData().rmannames.clear();
+        RuleWarehouseLV.setItems(Data.getData().rwareItems);
+        RuleManhouseLV.setItems(Data.getData().rmanItems);
     }
 
     //UserTAB

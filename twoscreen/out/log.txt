@@ -1,0 +1,28 @@
+[2016-06-24 07:45:50] ---------------Program Started!---------------
+[2016-06-24 07:45:50] initializing Tables completed.
+[2016-06-24 07:45:50] admin:admin user added.
+[2016-06-24 07:45:54] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 07:46:23] executed Update: "INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names)
+VALUES ("2016-06-22","2016-06-05","gfds",'E',764,436,134,542,",salam,khbua","fsaf,gfas")" update 1 rows.
+[2016-06-24 07:59:43] ---------------Program Started!---------------
+[2016-06-24 07:59:43] initializing Tables completed.
+[2016-06-24 07:59:43] admin:admin user added.
+[2016-06-24 07:59:49] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 08:00:20] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 08:00:20] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 08:00:21] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(1,"gfad","gfa",653,235,634,'E')" update 1 rows.
+[2016-06-24 08:00:21] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(1,1)" update 1 rows.
+[2016-06-24 08:00:21] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 08:00:21] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(2,"gfa","bxc",452,3145,542,'E')" update 1 rows.
+[2016-06-24 08:00:21] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(1,2)" update 1 rows.
+[2016-06-24 08:00:21] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 08:00:21] Cannot connect the database or SQL error on excecuteUpdate "INSERT INTO CERTHOUSE (chid,cid)
+VALUES(1,542)"!
+[2016-06-24 08:03:12] ---------------Program Started!---------------
+[2016-06-24 08:03:13] initializing Tables completed.
+[2016-06-24 08:03:13] admin:admin user added.
+[2016-06-24 08:03:17] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.

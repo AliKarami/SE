@@ -1,14 +1,18 @@
 package sample;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.sql.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SQLHandler {
 
     static String url = "jdbc:mysql://localhost:3306/Customs";
     static String username = "root";
     static String password = "akmz8ki";
-
     private static Connection con = null;
 
     SQLHandler() {
@@ -24,7 +28,19 @@ public class SQLHandler {
         }
     }
 
+    public static String currentTime() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
 
+    public static void log(String str) {
+        try {
+            String temp = "[" + currentTime() + "] " + str + "\n";
+            Files.write(Paths.get("/home/ali/Documents/SE/Gomrok/twoscreen/out/log.txt"), temp.getBytes(), StandardOpenOption.APPEND);
+//
+        } catch (IOException e) {
+            System.err.println("logging exception!");
+        }
+    }
 
     public static void initTables() {
 
@@ -52,14 +68,19 @@ public class SQLHandler {
                             System.out.println(">>"+inst[i]);
                         }
                     }
+                    log("initializing Tables completed.");
                     stmt.executeUpdate("INSERT INTO USERS VALUES (1,'admin','admin','A','adminname','adminfamily') ON DUPLICATE KEY UPDATE name=name");
+                    log("admin:admin user added.");
                 } catch (Exception e) {
+                    log("init.sql file not found or IOException!");
                     throw new IllegalStateException("init.sql file not found or IOException!", e);
                 }
             } catch (SQLException e) {
+                log("Cannot connect the database!");
                 throw new IllegalStateException("Cannot connect the database!", e);
             }
         } catch (ClassNotFoundException e) {
+            log("Cannot find the driver in the classpath!");
             throw new IllegalStateException("Cannot find the driver in the classpath!", e);
         }
     }
@@ -71,11 +92,15 @@ public class SQLHandler {
                 con = DriverManager.getConnection(url, username, password);
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
+                String res = (rs==null)?"doesn't":"does";
+                log("executed Query: \"" + sql + "\" " + res + " have result.");
                 return rs;
             } catch (SQLException e) {
+                log("Cannot connect the database on excecuteQuery \"" + sql + "\"!");
                 throw new IllegalStateException("Cannot connect the database!", e);
             }
         } catch (ClassNotFoundException e) {
+            log("Cannot find the driver in the classpath on excecuteQuery \"" + sql + "\"!");
             throw new IllegalStateException("Cannot find the driver in the classpath!", e);
         }
     }
@@ -87,11 +112,14 @@ public class SQLHandler {
             try {
                 Statement stmt = con.createStatement();
                 int res = stmt.executeUpdate(sql);
+                log("executed Update: \"" + sql + "\" update " + res + " rows.");
                 return res;
             } catch (SQLException e) {
+                log("Cannot connect the database on excecuteUpdate \"" + sql + "\"!");
                 throw new IllegalStateException("Cannot connect the database!", e);
             }
         } catch (ClassNotFoundException e) {
+            log("Cannot find the driver in the classpath on excecuteQuery \"" + sql + "\"!");
             throw new IllegalStateException("Cannot find the driver in the classpath!", e);
         }
     }

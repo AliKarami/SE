@@ -105,7 +105,7 @@ public class Rule {
 
         return false;
        /* if (RuleCompatibility(currentDec.wh))
-            return true;
+            return true;//
         else
             return false;*/
     }

@@ -24,6 +24,7 @@ public class dbHandler {
                 else
                     System.out.println("Register in vector size Exception!");
                 SQLHandler.executeUpdate("DELETE * FROM DECLERATION WHERE DID=" + did);
+                return false;
             }
             return true;
         }catch (Exception ex){

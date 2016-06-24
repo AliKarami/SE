@@ -1,0 +1,24 @@
+[2016-06-24 10:51:23] ---------------Program Started!---------------
+[2016-06-24 10:51:24] initializing Tables completed.
+[2016-06-24 10:51:24] admin:admin user added.
+[2016-06-24 10:51:28] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 10:51:50] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=653" doesn't have result.
+[2016-06-24 10:51:50] on or more cid in RecordDecleration is wrong.
+[2016-06-24 10:52:18] ---------------Program Started!---------------
+[2016-06-24 10:52:19] initializing Tables completed.
+[2016-06-24 10:52:19] admin:admin user added.
+[2016-06-24 10:52:23] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 10:52:40] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=563" doesn't have result.
+[2016-06-24 10:52:40] on or more cid in RecordDecleration is wrong.
+[2016-06-24 10:53:05] ---------------Program Started!---------------
+[2016-06-24 10:53:06] initializing Tables completed.
+[2016-06-24 10:53:06] admin:admin user added.
+[2016-06-24 10:53:12] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 10:53:18] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=643" doesn't have result.
+[2016-06-24 10:53:18] on or more cid in RecordDecleration is wrong.
+[2016-06-24 10:54:21] ---------------Program Started!---------------
+[2016-06-24 10:54:22] initializing Tables completed.
+[2016-06-24 10:54:22] admin:admin user added.
+[2016-06-24 10:54:25] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 10:54:32] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=754" doesn't have result.
+[2016-06-24 10:54:32] on or more cid in RecordDecleration is wrong.

@@ -199,4 +199,19 @@ public class SQLHandler {
         return did;
     }
 
+    public static int getLastRID() {
+        int rid = -1;
+        ResultSet rs = SQLHandler.executeQuery("SELECT RID FROM RULE ORDER BY RID DESC LIMIT 1;");
+        try {
+            if (!rs.next()) {
+                rid = 0;
+            } else {
+                rid = Integer.parseInt(rs.getString("RID"));
+            }
+        } catch (SQLException e) {
+            System.err.println("finding last rid exception!");
+        }
+        return rid;
+    }
+
 }

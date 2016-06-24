@@ -213,31 +213,31 @@ public class DeclarationController implements Initializable{
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        DecTAB.setDisable(true);
-        CertTAB.setDisable(true);
-        RuleTAB.setDisable(true);
-        UserTAB.setDisable(true);
-        SingleSelectionModel<Tab> selectionModel = tabPANE.getSelectionModel();
-        switch (Data.getData().curUserType) {
-            case 'R':
-                RuleTAB.setDisable(false);
-                selectionModel.select(RuleTAB);
-                break;
-            case 'C':
-                CertTAB.setDisable(false);
-                selectionModel.select(CertTAB);
-                break;
-            case 'D':
-                DecTAB.setDisable(false);
-                selectionModel.select(DecTAB);
-                break;
-            case 'A':
-                RuleTAB.setDisable(false);
-                CertTAB.setDisable(false);
-                DecTAB.setDisable(false);
-                UserTAB.setDisable(false);
-                break;
-        }
+//        DecTAB.setDisable(true);
+//        CertTAB.setDisable(true);
+//        RuleTAB.setDisable(true);
+//        UserTAB.setDisable(true);
+//        SingleSelectionModel<Tab> selectionModel = tabPANE.getSelectionModel();
+//        switch (Data.getData().curUserType) {
+//            case 'R':
+//                RuleTAB.setDisable(false);
+//                selectionModel.select(RuleTAB);
+//                break;
+//            case 'C':
+//                CertTAB.setDisable(false);
+//                selectionModel.select(CertTAB);
+//                break;
+//            case 'D':
+//                DecTAB.setDisable(false);
+//                selectionModel.select(DecTAB);
+//                break;
+//            case 'A':
+//                RuleTAB.setDisable(false);
+//                CertTAB.setDisable(false);
+//                DecTAB.setDisable(false);
+//                UserTAB.setDisable(false);
+//                break;
+//        }
     }
 
     //DecTAB
@@ -327,10 +327,24 @@ public class DeclarationController implements Initializable{
             certhouseLV.refresh();
         }
         else {
-            if (certstrue==false)
+            if (certstrue==false) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("CID Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error: one or more CIDs entered are wrong!");
+
+                alert.showAndWait();
                 System.err.println("cid error!"); //message cid is wrong!
+            }
             else if (success) {
                 //message did to user!
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Decleration Added");
+                alert.setHeaderText(null);
+                alert.setContentText("Decleration Added Successfully.\n" +
+                        "DID#: " + SQLHandler.getLastDID());
+
+                alert.showAndWait();
             }
             else {
                 //message cross-rids to user!
@@ -383,6 +397,14 @@ public class DeclarationController implements Initializable{
         int cid = SQLHandler.getMaxCID()+1;
         SQLHandler.executeUpdate("INSERT INTO CERTIFICATE (cid,date_to,price_to,source_country,enterance,whid) \n" +
                     "VALUES(" + cid + "," + (CertDateToDP.getValue().equals("")?"NULL":("\""+CertDateToDP.getValue()+"\"")) + "," + (CertPriceTXT.getText().equals("")?"NULL":(CertPriceTXT.getText())) + "," + (CertSourceTXT.getText().equals("")?"NULL":("\""+CertSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().cWarehouse.size()==0?"NULL":whid) + ")");
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Certification Added");
+        alert.setHeaderText(null);
+        alert.setContentText("Certification Added Successfully.\n" +
+                "CID#: " + SQLHandler.getMaxCID());
+
+        alert.showAndWait();
 
         CertDateToDP.setValue(null);
         CertPriceTXT.setText("");
@@ -466,6 +488,14 @@ public class DeclarationController implements Initializable{
 
         SQLHandler.executeUpdate("INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names,CHID)\n" +
                 "VALUES (" + (RuleDateFromDP.getValue().equals("")?"NULL":("\""+RuleDateFromDP.getValue()+"\"")) + "," + (RuleDateToDP.getValue().equals("")?"NULL":("\""+RuleDateToDP.getValue()+"\"")) + "," + (RuleSourceTXT.getText().equals("")?"NULL":("\""+RuleSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (RulePriceFromTXT.getText().equals("")?"NULL":(RulePriceFromTXT.getText())) + "," + (RulePriceToTXT.getText().equals("")?"NULL":(RulePriceToTXT.getText())) + "," + (RulePPriceFromTXT.getText().equals("")?"NULL":(RulePPriceFromTXT.getText())) + "," + (RulePPriceToTXT.getText().equals("")?"NULL":(RulePPriceToTXT.getText())) + "," + (wares.equals("")?"NULL":("\""+wares+"\"")) + "," + (mans.equals("")?"NULL":("\""+mans+"\"")) + "," + (Data.getData().rCerthouse.size()==0?"NULL":chid) + ")");
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Rule Added");
+        alert.setHeaderText(null);
+        alert.setContentText("Rule Added Successfully.\n" +
+                "RID#: " + SQLHandler.getLastRID());
+
+        alert.showAndWait();
 
         RuleDateFromDP.setValue(null);
         RuleDateToDP.setValue(null);

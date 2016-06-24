@@ -90,21 +90,20 @@ public class Rule {
         }
 
         for(Cert dec_cert : dec){
-            if(dec_cert.wh.wares.isEmpty()){
-                if(price_to < 1 || dec_cert.price_to < price_to)
-                    continue;
-                else
-                    return false;
-            }
-            else {
-                if (!RuleCompatibility(dec_cert.wh))
-                    return false;
-                else
-                    satisfiedCerts.add(dec_cert);
+            if(validateCert(dec_cert)) {
+                if (dec_cert.wh.wares.isEmpty()) {
+                    if (price_to < 1 || dec_cert.price_to < price_to)
+                        return true;
+                } else {
+                    if (RuleCompatibility(dec_cert.wh)) {
+                        satisfiedCerts.add(dec_cert);
+                        return true;
+                    }
+                }
             }
         }
 
-        return true;
+        return false;
        /* if (RuleCompatibility(currentDec.wh))
             return true;
         else
@@ -122,6 +121,19 @@ public class Rule {
                 if(min > per_price_from){
                     if(per_price_to < 1 || max < per_price_to)
                         return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean validateCert(Cert ce) throws SQLException{
+        if(date_from == null || ce.date_to == null || ce.date_to.after(date_from)) {
+            if (date_to == null || ce.date_to == null || ce.date_to.before(date_to)) {
+                if (source_country == null || ce.source_country == null || source_country.equals(ce.source_country)) {
+                    if (enterance.equals("F") || ce.enterance.equals("F") || enterance.equals(ce.enterance)) {
+                         return true;
+                    }
                 }
             }
         }

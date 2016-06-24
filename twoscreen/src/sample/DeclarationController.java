@@ -267,6 +267,7 @@ public class DeclarationController implements Initializable{
     @FXML
     public void RecDeclaration (ActionEvent event) throws IOException {
         boolean certstrue = true;
+        boolean success = false;
         for (String cid:Data.getData().Certhouse) {
             ResultSet rs = SQLHandler.executeQuery("SELECT CID FROM CERTIFICATE WHERE CID=" + cid);
             try {
@@ -280,7 +281,7 @@ public class DeclarationController implements Initializable{
             }
 
         }
-        if (certstrue && true) { //decleration can added.
+        if (certstrue) {
             int whid = SQLHandler.getMaxWHID()+1;
             for (ware w:Data.getData().Warehouse) {
                 int wid = SQLHandler.getMaxWID()+1;
@@ -308,6 +309,10 @@ public class DeclarationController implements Initializable{
             SQLHandler.executeUpdate("INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)\n" +
                     "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + "," + (DecSourceTXT.getText().equals("")?"NULL":("\""+DecSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().Certhouse.size()==0?"NULL":chid) + ")");
 
+            int did = SQLHandler.getLastDID();
+
+            success = Data.getData().dbh.registerDec(did);
+
             DecDateDP.setValue(null);
             Data.getData().Warehouse.clear();
             Data.getData().warenames.clear();
@@ -321,9 +326,16 @@ public class DeclarationController implements Initializable{
             certhouseLV.setItems(Data.getData().certItems);
             certhouseLV.refresh();
         }
-        else { //decleration has problems.
+        else {
             if (certstrue==false)
                 System.err.println("cid error!"); //message cid is wrong!
+            else if (success) {
+                //message did to user!
+            }
+            else {
+                //message cross-rids to user!
+
+            }
         }
     }
 

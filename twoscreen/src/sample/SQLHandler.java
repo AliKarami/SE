@@ -184,4 +184,19 @@ public class SQLHandler {
         return cid;
     }
 
+    public static int getLastDID() {
+        int did = -1;
+        ResultSet rs = SQLHandler.executeQuery("SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;");
+        try {
+            if (!rs.next()) {
+                did = 0;
+            } else {
+                did = Integer.parseInt(rs.getString("DID"));
+            }
+        } catch (SQLException e) {
+            System.err.println("finding last did exception!");
+        }
+        return did;
+    }
+
 }

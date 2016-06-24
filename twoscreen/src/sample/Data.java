@@ -12,6 +12,8 @@ import java.util.Vector;
  */
 public class Data {
 
+    dbHandler dbh = new dbHandler();
+
     char curUserType = 'N';
 
     Vector<ware> Warehouse = new Vector<ware>();

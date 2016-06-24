@@ -90,10 +90,18 @@ public class Rule {
         }
 
         for(Cert dec_cert : dec){
-            if(!RuleCompatibility(dec_cert.wh))
-                return false;
-            else
-                satisfiedCerts.add(dec_cert);
+            if(dec_cert.wh.wares.isEmpty()){
+                if(price_to < 1 || dec_cert.price_to < price_to)
+                    continue;
+                else
+                    return false;
+            }
+            else {
+                if (!RuleCompatibility(dec_cert.wh))
+                    return false;
+                else
+                    satisfiedCerts.add(dec_cert);
+            }
         }
 
         return true;

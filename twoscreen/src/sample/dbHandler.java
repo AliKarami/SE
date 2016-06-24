@@ -34,14 +34,14 @@ public class dbHandler {
     public Vector<Rule> getDependentRules(Decleration currentDec){
         Vector<Rule> rules = new Vector<Rule>();
         try {
-
+            java.sql.Date sqlDate = new java.sql.Date(currentDec.date.getTime());
             String query = "SELECT * FROM RULE WHERE " +
                                     "(source_country IS NULL or source_country='" + currentDec.source_country + "') " +
-                                "and (enterance IS NULL or enterance='" + currentDec.enterance + "') " +
+                                "and (enterance='F' or enterance='" + currentDec.enterance + "') " +
                                 "and ((date_from IS NULL and date_to IS NULL) " +
-                                    "or (date_from IS NULL and '" + currentDec.date + "' < date_to) " +
-                                    "or (date_to IS NULL and '" + currentDec.date + "' > date_from) " +
-                                    "or ('" + currentDec.date + "' > date_from and '" + currentDec.date + "' < date_to))";
+                                    "or (date_from IS NULL and '" + sqlDate + "' < date_to) " +
+                                    "or (date_to IS NULL and '" + sqlDate + "' > date_from) " +
+                                    "or ('" + sqlDate + "' > date_from and '" + sqlDate + "' < date_to))";
             ResultSet rs = SQLHandler.executeQuery(query);
             while(rs.next()){
                 Rule r = new Rule(rs);

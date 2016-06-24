@@ -15,7 +15,7 @@ public class WareHouse {
     public WareHouse(int whid) {
         wares = new Vector<Integer>();
         try {
-            ResultSet rs = SQLHandler.executeQuery("SELECT * FROM WAREHOUSE H,WARE W WHERE H.WHID=" + whid + " and H.WID=W.WID");
+            ResultSet rs = SQLHandler.executeQuery("SELECT W.* FROM WAREHOUSE H,WARE W WHERE H.WHID=" + whid + " and H.WID=W.WID");
             while (rs.next()) {
 
                 wares.add(rs.getInt("WID"));

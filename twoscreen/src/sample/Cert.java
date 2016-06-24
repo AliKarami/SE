@@ -11,6 +11,7 @@ public class Cert {
 
     int cid;
     Date date_to;
+    int price_to;
     String source_country;
     String enterance;
     WareHouse wh;
@@ -21,6 +22,7 @@ public class Cert {
 
             cid = d;
             date_to = rs.getDate("date_to");
+            price_to = rs.getInt("price_to");
             source_country = rs.getString("source_country");
             enterance = rs.getString("enterance");
             wh = new WareHouse(rs.getInt("WHID"));
@@ -34,7 +36,7 @@ public class Cert {
     public boolean hasSatisfied(Cert cert) throws SQLException{
        /* if(cert.date_to == null || date_to == null || cert.date_to.before(date_to)){
             if(cert.source_country == null || source_country == null || cert.source_country.equals(source_country)){
-                if(cert.enterance == null || enterance == null || cert.enterance.equals(enterance)){
+                if(cert.enterance.equals("F") || enterance.equals("F") || cert.enterance.equals(enterance)){
                     if(wh.wares.isEmpty() || cert.wh.wares.isEmpty() || cert.wh.subset(wh))
                         return true;
                 }

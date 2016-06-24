@@ -37,7 +37,7 @@ public class Decleration {
 
     private void setCerts() throws SQLException{
         certs = new Vector<Integer>();
-        ResultSet rs = SQLHandler.executeQuery("SELECT * FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
+        ResultSet rs = SQLHandler.executeQuery("SELECT C.* FROM CERTHOUSE H,CERIFICATE C WHERE H.CHID=" + chids + " and H.CID=C.CID");
         while(rs.next()){
             if(validateCert(rs))
                 certs.add(rs.getInt("CID"));
@@ -73,11 +73,12 @@ public class Decleration {
 
     public boolean validateCert(ResultSet rs) throws SQLException{
         if(rs.getDate("date_to") == null || date == null || date.before(rs.getDate("date_to"))){
-            if(source_country == null || rs.getString("source_country") == null || source_country == rs.getString("source_country")){
-                if(enterance == null || rs.getString("enterance") == null || enterance == rs.getString("enterance")){
+            if(source_country == null || rs.getString("source_country") == null || source_country.equals(rs.getString("source_country"))){
+                if(enterance.equals("F") || rs.getString("enterance").equals("F") || enterance.equals(rs.getString("enterance"))){
                     Cert ce = new Cert(rs.getInt("CHID"));
-                    if(wh.wares.isEmpty() || ce.wh.wares.isEmpty() || wh.subset(ce.wh))
-                        return true;
+                    if(wh.wares.isEmpty() || (ce.wh.wares.isEmpty()) || wh.subset(ce.wh))
+                        if(ce.price_to < 1 || wh.getTotalPrice() < ce.price_to)
+                            return true;
                 }
             }
         }

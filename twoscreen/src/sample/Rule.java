@@ -71,7 +71,7 @@ public class Rule {
         Vector<Cert> dec = new Vector<Cert>();
         Vector<Cert> rule = new Vector<Cert>();
         for(int i = 0;i < certs.size();i++){
-           dec.add(new Cert(certs.get(i)));
+           rule.add(new Cert(certs.get(i)));
         }
         for(int j = 0;j < currentDec.certs.size();j++){
             dec.add(new Cert(currentDec.certs.get(j)));

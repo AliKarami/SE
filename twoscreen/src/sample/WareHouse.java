@@ -57,8 +57,6 @@ public class WareHouse {
         }catch (Exception ex){
             System.out.println("get min error!");
         }
-        if(min == Integer.MAX_VALUE)
-            return 0;
         return min;
     }
 
@@ -76,8 +74,6 @@ public class WareHouse {
         }catch (Exception ex){
             System.out.println("get total max error!");
         }
-        if(max == Integer.MIN_VALUE)
-            return Integer.MAX_VALUE;
         return max;
     }
 

@@ -1,0 +1,172 @@
+[2016-06-24 13:16:48] ---------------Program Started!---------------
+[2016-06-24 13:16:49] initializing Tables completed.
+[2016-06-24 13:16:49] admin:admin user added.
+[2016-06-24 13:16:53] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 13:17:15] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(3,"gr","dfg",34,34,34,'E')" update 1 rows.
+[2016-06-24 13:17:15] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(3,3)" update 1 rows.
+[2016-06-24 13:17:15] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 13:17:15] executed Update: "INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)
+VALUES ("2016-06-14",3,"iran",'E',NULL)" update 1 rows.
+[2016-06-24 13:17:15] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM DECLERATION WHERE DID=3"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT W.* FROM WAREHOUSE H,WARE W WHERE H.WHID=3 and H.WID=W.WID"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT C.* FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=0 and H.CID=C.CID" doesn't have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM RULE WHERE (source_country IS NULL or source_country='iran') and (enterance='F' or enterance='E') and ((date_from IS NULL and date_to IS NULL) or (date_from IS NULL and '2016-06-14' < date_to) or (date_to IS NULL and '2016-06-14' > date_from) or ('2016-06-14' > date_from and '2016-06-14' < date_to))"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM WARE WHERE WID=3"  have result.
+[2016-06-24 13:17:15] Rule Compatibilty
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM WARE WHERE WID=3"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM WARE WHERE WID=3"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM WARE WHERE WID=3"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM WARE WHERE WID=3"  have result.
+[2016-06-24 13:17:15] executed Query: "SELECT * FROM WARE WHERE WID=3"  have result.
+[2016-06-24 13:17:15] 1
+[2016-06-24 13:17:15] 2
+[2016-06-24 13:17:15] 3
+[2016-06-24 13:17:15] 4
+[2016-06-24 13:17:15] Rule Added
+[2016-06-24 13:17:15] start rule checklaws
+[2016-06-24 13:17:15] start legislate
+[2016-06-24 13:17:15] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:21:30] ---------------Program Started!---------------
+[2016-06-24 13:21:30] initializing Tables completed.
+[2016-06-24 13:21:30] admin:admin user added.
+[2016-06-24 13:21:34] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 13:21:52] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(4,"hjg","kjg",675,875,875,'E')" update 1 rows.
+[2016-06-24 13:21:52] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(4,4)" update 1 rows.
+[2016-06-24 13:21:52] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 13:21:52] executed Update: "INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)
+VALUES ("2016-06-08",4,"iran",'E',NULL)" update 1 rows.
+[2016-06-24 13:21:52] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM DECLERATION WHERE DID=4"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT W.* FROM WAREHOUSE H,WARE W WHERE H.WHID=4 and H.WID=W.WID"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT C.* FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=0 and H.CID=C.CID" doesn't have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM RULE WHERE (source_country IS NULL or source_country='iran') and (enterance='F' or enterance='E') and ((date_from IS NULL and date_to IS NULL) or (date_from IS NULL and '2016-06-08' < date_to) or (date_to IS NULL and '2016-06-08' > date_from) or ('2016-06-08' > date_from and '2016-06-08' < date_to))"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM WARE WHERE WID=4"  have result.
+[2016-06-24 13:21:52] Rule Compatibilty
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM WARE WHERE WID=4"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM WARE WHERE WID=4"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM WARE WHERE WID=4"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM WARE WHERE WID=4"  have result.
+[2016-06-24 13:21:52] executed Query: "SELECT * FROM WARE WHERE WID=4"  have result.
+[2016-06-24 13:21:52] 1
+[2016-06-24 13:21:52] 2
+[2016-06-24 13:21:52] 3
+[2016-06-24 13:21:52] 4
+[2016-06-24 13:21:52] Rule Added
+[2016-06-24 13:21:52] start rule checklaws
+[2016-06-24 13:21:52] start legislate
+[2016-06-24 13:21:52] for1
+[2016-06-24 13:21:53] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:23:01] ---------------Program Started!---------------
+[2016-06-24 13:23:01] initializing Tables completed.
+[2016-06-24 13:23:01] admin:admin user added.
+[2016-06-24 13:23:05] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 13:23:22] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 13:23:23] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(5,"kjg","kjg",76,76,76,'E')" update 1 rows.
+[2016-06-24 13:23:23] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(5,5)" update 1 rows.
+[2016-06-24 13:23:23] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 13:23:23] executed Update: "INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)
+VALUES ("2016-06-14",5,"iran",'E',NULL)" update 1 rows.
+[2016-06-24 13:23:23] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM DECLERATION WHERE DID=5"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT W.* FROM WAREHOUSE H,WARE W WHERE H.WHID=5 and H.WID=W.WID"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT C.* FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=0 and H.CID=C.CID" doesn't have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM RULE WHERE (source_country IS NULL or source_country='iran') and (enterance='F' or enterance='E') and ((date_from IS NULL and date_to IS NULL) or (date_from IS NULL and '2016-06-14' < date_to) or (date_to IS NULL and '2016-06-14' > date_from) or ('2016-06-14' > date_from and '2016-06-14' < date_to))"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM WARE WHERE WID=5"  have result.
+[2016-06-24 13:23:23] Rule Compatibilty
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM WARE WHERE WID=5"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM WARE WHERE WID=5"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM WARE WHERE WID=5"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM WARE WHERE WID=5"  have result.
+[2016-06-24 13:23:23] executed Query: "SELECT * FROM WARE WHERE WID=5"  have result.
+[2016-06-24 13:23:23] 1
+[2016-06-24 13:23:23] 2
+[2016-06-24 13:23:23] 3
+[2016-06-24 13:23:23] 4
+[2016-06-24 13:23:23] Rule Added
+[2016-06-24 13:23:23] start rule checklaws
+[2016-06-24 13:23:23] start legislate
+[2016-06-24 13:23:23] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:23:44] ---------------Program Started!---------------
+[2016-06-24 13:23:44] initializing Tables completed.
+[2016-06-24 13:23:44] admin:admin user added.
+[2016-06-24 13:23:48] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 13:24:05] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;"  have result.
+[2016-06-24 13:24:05] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 13:24:05] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(6,"khjg","kg",76,76,76,'E')" update 1 rows.
+[2016-06-24 13:24:05] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(6,6)" update 1 rows.
+[2016-06-24 13:24:05] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 13:24:05] executed Update: "INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)
+VALUES ("2016-06-21",6,"iran",'E',NULL)" update 1 rows.
+[2016-06-24 13:24:05] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:24:05] executed Query: "SELECT * FROM DECLERATION WHERE DID=6"  have result.
+[2016-06-24 13:24:05] executed Query: "SELECT W.* FROM WAREHOUSE H,WARE W WHERE H.WHID=6 and H.WID=W.WID"  have result.
+[2016-06-24 13:24:05] executed Query: "SELECT C.* FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=0 and H.CID=C.CID" doesn't have result.
+[2016-06-24 13:24:05] executed Query: "SELECT * FROM RULE WHERE (source_country IS NULL or source_country='iran') and (enterance='F' or enterance='E') and ((date_from IS NULL and date_to IS NULL) or (date_from IS NULL and '2016-06-21' < date_to) or (date_to IS NULL and '2016-06-21' > date_from) or ('2016-06-21' > date_from and '2016-06-21' < date_to))"  have result.
+[2016-06-24 13:24:05] executed Query: "SELECT * FROM WARE WHERE WID=6"  have result.
+[2016-06-24 13:24:05] Rule Compatibilty
+[2016-06-24 13:24:06] executed Query: "SELECT * FROM WARE WHERE WID=6"  have result.
+[2016-06-24 13:24:06] executed Query: "SELECT * FROM WARE WHERE WID=6"  have result.
+[2016-06-24 13:24:06] executed Query: "SELECT * FROM WARE WHERE WID=6"  have result.
+[2016-06-24 13:24:06] executed Query: "SELECT * FROM WARE WHERE WID=6"  have result.
+[2016-06-24 13:24:06] executed Query: "SELECT * FROM WARE WHERE WID=6"  have result.
+[2016-06-24 13:24:06] 1
+[2016-06-24 13:24:06] 2
+[2016-06-24 13:24:06] 3
+[2016-06-24 13:24:06] 4
+[2016-06-24 13:24:06] Rule Added
+[2016-06-24 13:24:06] start rule checklaws
+[2016-06-24 13:24:06] start legislate
+[2016-06-24 13:24:06] for1null
+[2016-06-24 13:24:06] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:26:10] ---------------Program Started!---------------
+[2016-06-24 13:26:10] initializing Tables completed.
+[2016-06-24 13:26:10] admin:admin user added.
+[2016-06-24 13:26:14] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 13:26:32] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(7,"h","kh",354,24,24,'E')" update 1 rows.
+[2016-06-24 13:26:32] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(7,7)" update 1 rows.
+[2016-06-24 13:26:32] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 13:26:32] executed Update: "INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)
+VALUES ("2016-06-08",7,"iran",'E',NULL)" update 1 rows.
+[2016-06-24 13:26:32] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM DECLERATION WHERE DID=7"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT W.* FROM WAREHOUSE H,WARE W WHERE H.WHID=7 and H.WID=W.WID"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT C.* FROM CERTHOUSE H,CERTIFICATE C WHERE H.CHID=0 and H.CID=C.CID" doesn't have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM RULE WHERE (source_country IS NULL or source_country='iran') and (enterance='F' or enterance='E') and ((date_from IS NULL and date_to IS NULL) or (date_from IS NULL and '2016-06-08' < date_to) or (date_to IS NULL and '2016-06-08' > date_from) or ('2016-06-08' > date_from and '2016-06-08' < date_to))"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM WARE WHERE WID=7"  have result.
+[2016-06-24 13:26:32] Rule Compatibilty
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM WARE WHERE WID=7"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM WARE WHERE WID=7"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM WARE WHERE WID=7"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM WARE WHERE WID=7"  have result.
+[2016-06-24 13:26:32] executed Query: "SELECT * FROM WARE WHERE WID=7"  have result.
+[2016-06-24 13:26:32] 1
+[2016-06-24 13:26:32] 2
+[2016-06-24 13:26:32] 3
+[2016-06-24 13:26:32] 4
+[2016-06-24 13:26:32] Rule Added
+[2016-06-24 13:26:32] start rule checklaws
+[2016-06-24 13:26:32] start legislate
+[2016-06-24 13:26:32] for2
+[2016-06-24 13:26:32] for3
+[2016-06-24 13:26:32] for4
+[2016-06-24 13:26:32] end ligislate
+[2016-06-24 13:26:32] is not legislate
+[2016-06-24 13:26:32] Cannot connect the database or SQL error on excecuteUpdate "DELETE * FROM DECLERATION WHERE DID=7"!

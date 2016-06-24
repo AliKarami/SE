@@ -68,17 +68,20 @@ public class Rule {
     }
 
     public boolean isLegislate(Decleration currentDec,Vector<Cert> satisfiedCerts) throws SQLException{
+        SQLHandler.log("start legislate");
         Vector<Cert> dec = new Vector<Cert>();
         Vector<Cert> rule = new Vector<Cert>();
-        for(int i = 0;i < certs.size();i++){
+
+        for(int i = 0;certs != null && i < certs.size();i++){
             SQLHandler.log("Rule Added in islegislate");
            rule.add(new Cert(certs.get(i)));
         }
-        for(int j = 0;j < currentDec.certs.size();j++){
+        SQLHandler.log("for2");
+        for(int j = 0;currentDec.certs != null && j < currentDec.certs.size();j++){
             SQLHandler.log("cert Added");
             dec.add(new Cert(currentDec.certs.get(j)));
         }
-
+        SQLHandler.log("for3");
         for(Cert rule_cert : rule){
             SQLHandler.log("not important rule_cert");
             boolean satisfy = false;
@@ -91,7 +94,7 @@ public class Rule {
             if(!satisfy)
                 return false;
         }
-
+        SQLHandler.log("for4");
         for(Cert dec_cert : dec){
             SQLHandler.log("start cert survey");
             if(validateCert(dec_cert)) {
@@ -109,7 +112,7 @@ public class Rule {
                 }
             }
         }
-
+        SQLHandler.log("end ligislate");
         return false;
        /* if (RuleCompatibility(currentDec.wh))
             return true;//
@@ -124,10 +127,14 @@ public class Rule {
         int qu = wh.getTotalQuantity();
         int min = wh.getMinUnitPrice();
         int max = wh.getMaxUnitPrice();
-        if(price_from < pr){
+        if(price_from <= pr){
+            SQLHandler.log("1");
             if(price_to < 1 || pr < price_to){
-                if(min > per_price_from){
+                SQLHandler.log("2");
+                if(per_price_from < 1 || min > per_price_from){
+                    SQLHandler.log("3");
                     if(per_price_to < 1 || max < per_price_to)
+                        SQLHandler.log("4");
                         return true;
                 }
             }

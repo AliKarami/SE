@@ -129,6 +129,12 @@ public class DeclarationController implements Initializable{
     @FXML
     public ListView RuleManhouseLV;
     @FXML
+    public TextField RuleCertidTXT;
+    @FXML
+    public Button pluscertRBTN;
+    @FXML
+    public ListView RuleCerthouseLV;
+    @FXML
     public Button RecordRuleBTN;
     @FXML
     public TableView ruleTBL;
@@ -377,6 +383,15 @@ public class DeclarationController implements Initializable{
     }
 
     @FXML
+    public void addcertR (ActionEvent event) throws IOException {
+        String certname = RuleCertidTXT.getText();
+        Data.getData().rCerthouse.add(certname);
+        Data.getData().rcertItems.add(certname);
+        RuleCerthouseLV.setItems(Data.getData().rcertItems);
+        RuleCertidTXT.setText("");
+    }
+
+    @FXML
     public void RecRule (ActionEvent event) throws IOException {
         StringBuilder sb = new StringBuilder();
         for (String w:Data.getData().rWarehouse) {
@@ -394,6 +409,11 @@ public class DeclarationController implements Initializable{
                 sb.append(m+",");
         }
         String mans = sb.toString();
+        int chid = SQLHandler.getMaxCHID()+1;
+        for (String cid:Data.getData().rCerthouse) {
+            SQLHandler.executeUpdate("INSERT INTO CERTHOUSE (chid,cid)\n" +
+                    "VALUES(" + chid + "," + cid +")");
+        }
         char enterance;
         if (RecRulAirRD.isSelected())
             enterance = 'A';
@@ -419,12 +439,16 @@ public class DeclarationController implements Initializable{
         RulePPriceToTXT.setText("");
         RuleWareTXT.setText("");
         RuleManTXT.setText("");
+        RuleCertidTXT.setText("");
         Data.getData().rWarehouse.clear();
         Data.getData().rManhouse.clear();
+        Data.getData().rCerthouse.clear();
         Data.getData().rwarenames.clear();
         Data.getData().rmannames.clear();
+        Data.getData().rcertnames.clear();
         RuleWarehouseLV.setItems(Data.getData().rwareItems);
         RuleManhouseLV.setItems(Data.getData().rmanItems);
+        RuleCerthouseLV.setItems(Data.getData().rcertItems);
     }
 
     //UserTAB

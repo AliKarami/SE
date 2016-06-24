@@ -1,0 +1,21 @@
+[2016-06-24 09:02:04] ---------------Program Started!---------------
+[2016-06-24 09:02:05] initializing Tables completed.
+[2016-06-24 09:02:05] admin:admin user added.
+[2016-06-24 09:02:09] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 09:03:08] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;"  have result.
+[2016-06-24 09:03:08] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;"  have result.
+[2016-06-24 09:03:08] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(3,"salam","mvn",6542,467,735,'E')" update 1 rows.
+[2016-06-24 09:03:08] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(2,3)" update 1 rows.
+[2016-06-24 09:03:09] executed Query: "SELECT CID FROM CERTIFICATE ORDER BY CID DESC LIMIT 1;"  have result.
+[2016-06-24 09:03:09] executed Update: "INSERT INTO CERTIFICATE (cid,date_to,price_to,source_country,enterance,whid) 
+VALUES(3,"2016-06-08",NULL,NULL,'W',2)" update 1 rows.
+[2016-06-24 09:33:22] ---------------Program Started!---------------
+[2016-06-24 09:33:22] initializing Tables completed.
+[2016-06-24 09:33:22] admin:admin user added.
+[2016-06-24 09:33:25] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 09:35:35] ---------------Program Started!---------------
+[2016-06-24 09:35:35] initializing Tables completed.
+[2016-06-24 09:35:35] admin:admin user added.
+[2016-06-24 09:35:39] executed Query: "SELECT password FROM USERS WHERE username="admin""  have result.

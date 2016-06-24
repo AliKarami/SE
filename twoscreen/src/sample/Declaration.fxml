@@ -284,7 +284,7 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="442.0" prefWidth="401.0">
                                              <children>
-                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="38.0" prefWidth="401.0">
                                                    <children>
                                                       <Label prefWidth="70.0" text="تاریخ:">
                                                          <font>
@@ -303,7 +303,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="401.0">
                                                    <children>
                                                       <Label alignment="CENTER" prefHeight="21.0" prefWidth="125.0" text="کشور ورودی">
                                                          <font>
@@ -316,7 +316,7 @@
                                                       <Insets />
                                                    </opaqueInsets>
                                                 </HBox>
-                                                <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
+                                                <HBox alignment="CENTER" prefHeight="28.0" prefWidth="401.0">
                                                    <children>
                                                       <Label alignment="CENTER" contentDisplay="CENTER" disable="false" font="$x2" prefHeight="38.0" prefWidth="148.0" text="نحوه ورود" textAlignment="RIGHT" wrapText="false" />
                                                       <RadioButton fx:id="RecRulEarthRD" disable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="زمینی">
@@ -328,7 +328,7 @@
                                                       <RadioButton fx:id="RecRulAirRD" alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="هوایی" toggleGroup="$recEnterance11" />
                                                    </children>
                                                 </HBox>
-                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="8.0" prefWidth="401.0">
                                                    <children>
                                                       <Label prefHeight="15.0" prefWidth="70.0" text="مبلغ کل">
                                                          <font>
@@ -347,7 +347,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="55.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="55.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="8.0" prefWidth="401.0">
                                                    <children>
                                                       <Label prefHeight="21.0" prefWidth="99.0" text="قیمت واحد:">
                                                          <font>
@@ -366,9 +366,9 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <VBox alignment="CENTER" prefHeight="83.0" prefWidth="291.0">
+                                                <VBox alignment="CENTER" prefHeight="82.0" prefWidth="401.0">
                                                    <children>
-                                                      <HBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
+                                                      <HBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="401.0">
                                                          <children>
                                                             <Label text="کالاها">
                                                                <font>
@@ -390,7 +390,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" layoutX="10.0" layoutY="235.0" prefHeight="83.0" prefWidth="291.0">
                                                    <children>
-                                                      <HBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">
+                                                      <HBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="32.0" prefWidth="401.0">
                                                          <children>
                                                             <Label text="شرکت‌ها">
                                                                <font>
@@ -408,6 +408,22 @@
                                                          </VBox.margin>
                                                       </HBox>
                                                       <ListView fx:id="RuleManhouseLV" maxWidth="200.0" prefHeight="48.0" prefWidth="200.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="66.0" prefWidth="209.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="27.0" prefWidth="170.0">
+                                                         <children>
+                                                            <Label text="شماره مجوز" />
+                                                            <TextField fx:id="RuleCertidTXT" prefHeight="25.0" prefWidth="113.0" />
+                                                            <Button fx:id="pluscertRBTN" mnemonicParsing="false" onAction="#addcertR" text="+" wrapText="false" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="153.0">
+                                                         <children>
+                                                            <ListView fx:id="RuleCerthouseLV" prefHeight="40.0" prefWidth="206.0" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
                                                 </VBox>
                                                 <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="372.0">

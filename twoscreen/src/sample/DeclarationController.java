@@ -232,7 +232,21 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void RecDeclaration (ActionEvent event) throws IOException {
-        if (true) { //decleration can added.
+        boolean certstrue = true;
+        for (String cid:Data.getData().Certhouse) {
+            ResultSet rs = SQLHandler.executeQuery("SELECT CID FROM CERTIFICATE WHERE CID=" + cid);
+            try {
+                if (!rs.isBeforeFirst() || rs==null) {
+                    SQLHandler.log("on or more cid in RecordDecleration is wrong.");
+                    certstrue = false;
+                    break;
+                }
+            } catch (SQLException e) {
+                System.err.println("DecCidChecker exception!");
+            }
+
+        }
+        if (certstrue && true) { //decleration can added.
             int whid = SQLHandler.getMaxWHID()+1;
             for (ware w:Data.getData().Warehouse) {
                 int wid = SQLHandler.getMaxWID()+1;
@@ -259,9 +273,23 @@ public class DeclarationController implements Initializable{
 
             SQLHandler.executeUpdate("INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)\n" +
                     "VALUES (\"" + DecDateDP.getValue() + "\"," + whid + ",\"" + DecSourceTXT.getText() + "\",\'" + enterance + "\'," + chid + ")");
+
+            DecDateDP.setValue(null);
+            Data.getData().Warehouse.clear();
+            Data.getData().warenames.clear();
+            warehouseLV.setItems(Data.getData().wareItems);
+            RecDecAirRD.setSelected(false);
+            RecDecEarthRD.setSelected(false);
+            RecDecSeaRD.setSelected(false);
+            DecCertidTXT.setText("");
+            Data.getData().Certhouse.clear();
+            Data.getData().certnames.clear();
+            certhouseLV.setItems(Data.getData().certItems);
+            certhouseLV.refresh();
         }
         else { //decleration has problems.
-
+            if (certstrue==false)
+                System.err.println("cid error!"); //message cid is wrong!
         }
     }
 

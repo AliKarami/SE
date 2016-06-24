@@ -1,24 +1,71 @@
-[2016-06-24 10:51:23] ---------------Program Started!---------------
-[2016-06-24 10:51:24] initializing Tables completed.
-[2016-06-24 10:51:24] admin:admin user added.
-[2016-06-24 10:51:28] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
-[2016-06-24 10:51:50] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=653" doesn't have result.
-[2016-06-24 10:51:50] on or more cid in RecordDecleration is wrong.
-[2016-06-24 10:52:18] ---------------Program Started!---------------
-[2016-06-24 10:52:19] initializing Tables completed.
-[2016-06-24 10:52:19] admin:admin user added.
-[2016-06-24 10:52:23] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
-[2016-06-24 10:52:40] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=563" doesn't have result.
-[2016-06-24 10:52:40] on or more cid in RecordDecleration is wrong.
-[2016-06-24 10:53:05] ---------------Program Started!---------------
-[2016-06-24 10:53:06] initializing Tables completed.
-[2016-06-24 10:53:06] admin:admin user added.
-[2016-06-24 10:53:12] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
-[2016-06-24 10:53:18] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=643" doesn't have result.
-[2016-06-24 10:53:18] on or more cid in RecordDecleration is wrong.
-[2016-06-24 10:54:21] ---------------Program Started!---------------
-[2016-06-24 10:54:22] initializing Tables completed.
-[2016-06-24 10:54:22] admin:admin user added.
-[2016-06-24 10:54:25] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
-[2016-06-24 10:54:32] executed Query: "SELECT CID FROM CERTIFICATE WHERE CID=754" doesn't have result.
-[2016-06-24 10:54:32] on or more cid in RecordDecleration is wrong.
+[2016-06-24 11:06:05] ---------------Program Started!---------------
+[2016-06-24 11:06:06] initializing Tables completed.
+[2016-06-24 11:06:06] admin:admin user added.
+[2016-06-24 11:06:10] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:06:48] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:11:39] ---------------Program Started!---------------
+[2016-06-24 11:11:40] initializing Tables completed.
+[2016-06-24 11:11:40] admin:admin user added.
+[2016-06-24 11:11:43] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:11:55] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:11:55] 1
+[2016-06-24 11:11:55] 2
+[2016-06-24 11:11:55] 3
+[2016-06-24 11:15:45] ---------------Program Started!---------------
+[2016-06-24 11:15:46] initializing Tables completed.
+[2016-06-24 11:15:46] admin:admin user added.
+[2016-06-24 11:15:50] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:16:00] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:16:00] 1
+[2016-06-24 11:16:00] 2
+[2016-06-24 11:16:00] 3 A
+[2016-06-24 11:18:06] ---------------Program Started!---------------
+[2016-06-24 11:18:06] initializing Tables completed.
+[2016-06-24 11:18:06] admin:admin user added.
+[2016-06-24 11:18:10] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:18:23] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:18:23] 1
+[2016-06-24 11:18:23] 2
+[2016-06-24 11:18:23] 3 null
+[2016-06-24 11:19:14] ---------------Program Started!---------------
+[2016-06-24 11:19:15] initializing Tables completed.
+[2016-06-24 11:19:15] admin:admin user added.
+[2016-06-24 11:19:18] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:19:28] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:19:28] 1
+[2016-06-24 11:19:28] 2
+[2016-06-24 11:19:28] 3 ComboBoxPopupControl$FakeFocusTextField@501ab6aa[styleClass=text-input text-field date-picker-display-node]
+[2016-06-24 11:20:20] ---------------Program Started!---------------
+[2016-06-24 11:20:21] initializing Tables completed.
+[2016-06-24 11:20:21] admin:admin user added.
+[2016-06-24 11:20:24] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:20:32] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:20:32] 1
+[2016-06-24 11:20:32] 2
+[2016-06-24 11:22:18] ---------------Program Started!---------------
+[2016-06-24 11:22:19] initializing Tables completed.
+[2016-06-24 11:22:19] admin:admin user added.
+[2016-06-24 11:22:22] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:22:31] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:22:31] 1
+[2016-06-24 11:22:31] 2
+[2016-06-24 11:22:31] 3
+[2016-06-24 11:22:31] executed Update: "INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names,CHID)
+VALUES (NULL,NULL,"gfag",'W',NULL,NULL,NULL,NULL,NULL,NULL,NULL)" update 1 rows.
+[2016-06-24 11:22:31] 4
+[2016-06-24 11:22:31] executed Query: "SELECT RID FROM RULE ORDER BY RID DESC LIMIT 1;"  have result.
+[2016-06-24 11:23:08] ---------------Program Started!---------------
+[2016-06-24 11:23:11] initializing Tables completed.
+[2016-06-24 11:23:11] admin:admin user added.
+[2016-06-24 11:23:15] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:23:57] executed Query: "SELECT WHID FROM WAREHOUSE ORDER BY WHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:23:57] executed Query: "SELECT WID FROM WARE ORDER BY WID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:23:57] executed Update: "INSERT INTO WARE (wid,name,manufacturer,weight,quantity,price,price_s)
+VALUES(1,"salam","khodafez",467,46,83,'E')" update 1 rows.
+[2016-06-24 11:23:58] executed Update: "INSERT INTO WAREHOUSE (whid,wid)
+VALUES(1,1)" update 1 rows.
+[2016-06-24 11:23:58] executed Query: "SELECT CHID FROM CERTHOUSE ORDER BY CHID DESC LIMIT 1;" doesn't have result.
+[2016-06-24 11:23:58] executed Update: "INSERT INTO DECLERATION (date,WHID,source_country,enterance,CHID)
+VALUES ("2016-06-14",1,"afqanestan",'E',NULL)" update 1 rows.
+[2016-06-24 11:23:58] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
+[2016-06-24 11:23:58] Cannot connect the database or SQL error on excecuteQuery "SELECT * FROM Decleration WHERE DID=1"!

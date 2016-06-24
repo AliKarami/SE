@@ -348,7 +348,17 @@ public class DeclarationController implements Initializable{
             }
             else {
                 //message cross-rids to user!
+                Vector<Integer> ills = Data.getData().dbh.getIllegals();
+                String illsStr = "";
+                for (int ill:ills) {
+                    illsStr = illsStr +" " + ill;
+                }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Inadequate Certificates Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error: rules #" + illsStr + " are not satisfied by certificates.");
 
+                alert.showAndWait();
             }
         }
     }
@@ -396,7 +406,7 @@ public class DeclarationController implements Initializable{
 
         int cid = SQLHandler.getMaxCID()+1;
         SQLHandler.executeUpdate("INSERT INTO CERTIFICATE (cid,date_to,price_to,source_country,enterance,whid) \n" +
-                    "VALUES(" + cid + "," + (CertDateToDP.getValue().equals("")?"NULL":("\""+CertDateToDP.getValue()+"\"")) + "," + (CertPriceTXT.getText().equals("")?"NULL":(CertPriceTXT.getText())) + "," + (CertSourceTXT.getText().equals("")?"NULL":("\""+CertSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().cWarehouse.size()==0?"NULL":whid) + ")");
+                    "VALUES(" + cid + "," + (CertDateToDP.getValue()==null?"NULL":("\""+CertDateToDP.getValue()+"\"")) + "," + (CertPriceTXT.getText().equals("")?"NULL":(CertPriceTXT.getText())) + "," + (CertSourceTXT.getText().equals("")?"NULL":("\""+CertSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (Data.getData().cWarehouse.size()==0?"NULL":whid) + ")");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Certification Added");
@@ -462,7 +472,7 @@ public class DeclarationController implements Initializable{
             } else
                 sb.append(w+",");
         }
-        String wares = sb.toString();
+        String wares = "" + sb.toString();
         sb = new StringBuilder();
         for (String m:Data.getData().rManhouse) {
             if (Data.getData().rManhouse.get(Data.getData().rManhouse.size()-1).equals(m)) {
@@ -470,7 +480,7 @@ public class DeclarationController implements Initializable{
             } else
                 sb.append(m+",");
         }
-        String mans = sb.toString();
+        String mans = "" + sb.toString();
         int chid = SQLHandler.getMaxCHID()+1;
         for (String cid:Data.getData().rCerthouse) {
             SQLHandler.executeUpdate("INSERT INTO CERTHOUSE (chid,cid)\n" +
@@ -485,10 +495,8 @@ public class DeclarationController implements Initializable{
             enterance = 'W';
         else
             enterance = 'F';
-
         SQLHandler.executeUpdate("INSERT INTO RULE (date_from,date_to,source_country,enterance,price_from,price_to,per_price_from,per_price_to,ware_names,manufacturer_names,CHID)\n" +
-                "VALUES (" + (RuleDateFromDP.getValue().equals("")?"NULL":("\""+RuleDateFromDP.getValue()+"\"")) + "," + (RuleDateToDP.getValue().equals("")?"NULL":("\""+RuleDateToDP.getValue()+"\"")) + "," + (RuleSourceTXT.getText().equals("")?"NULL":("\""+RuleSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (RulePriceFromTXT.getText().equals("")?"NULL":(RulePriceFromTXT.getText())) + "," + (RulePriceToTXT.getText().equals("")?"NULL":(RulePriceToTXT.getText())) + "," + (RulePPriceFromTXT.getText().equals("")?"NULL":(RulePPriceFromTXT.getText())) + "," + (RulePPriceToTXT.getText().equals("")?"NULL":(RulePPriceToTXT.getText())) + "," + (wares.equals("")?"NULL":("\""+wares+"\"")) + "," + (mans.equals("")?"NULL":("\""+mans+"\"")) + "," + (Data.getData().rCerthouse.size()==0?"NULL":chid) + ")");
-
+                "VALUES (" + (RuleDateFromDP.getValue()==null?"NULL":("\""+RuleDateFromDP.getValue()+"\"")) + "," + (RuleDateToDP.getValue()==null?"NULL":("\""+RuleDateToDP.getValue()+"\"")) + "," + (RuleSourceTXT.getText().equals("")?"NULL":("\""+RuleSourceTXT.getText()+"\"")) + ",\'" + enterance + "\'," + (RulePriceFromTXT.getText().equals("")?"NULL":(RulePriceFromTXT.getText())) + "," + (RulePriceToTXT.getText().equals("")?"NULL":(RulePriceToTXT.getText())) + "," + (RulePPriceFromTXT.getText().equals("")?"NULL":(RulePPriceFromTXT.getText())) + "," + (RulePPriceToTXT.getText().equals("")?"NULL":(RulePPriceToTXT.getText())) + "," + (wares.equals("")?"NULL":("\""+wares+"\"")) + "," + (mans.equals("")?"NULL":("\""+mans+"\"")) + "," + (Data.getData().rCerthouse.size()==0?"NULL":chid) + ")");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Rule Added");
         alert.setHeaderText(null);

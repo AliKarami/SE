@@ -69,3 +69,27 @@ VALUES(1,1)" update 1 rows.
 VALUES ("2016-06-14",1,"afqanestan",'E',NULL)" update 1 rows.
 [2016-06-24 11:23:58] executed Query: "SELECT DID FROM DECLERATION ORDER BY DID DESC LIMIT 1;"  have result.
 [2016-06-24 11:23:58] Cannot connect the database or SQL error on excecuteQuery "SELECT * FROM Decleration WHERE DID=1"!
+[2016-06-24 11:27:13] ---------------Program Started!---------------
+[2016-06-24 11:27:13] initializing Tables completed.
+[2016-06-24 11:27:13] admin:admin user added.
+[2016-06-24 11:27:18] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:27:59] ---------------Program Started!---------------
+[2016-06-24 11:28:00] initializing Tables completed.
+[2016-06-24 11:28:00] admin:admin user added.
+[2016-06-24 11:28:05] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:29:49] ---------------Program Started!---------------
+[2016-06-24 11:29:50] initializing Tables completed.
+[2016-06-24 11:29:50] admin:admin user added.
+[2016-06-24 11:29:54] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:30:39] ---------------Program Started!---------------
+[2016-06-24 11:30:39] initializing Tables completed.
+[2016-06-24 11:30:39] admin:admin user added.
+[2016-06-24 11:30:43] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:31:22] ---------------Program Started!---------------
+[2016-06-24 11:31:22] initializing Tables completed.
+[2016-06-24 11:31:22] admin:admin user added.
+[2016-06-24 11:31:27] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.
+[2016-06-24 11:32:17] ---------------Program Started!---------------
+[2016-06-24 11:32:17] initializing Tables completed.
+[2016-06-24 11:32:17] admin:admin user added.
+[2016-06-24 11:32:21] executed Query: "SELECT type,password FROM USERS WHERE username="admin""  have result.

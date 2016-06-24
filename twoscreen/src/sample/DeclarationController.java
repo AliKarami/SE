@@ -213,31 +213,30 @@ public class DeclarationController implements Initializable{
     //    @override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        DecTAB.setDisable(true);
-//        CertTAB.setDisable(true);
-//        RuleTAB.setDisable(true);
-//        UserTAB.setDisable(true);
+
 //        SingleSelectionModel<Tab> selectionModel = tabPANE.getSelectionModel();
-//        switch (Data.getData().curUserType) {
-//            case 'R':
-//                RuleTAB.setDisable(false);
+        switch (Data.getData().curUserType) {
+            case 'R':
+                DecTAB.setDisable(true);
+                CertTAB.setDisable(true);
+                UserTAB.setDisable(true);
 //                selectionModel.select(RuleTAB);
-//                break;
-//            case 'C':
-//                CertTAB.setDisable(false);
+                break;
+            case 'C':
+                DecTAB.setDisable(true);
+                RuleTAB.setDisable(true);
+                UserTAB.setDisable(true);
 //                selectionModel.select(CertTAB);
-//                break;
-//            case 'D':
-//                DecTAB.setDisable(false);
+                break;
+            case 'D':
+                CertTAB.setDisable(true);
+                RuleTAB.setDisable(true);
+                UserTAB.setDisable(true);
 //                selectionModel.select(DecTAB);
-//                break;
-//            case 'A':
-//                RuleTAB.setDisable(false);
-//                CertTAB.setDisable(false);
-//                DecTAB.setDisable(false);
-//                UserTAB.setDisable(false);
-//                break;
-//        }
+                break;
+            case 'A':
+                break;
+        }
     }
 
     //DecTAB
@@ -610,7 +609,7 @@ public class DeclarationController implements Initializable{
 
     @FXML
     public void addwared (ActionEvent event) throws IOException {
-        if (dWareNameTXT.getText().equals("") || dWareManTXT.getText().equals("") || dWareNumTXT.getText().equals("") || dWarePriceTXT.getText().equals("") || dWareWeightTXT.getText().equals("")) {
+        if (dWareNameTXT.getText().equals("") || dWareManTXT.getText().equals("") || dWarePriceTXT.getText().equals("") || (dWareNumTXT.getText().equals("")  && dWareWeightTXT.getText().equals(""))) {
             daddwareerrorLBL.setVisible(true);
             return;
         } else {
